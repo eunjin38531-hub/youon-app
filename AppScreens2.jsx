@@ -8,7 +8,7 @@ function LikeCard({ p, onClick, locked }) {
   return (
     <button onClick={onClick} style={{ position: 'relative', display: 'block', padding: 0, border: 'none', borderRadius: 'var(--radius-lg)', overflow: 'hidden', background: 'var(--color-natural-200)', aspectRatio: '3 / 4', cursor: 'pointer', boxShadow: 'var(--shadow-sm)', WebkitTapHighlightColor: 'transparent' }}>
       <img src={p.photo} alt={p.name} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', filter: locked ? 'blur(14px)' : 'none' }} />
-      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(34,32,28,0.6), transparent 46%)' }} />
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(30,28,24,0.6), transparent 46%)' }} />
       {/* score badge */}
       <div style={{ position: 'absolute', top: 10, left: 10, display: 'inline-flex', alignItems: 'center', gap: 4, height: 26, padding: '0 9px', borderRadius: 'var(--radius-pill)', background: 'rgba(255,255,255,0.92)' }}>
         <Icon name="heart" size={13} filled color="var(--color-accent-500)" />
@@ -226,7 +226,7 @@ function ChatRoomScreen({ chatId, onBack }) {
       {/* side panel */}
       {panel && (
         <>
-          <div onClick={() => setPanel(false)} style={{ position: 'absolute', inset: 0, background: 'rgba(34,32,28,0.35)' }} />
+          <div onClick={() => setPanel(false)} style={{ position: 'absolute', inset: 0, background: 'rgba(30,28,24,0.35)' }} />
           <div style={{ position: 'absolute', top: 0, right: 0, bottom: 0, width: '82%', background: 'var(--color-surface-card)', boxShadow: 'var(--shadow-pop)', padding: '52px 20px 20px', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 8 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
               <Avatar src={p.photo} name={p.name} size={52} />

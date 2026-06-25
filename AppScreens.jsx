@@ -58,8 +58,8 @@ function LocationSheet({ open, onClose, range, onApply }) {
   const cur = LOC_RANGES.find((r) => r.key === sel) || LOC_RANGES[0];
   return (
     <>
-      <div onClick={onClose} style={{ position: 'absolute', inset: 0, background: 'rgba(34,32,28,0.4)', zIndex: 60, animation: 'locfade var(--duration-base) var(--ease-standard)' }} />
-      <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, zIndex: 61, background: 'var(--color-surface-card)', borderRadius: 'var(--radius-xl) var(--radius-xl) 0 0', padding: '12px 24px 30px', boxShadow: '0 -8px 30px rgba(34,32,28,0.16)' }}>
+      <div onClick={onClose} style={{ position: 'absolute', inset: 0, background: 'rgba(30,28,24,0.4)', zIndex: 60, animation: 'locfade var(--duration-base) var(--ease-standard)' }} />
+      <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, zIndex: 61, background: 'var(--color-surface-card)', borderRadius: 'var(--radius-xl) var(--radius-xl) 0 0', padding: '12px 24px 30px', boxShadow: '0 -8px 30px rgba(30,28,24,0.16)' }}>
         <div style={{ width: 40, height: 4, borderRadius: 2, background: 'var(--color-natural-200)', margin: '0 auto 14px' }} />
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
           <h2 style={{ margin: 0, fontSize: 20, fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--color-text-primary)' }}>위치 기반으로 만나기</h2>
@@ -201,7 +201,7 @@ function ProfileDetailScreen({ profileId, onBack, onQuiet, onInterest, savedQuie
         {/* photo header */}
         <div style={{ position: 'relative', width: '100%', aspectRatio: '4 / 5', background: 'var(--color-natural-200)' }}>
           <img src={p.photo} alt={p.name} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(34,32,28,0.66), transparent 40%), linear-gradient(to bottom, rgba(34,32,28,0.28), transparent 16%)' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(30,28,24,0.66), transparent 40%), linear-gradient(to bottom, rgba(30,28,24,0.28), transparent 16%)' }} />
           <div style={{ position: 'absolute', top: 52, left: 8, right: 8, display: 'flex', justifyContent: 'space-between' }}>
             <IconButton icon={<Icon name="chevronLeft" color="#fff" />} onClick={onBack} ariaLabel="뒤로" />
             <IconButton icon={<Icon name="moreHorizontal" color="#fff" />} ariaLabel="더보기" />
