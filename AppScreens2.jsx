@@ -55,14 +55,13 @@ function SavedCarousel({ list, onOpenProfile }) {
     </div>
   );
 
-  const CARD_W = 200;
-  const SIDE_SCALE = 0.82;
-  const SIDE_OFFSET = 148;
+  const CARD_W = 190;
+  const CARD_H = 300;
 
   return (
-    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 24, overflow: 'hidden' }}>
+    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 20, overflow: 'hidden' }}>
       <div
-        style={{ position: 'relative', width: '100%', height: 320, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+        style={{ position: 'relative', width: '100%', height: CARD_H + 20, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
       >
@@ -70,10 +69,11 @@ function SavedCarousel({ list, onOpenProfile }) {
           const offset = i - cur;
           if (Math.abs(offset) > 1) return null;
           const isCenter = offset === 0;
-          const x = offset * SIDE_OFFSET;
-          const scale = isCenter ? 1 : SIDE_SCALE;
+          const x = offset * 155;
+          const rotate = offset * -8;
+          const scale = isCenter ? 1 : 0.84;
           const zIndex = isCenter ? 10 : 5;
-          const opacity = isCenter ? 1 : 0.72;
+          const opacity = isCenter ? 1 : 0.78;
           const elIcon = window.YuonData.elementIcons[p.el];
           return (
             <div
@@ -82,37 +82,38 @@ function SavedCarousel({ list, onOpenProfile }) {
               style={{
                 position: 'absolute',
                 width: CARD_W,
-                height: 280,
                 borderRadius: 20,
                 overflow: 'hidden',
-                background: 'var(--color-natural-300)',
-                boxShadow: isCenter ? '0 12px 40px rgba(30,28,24,0.22)' : '0 4px 16px rgba(30,28,24,0.12)',
-                transform: `translateX(${x}px) scale(${scale})`,
-                transition: 'transform 0.32s cubic-bezier(0.34,1.1,0.64,1), opacity 0.32s ease, box-shadow 0.32s ease',
+                background: '#fff',
+                boxShadow: isCenter ? '0 16px 48px rgba(30,28,24,0.2)' : '0 4px 16px rgba(30,28,24,0.1)',
+                transform: `translateX(${x}px) scale(${scale}) rotate(${rotate}deg)`,
+                transition: 'transform 0.35s cubic-bezier(0.34,1.1,0.64,1), opacity 0.3s ease',
                 zIndex,
                 opacity,
                 cursor: 'pointer',
               }}
             >
-              <img src={p.photo} alt={p.name} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(30,28,24,0.72) 0%, transparent 52%)' }} />
-              {/* score badge */}
-              <div style={{ position: 'absolute', top: 12, left: 12, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, padding: '7px 10px', borderRadius: 12, background: 'rgba(255,255,255,0.93)' }}>
-                <Icon name="heart" size={14} filled color="var(--color-accent-500)" />
-                <span style={{ fontSize: 13, fontWeight: 800, color: 'var(--color-text-primary)', lineHeight: 1 }}>{p.score}%</span>
-                <span style={{ fontSize: 9, fontWeight: 600, color: 'var(--color-text-meta)', lineHeight: 1 }}>궁합</span>
+              {/* photo */}
+              <div style={{ position: 'relative', height: 210 }}>
+                <img src={p.photo} alt={p.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                {/* score badge */}
+                <div style={{ position: 'absolute', top: 10, left: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, padding: '6px 9px', borderRadius: 11, background: 'rgba(255,255,255,0.95)' }}>
+                  <Icon name="heart" size={13} filled color="var(--color-accent-500)" />
+                  <span style={{ fontSize: 12, fontWeight: 800, color: 'var(--color-text-primary)', lineHeight: 1 }}>{p.score}%</span>
+                  <span style={{ fontSize: 9, fontWeight: 600, color: 'var(--color-text-meta)', lineHeight: 1 }}>궁합</span>
+                </div>
               </div>
               {/* info */}
-              <div style={{ position: 'absolute', left: 14, right: 14, bottom: 14 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 5, color: '#fff', fontSize: 16, fontWeight: 700, letterSpacing: '-0.01em', marginBottom: 6 }}>
+              <div style={{ padding: '12px 14px 14px', background: '#fff' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 15, fontWeight: 700, color: 'var(--color-text-primary)', marginBottom: 6 }}>
                   {p.name}, {p.age}
-                  {p.verified && <Icon name="badgeCheck" size={15} color="#fff" />}
+                  {p.verified && <Icon name="badgeCheck" size={14} color="var(--color-primary-500)" />}
                 </div>
-                <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, padding: '3px 9px', borderRadius: 'var(--radius-pill)', background: 'rgba(255,255,255,0.18)', backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)', fontSize: 11, fontWeight: 600, color: '#fff' }}>
-                  {elIcon ? <img src={elIcon} alt="" style={{ width: 16, height: 16, borderRadius: 5, objectFit: 'cover' }} /> : <span>🔥</span>}
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, padding: '3px 9px', borderRadius: 'var(--radius-pill)', background: 'var(--color-primary-50)', fontSize: 11, fontWeight: 600, color: 'var(--color-primary-700)', marginBottom: 6 }}>
+                  {elIcon ? <img src={elIcon} alt="" style={{ width: 14, height: 14, borderRadius: 4, objectFit: 'cover' }} /> : <span>🔥</span>}
                   {p.sajuTag}
                 </div>
-                <p style={{ margin: '7px 0 0', fontSize: 12, color: 'rgba(255,255,255,0.85)', lineHeight: 1.45, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>{p.intro}</p>
+                <p style={{ margin: 0, fontSize: 11.5, color: 'var(--color-text-meta)', lineHeight: 1.45, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>{p.intro}</p>
               </div>
             </div>
           );
@@ -127,8 +128,8 @@ function SavedCarousel({ list, onOpenProfile }) {
       </div>
 
       {/* hint */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--color-text-meta)', fontSize: 12, fontWeight: 500 }}>
-        <span>👆</span> 좌우로 넘겨 더 많은 프로필을 확인해보세요
+      <div style={{ display: 'flex', alignItems: 'center', gap: 5, color: 'var(--color-text-meta)', fontSize: 12, fontWeight: 500 }}>
+        <span>↔</span> 좌우로 넘겨 더 많은 프로필을 확인해보세요
       </div>
     </div>
   );
