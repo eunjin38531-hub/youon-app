@@ -56,12 +56,12 @@ function SavedCarousel({ list, onOpenProfile }) {
   );
 
   const CARD_W = 190;
-  const CARD_H = 300;
+  const CARD_H = 340;
 
   return (
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 20, overflow: 'hidden' }}>
       <div
-        style={{ position: 'relative', width: '100%', height: CARD_H + 20, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+        style={{ position: 'relative', width: '100%', height: CARD_H + 40, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
       >
@@ -94,7 +94,7 @@ function SavedCarousel({ list, onOpenProfile }) {
               }}
             >
               {/* photo */}
-              <div style={{ position: 'relative', height: 210 }}>
+              <div style={{ position: 'relative', height: 220 }}>
                 <img src={p.photo} alt={p.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 {/* score badge */}
                 <div style={{ position: 'absolute', top: 10, left: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, padding: '6px 9px', borderRadius: 11, background: 'rgba(255,255,255,0.95)' }}>
