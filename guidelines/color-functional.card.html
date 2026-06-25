@@ -1,0 +1,30 @@
+<!-- @dsCard group="Colors" viewport="700x170" name="Functional pairings" subtitle="인증 뱃지 · 궁합 점수 · 관심 표현 · 에러 — 검증된 배경/전경 조합" -->
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8" /><link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; padding: 20px; background: var(--color-surface-card); font-family: var(--font-family-base); }
+  .row { display: flex; gap: 12px; }
+  .pair { flex: 1; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 8px; min-height: 88px; justify-content: space-between; }
+  .tag { font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+  .meta { font-size: 10px; opacity: 0.85; }
+</style></head>
+<body>
+<div class="row">
+  <div class="pair" style="background:var(--color-trust-badge-bg)">
+    <span class="tag" style="color:var(--color-trust-badge-text)">✓ 본인인증</span>
+    <span class="meta" style="color:var(--color-trust-badge-text)">primary/100 · primary/800</span>
+  </div>
+  <div class="pair" style="background:var(--color-match-score)">
+    <span class="tag" style="color:#fff">궁합 92점</span>
+    <span class="meta" style="color:#fff">match-score (primary/500)</span>
+  </div>
+  <div class="pair" style="background:var(--color-heart-action)">
+    <span class="tag" style="color:var(--color-text-on-accent)">♥ 관심 표현</span>
+    <span class="meta" style="color:var(--color-text-on-accent)">accent/500 · accent/900</span>
+  </div>
+  <div class="pair" style="background:var(--color-error-bg)">
+    <span class="tag" style="color:var(--color-error-text)">! 인증 실패</span>
+    <span class="meta" style="color:var(--color-error-text)">accent/50 · accent/800</span>
+  </div>
+</div>
+</body></html>

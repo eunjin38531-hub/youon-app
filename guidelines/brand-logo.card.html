@@ -1,0 +1,25 @@
+<!-- @dsCard group="Brand" viewport="700x260" name="Logo" subtitle="앱 아이콘 · 화이트 심볼 · YUON 워드마크" -->
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8" /><link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; padding: 26px; background: var(--color-surface-card); font-family: var(--font-family-base); display: flex; gap: 26px; align-items: stretch; flex-wrap: wrap; }
+  .tile { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; border-radius: 16px; padding: 22px 26px; }
+  .tile .cap { font-size: 12px; font-weight: 500; color: var(--color-text-tertiary); }
+  .onlight { background: var(--color-surface-page); border: 1px solid var(--color-border-default); }
+  .onteal { background: var(--color-primary-500); }
+  .onteal .cap { color: rgba(255,255,255,0.85); }
+</style></head>
+<body>
+  <div class="tile onlight">
+    <img src="../assets/logo/yuon-app-icon.png" alt="여운 앱 아이콘" style="width:96px;height:96px;border-radius:22px" />
+    <span class="cap">App Icon</span>
+  </div>
+  <div class="tile onlight" style="min-width:200px">
+    <img src="../assets/logo/yuon-wordmark.png" alt="YUON 워드마크" style="height:46px;object-fit:contain" />
+    <span class="cap">Wordmark — on light</span>
+  </div>
+  <div class="tile onteal">
+    <img src="../assets/logo/yuon-symbol-white.png" alt="여운 화이트 심볼" style="width:80px;height:80px;object-fit:contain" />
+    <span class="cap">White Symbol — on brand</span>
+  </div>
+</body></html>
