@@ -1,748 +1,155 @@
+<!-- @dsCard group="여운 App" viewport="430x884" name="여운 App — interactive" subtitle="iPhone 13/14 (390×844) · 로그인 → 홈 → 상세 → 하트 → 대화 → 마이 (클릭 가능한 프로토타입)" -->
+<!-- @startingPoint section="여운 App" subtitle="사주 데이팅 앱 — 전체 클릭형 프로토타입 (iPhone 13/14)" viewport="430x884" -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>여운 디자인 시스템 v1.0</title>
-<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
-<script src="deck-stage.js"></script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>여운 App</title>
+<link rel="stylesheet" href="../../styles.css" />
 <style>
-  :root {
-    --teal-50:  #EDF9F8; --teal-100: #CCEEED; --teal-200: #A8E3E1;
-    --teal-300: #83D5D3; --teal-400: #6CCECB; --teal-500: #5AC7C4; --teal-600: #41AFAC;
-    --teal-700: #2D8E8C; --teal-800: #1C6A68; --teal-900: #0D4443;
-    --coral-50: #FFF1EF; --coral-100: #FFD6D1; --coral-300: #FFA397;
-    --coral-400: #FF9789; --coral-500: #FF8C7D; --coral-700: #C45244;
-    --nat-50: #F6F4F1; --nat-100: #E6E3DC; --nat-200: #D1CDC5;
-    --nat-400: #ABA49B; --nat-500: #9E9488; --nat-600: #857D72;
-    --nat-700: #635D54; --nat-800: #413D36; --nat-900: #22201C;
-
-    --type-hero: 88px;
-    --type-title: 72px;
-    --type-sub: 48px;
-    --type-body: 32px;
-    --type-sm: 26px;
-    --type-xs: 20px;
-    --pad-x: 100px;
-    --pad-top: 96px;
-    --pad-bot: 72px;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  deck-stage section {
-    font-family: 'Pretendard', -apple-system, 'Apple SD Gothic Neo', sans-serif;
-    color: var(--nat-900);
-    position: relative;
-    overflow: hidden;
-  }
+  html, body { margin: 0; height: 100%; }
+  body { background: var(--color-natural-100); font-family: var(--font-family-base); display: flex; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; }
+  /* iPhone 13 / 14 — 390 × 844 pt logical screen */
+  .phone { position: relative; width: 390px; height: 844px; background: var(--color-surface-card); border-radius: 55px; box-shadow: 0 24px 70px rgba(34,32,28,0.28); border: 11px solid #1A1814; }
+  .screen-wrap { position: absolute; inset: 0; border-radius: 44px; overflow: hidden; }
+  /* device notch */
+  .notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 158px; height: 30px; background: #1A1814; border-radius: 0 0 18px 18px; z-index: 40; }
+  .app-shell { position: absolute; inset: 0; }
+  .tabbar-slot { position: absolute; left: 0; right: 0; bottom: 0; background: var(--color-surface-card); padding-bottom: 22px; }
+  .toast { position: absolute; left: 50%; bottom: 108px; transform: translateX(-50%); background: var(--color-natural-900); color: #fff; padding: 12px 18px; border-radius: 999px; font-size: 13px; font-weight: 500; box-shadow: var(--shadow-pop); white-space: nowrap; z-index: 50; animation: toastin var(--duration-base) var(--ease-emphasis); display: flex; align-items: center; gap: 7px; }
+  @keyframes toastin { from { opacity: 0; transform: translate(-50%, 8px); } to { opacity: 1; transform: translate(-50%, 0); } }
+  /* hide scrollbars — real mobile has no visible track */
+  .screen-wrap, .screen-wrap * { scrollbar-width: none; -ms-overflow-style: none; }
+  .screen-wrap *::-webkit-scrollbar { width: 0; height: 0; display: none; }
 </style>
 </head>
-<body style="margin:0;background:#111;">
+<body>
+<div class="phone">
+  <div class="screen-wrap"><div id="root"></div></div>
+  <div class="notch"></div>
+</div>
 
-<deck-stage width="1920" height="1080">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script src="AppData.js"></script>
+<script type="text/babel" src="AppScreens.jsx"></script>
+<script type="text/babel" src="AppScreens2.jsx"></script>
+<script type="text/babel" src="Onboarding.jsx"></script>
+<script type="text/babel">
+const { BottomTabBar, Icon } = window.YuonDesignSystem_8624c6;
 
-  <!-- ─── 01 표지 ─────────────────────────────────── -->
-  <section data-label="01 표지" style="
-    background: linear-gradient(152deg, #0D4443 0%, #1C6A68 28%, #2D8E8C 55%, #5AC7C4 78%, #A8E3E1 100%);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 110px 0 140px;">
-
-    <div style="display:flex;flex-direction:column;gap:28px;max-width:860px;z-index:2;">
-      <img src="assets/logo/yuon-symbol-white.png" style="width:76px;height:76px;object-fit:contain;" alt="">
-      <div>
-        <div style="font-size:19px;font-weight:500;color:rgba(255,255,255,0.65);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:14px;">Yuon Design System</div>
-        <div style="font-size:var(--type-hero);font-weight:700;color:#fff;line-height:1.0;letter-spacing:-0.03em;">여운</div>
-        <div style="font-size:var(--type-hero);font-weight:700;color:#fff;line-height:1.0;letter-spacing:-0.03em;">디자인 시스템</div>
-      </div>
-      <div style="width:56px;height:3px;background:rgba(255,255,255,0.45);border-radius:2px;"></div>
-      <div style="font-size:34px;font-weight:400;color:rgba(255,255,255,0.85);line-height:1.5;">진짜 사람과, 이유 있는 만남을</div>
-      <div style="display:flex;gap:16px;align-items:center;">
-        <div style="font-size:var(--type-xs);font-weight:500;color:rgba(255,255,255,0.55);">v1.0</div>
-        <div style="width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.3);"></div>
-        <div style="font-size:var(--type-xs);font-weight:500;color:rgba(255,255,255,0.55);">2026. 06</div>
-      </div>
-    </div>
-
-    <div style="flex-shrink:0;z-index:2;">
-      <img src="assets/mascot/yeowoong.png" style="width:500px;height:500px;object-fit:contain;filter:drop-shadow(0 24px 48px rgba(0,0,0,0.28));" alt="여웅">
-    </div>
-
-    <div style="position:absolute;top:-220px;right:350px;width:640px;height:640px;border-radius:50%;background:rgba(255,255,255,0.05);"></div>
-    <div style="position:absolute;bottom:-280px;left:-80px;width:600px;height:600px;border-radius:50%;background:rgba(255,255,255,0.04);"></div>
-  </section>
-
-  <!-- ─── 02 브랜드 미션 ──────────────────────────── -->
-  <section data-label="02 브랜드 미션" style="
-    background: var(--nat-900);
-    display: flex; flex-direction: column; justify-content: center;
-    padding: var(--pad-top) 140px var(--pad-bot);">
-
-    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 55% 65% at 88% 48%, rgba(90,199,196,0.11) 0%, transparent 58%);"></div>
-
-    <div style="max-width:1060px;z-index:2;">
-      <div style="font-size:var(--type-xs);font-weight:600;color:var(--teal-400);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:44px;">Brand Mission &amp; Personality</div>
-      <div style="font-size:82px;font-weight:700;color:#fff;line-height:1.12;letter-spacing:-0.025em;">진짜 사람과,</div>
-      <div style="font-size:82px;font-weight:700;color:var(--teal-400);line-height:1.12;letter-spacing:-0.025em;margin-bottom:56px;">이유 있는 만남을</div>
-      <div style="width:56px;height:2px;background:var(--teal-700);border-radius:1px;margin-bottom:48px;"></div>
-      <div style="font-size:var(--type-sm);font-weight:400;color:rgba(255,255,255,0.55);margin-bottom:32px;line-height:1.6;">
-        여운은 사주(四柱) 기반 데이팅 앱입니다. 생년월일·태어난 시간으로 산출한 음양오행 궁합을 신뢰의 축으로 삼아,<br>
-        본인인증·AI 사진 심사로 "진짜 사람"을 검증하고, 사주 궁합과 대화 주제 추천으로 "이유 있는 만남"을 잇습니다.
-      </div>
-      <div style="display:flex;gap:16px;flex-wrap:wrap;">
-        <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);border-radius:100px;padding:13px 28px;font-size:var(--type-sm);font-weight:600;color:rgba(255,255,255,0.9);">진실한</div>
-        <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);border-radius:100px;padding:13px 28px;font-size:var(--type-sm);font-weight:600;color:rgba(255,255,255,0.9);">신비로운</div>
-        <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);border-radius:100px;padding:13px 28px;font-size:var(--type-sm);font-weight:600;color:rgba(255,255,255,0.9);">따뜻한</div>
-        <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);border-radius:100px;padding:13px 28px;font-size:var(--type-sm);font-weight:600;color:rgba(255,255,255,0.9);">끌리는</div>
-        <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);border-radius:100px;padding:13px 28px;font-size:var(--type-sm);font-weight:600;color:rgba(255,255,255,0.9);">인연 같은</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── 03 제품 차별점 ─────────────────────────── -->
-  <section data-label="03 제품 차별점" style="
-    background: var(--nat-50);
-    display: flex; flex-direction: column; justify-content: center;
-    padding: var(--pad-top) var(--pad-x) var(--pad-bot);">
-
-    <div style="font-size:var(--type-xs);font-weight:600;color:var(--teal-600);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;">Product Concept</div>
-    <div style="font-size:var(--type-sub);font-weight:700;color:var(--nat-900);letter-spacing:-0.02em;margin-bottom:56px;">사주(四柱) 기반 데이팅의 차별점</div>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px;">
-      <div style="background:#fff;border-radius:24px;padding:48px 44px;box-shadow:0 4px 24px rgba(34,32,28,0.07);">
-        <div style="width:64px;height:64px;background:var(--teal-50);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:28px;">
-          <img src="assets/elements/wood.png" style="width:44px;height:44px;object-fit:contain;" alt="">
+// iOS status bar — 47px safe area (iPhone 13/14). Per UI가이드 화면 가이드.
+function StatusBar({ light }) {
+  const fg = light ? '#fff' : 'var(--color-natural-900)';
+  return (
+    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 47, zIndex: 30,
+      display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 30px 0 34px',
+      pointerEvents: 'none', fontFamily: 'var(--font-family-base)' }}>
+      <span style={{ fontSize: 16, fontWeight: 700, color: fg, letterSpacing: '0.01em', marginTop: 2 }}>9:41</span>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 7, marginTop: 2 }}>
+        {/* signal */}
+        <div style={{ display: 'flex', alignItems: 'flex-end', gap: 2, height: 11 }}>
+          {[4, 6, 8, 11].map((h, i) => <div key={i} style={{ width: 3, height: h, borderRadius: 1, background: fg }} />)}
         </div>
-        <div style="font-size:var(--type-body);font-weight:700;color:var(--nat-900);margin-bottom:14px;letter-spacing:-0.02em;">음양오행 궁합</div>
-        <div style="font-size:var(--type-sm);font-weight:400;color:var(--nat-600);line-height:1.55;">생년월일·태어난 시간으로 산출한 사주로 진짜 궁합을 계산해요. 도파민 알고리즘이 아닌 이유 있는 연결.</div>
-      </div>
-      <div style="background:#fff;border-radius:24px;padding:48px 44px;box-shadow:0 4px 24px rgba(34,32,28,0.07);">
-        <div style="width:64px;height:64px;background:var(--teal-50);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:28px;">
-          <img src="assets/icons/check-badge.png" style="width:44px;height:44px;object-fit:contain;" alt="">
+        {/* wifi */}
+        <div style={{ position: 'relative', width: 16, height: 12 }}>
+          {[12, 8, 4].map((s, i) => (
+            <div key={i} style={{ position: 'absolute', left: '50%', bottom: 0, transform: 'translateX(-50%)',
+              width: s, height: s, border: `2px solid ${fg}`, borderRadius: '50%',
+              clipPath: 'polygon(0 0, 100% 0, 50% 55%)', opacity: 0.95 }} />
+          ))}
+          <div style={{ position: 'absolute', left: '50%', bottom: 0, transform: 'translateX(-50%)', width: 3, height: 3, borderRadius: '50%', background: fg }} />
         </div>
-        <div style="font-size:var(--type-body);font-weight:700;color:var(--nat-900);margin-bottom:14px;letter-spacing:-0.02em;">본인인증 검증</div>
-        <div style="font-size:var(--type-sm);font-weight:400;color:var(--nat-600);line-height:1.55;">실명인증으로 가짜 계정 차단. AI 사진 심사로 실제 본인 사진만 등록. 진짜 사람만 남는 공간.</div>
-      </div>
-      <div style="background:#fff;border-radius:24px;padding:48px 44px;box-shadow:0 4px 24px rgba(34,32,28,0.07);">
-        <div style="width:64px;height:64px;background:var(--coral-50);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:28px;">
-          <img src="assets/icons/heart.png" style="width:40px;height:40px;object-fit:contain;" alt="">
-        </div>
-        <div style="font-size:var(--type-body);font-weight:700;color:var(--nat-900);margin-bottom:14px;letter-spacing:-0.02em;">대화 주제 추천</div>
-        <div style="font-size:var(--type-sm);font-weight:400;color:var(--nat-600);line-height:1.55;">사주 궁합을 기반으로 대화 주제를 제안해요. "두 분 모두 물이 많아요. 여행 얘기 어때요?"</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── 04 두 감정 축 ──────────────────────────── -->
-  <section data-label="04 두 감정 축" style="display:flex;">
-    <!-- Teal half -->
-    <div style="flex:1;background:linear-gradient(158deg,#0D4443 0%,#1C6A68 40%,#2D8E8C 100%);display:flex;flex-direction:column;justify-content:center;padding:80px 80px 80px 100px;">
-      <div style="font-size:var(--type-xs);font-weight:600;color:rgba(255,255,255,0.55);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:28px;">신뢰 · Trust</div>
-      <div style="font-size:78px;font-weight:700;color:#fff;line-height:1.08;letter-spacing:-0.025em;margin-bottom:28px;">인증으로<br>쌓는 신뢰</div>
-      <div style="width:44px;height:3px;background:rgba(255,255,255,0.35);border-radius:2px;margin-bottom:36px;"></div>
-      <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:44px;">
-        <div style="display:flex;align-items:center;gap:14px;font-size:var(--type-sm);color:rgba(255,255,255,0.85);font-weight:500;">
-          <div style="width:7px;height:7px;border-radius:50%;background:var(--teal-300);flex-shrink:0;"></div>본인인증 뱃지
-        </div>
-        <div style="display:flex;align-items:center;gap:14px;font-size:var(--type-sm);color:rgba(255,255,255,0.85);font-weight:500;">
-          <div style="width:7px;height:7px;border-radius:50%;background:var(--teal-300);flex-shrink:0;"></div>궁합 점수 바
-        </div>
-        <div style="display:flex;align-items:center;gap:14px;font-size:var(--type-sm);color:rgba(255,255,255,0.85);font-weight:500;">
-          <div style="width:7px;height:7px;border-radius:50%;background:var(--teal-300);flex-shrink:0;"></div>핵심 CTA 버튼
-        </div>
-        <div style="display:flex;align-items:center;gap:14px;font-size:var(--type-sm);color:rgba(255,255,255,0.85);font-weight:500;">
-          <div style="width:7px;height:7px;border-radius:50%;background:var(--teal-300);flex-shrink:0;"></div>오늘의 연애운 배너
-        </div>
-      </div>
-      <div style="background:rgba(255,255,255,0.1);border-radius:14px;padding:18px 22px;font-size:var(--type-xs);color:rgba(255,255,255,0.9);font-family:monospace;letter-spacing:0.02em;">Primary Teal · #5AC7C4</div>
-    </div>
-
-    <!-- Divider -->
-    <div style="width:3px;background:rgba(255,255,255,0.12);flex-shrink:0;position:relative;">
-      <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52px;height:52px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:var(--nat-700);box-shadow:0 4px 20px rgba(0,0,0,0.2);z-index:10;">≠</div>
-    </div>
-
-    <!-- Coral half -->
-    <div style="flex:1;background:linear-gradient(158deg,#5C1A10 0%,#93372D 35%,#C45244 60%,#FF8C7D 100%);display:flex;flex-direction:column;justify-content:center;padding:80px 100px 80px 80px;">
-      <div style="font-size:var(--type-xs);font-weight:600;color:rgba(255,255,255,0.55);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:28px;">관심 · Interest</div>
-      <div style="font-size:78px;font-weight:700;color:#fff;line-height:1.08;letter-spacing:-0.025em;margin-bottom:28px;">감정으로<br>잇는 관심</div>
-      <div style="width:44px;height:3px;background:rgba(255,255,255,0.35);border-radius:2px;margin-bottom:36px;"></div>
-      <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:44px;">
-        <div style="display:flex;align-items:center;gap:14px;font-size:var(--type-sm);color:rgba(255,255,255,0.85);font-weight:500;">
-          <div style="width:7px;height:7px;border-radius:50%;background:rgba(255,200,190,0.9);flex-shrink:0;"></div>하트 · 마음에 담기 버튼
-        </div>
-        <div style="display:flex;align-items:center;gap:14px;font-size:var(--type-sm);color:rgba(255,255,255,0.85);font-weight:500;">
-          <div style="width:7px;height:7px;border-radius:50%;background:rgba(255,200,190,0.9);flex-shrink:0;"></div>관심 표현 액션
-        </div>
-        <div style="display:flex;align-items:center;gap:14px;font-size:var(--type-sm);color:rgba(255,255,255,0.85);font-weight:500;">
-          <div style="width:7px;height:7px;border-radius:50%;background:rgba(255,200,190,0.9);flex-shrink:0;"></div>이모티콘 · 채팅 감정
-        </div>
-        <div style="display:flex;align-items:center;gap:14px;font-size:var(--type-sm);color:rgba(255,255,255,0.85);font-weight:500;">
-          <div style="width:7px;height:7px;border-radius:50%;background:rgba(255,200,190,0.9);flex-shrink:0;"></div>에러 · 경고 상태
-        </div>
-      </div>
-      <div style="background:rgba(255,255,255,0.1);border-radius:14px;padding:18px 22px;font-size:var(--type-xs);color:rgba(255,255,255,0.9);font-family:monospace;letter-spacing:0.02em;">Accent Coral · #FF8C7D</div>
-    </div>
-  </section>
-
-  <!-- ─── 05 컬러 시스템 ─────────────────────────── -->
-  <section data-label="05 컬러 시스템" style="
-    background: #fff;
-    display: flex; flex-direction: column; justify-content: center;
-    padding: var(--pad-top) var(--pad-x) var(--pad-bot);">
-
-    <div style="font-size:var(--type-xs);font-weight:600;color:var(--teal-600);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;">Color System</div>
-    <div style="font-size:var(--type-sub);font-weight:700;color:var(--nat-900);letter-spacing:-0.02em;margin-bottom:48px;">3 패밀리 × 10단계 컬러 스케일</div>
-
-    <div style="display:flex;flex-direction:column;gap:24px;">
-      <div>
-        <div style="font-size:var(--type-sm);font-weight:600;color:var(--nat-700);margin-bottom:10px;">Primary — Teal (신뢰·인증)</div>
-        <div style="display:flex;gap:6px;height:68px;">
-          <div style="flex:1;background:#EDF9F8;border-radius:10px 0 0 10px;"></div>
-          <div style="flex:1;background:#CCEEED;"></div>
-          <div style="flex:1;background:#A8E3E1;"></div>
-          <div style="flex:1;background:#83D5D3;"></div>
-          <div style="flex:1;background:#6CCECB;"></div>
-          <div style="flex:1;background:#5AC7C4;position:relative;"><div style="position:absolute;bottom:7px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;color:#fff;">500</div></div>
-          <div style="flex:1;background:#41AFAC;"></div>
-          <div style="flex:1;background:#2D8E8C;"></div>
-          <div style="flex:1;background:#1C6A68;"></div>
-          <div style="flex:1;background:#0D4443;border-radius:0 10px 10px 0;"></div>
-        </div>
-      </div>
-      <div>
-        <div style="font-size:var(--type-sm);font-weight:600;color:var(--nat-700);margin-bottom:10px;">Accent — Coral Peach (관심·감정)</div>
-        <div style="display:flex;gap:6px;height:68px;">
-          <div style="flex:1;background:#FFF1EF;border-radius:10px 0 0 10px;"></div>
-          <div style="flex:1;background:#FFD6D1;"></div>
-          <div style="flex:1;background:#FFB9B2;"></div>
-          <div style="flex:1;background:#FFA397;"></div>
-          <div style="flex:1;background:#FF9789;"></div>
-          <div style="flex:1;background:#FF8C7D;position:relative;"><div style="position:absolute;bottom:7px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;color:#fff;">500</div></div>
-          <div style="flex:1;background:#E87060;"></div>
-          <div style="flex:1;background:#C45244;"></div>
-          <div style="flex:1;background:#93372D;"></div>
-          <div style="flex:1;background:#5C1A10;border-radius:0 10px 10px 0;"></div>
-        </div>
-      </div>
-      <div>
-        <div style="font-size:var(--type-sm);font-weight:600;color:var(--nat-700);margin-bottom:10px;">Natural — Warm Gray (구조·텍스트)</div>
-        <div style="display:flex;gap:6px;height:68px;">
-          <div style="flex:1;background:#F6F4F1;border-radius:10px 0 0 10px;border:1px solid #E6E3DC;"></div>
-          <div style="flex:1;background:#E6E3DC;"></div>
-          <div style="flex:1;background:#D1CDC5;"></div>
-          <div style="flex:1;background:#BCB7AF;"></div>
-          <div style="flex:1;background:#ABA49B;"></div>
-          <div style="flex:1;background:#9E9488;position:relative;"><div style="position:absolute;bottom:7px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;color:#fff;">500</div></div>
-          <div style="flex:1;background:#857D72;"></div>
-          <div style="flex:1;background:#635D54;"></div>
-          <div style="flex:1;background:#413D36;"></div>
-          <div style="flex:1;background:#22201C;border-radius:0 10px 10px 0;"></div>
+        {/* battery */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <div style={{ width: 23, height: 12, borderRadius: 3, border: `1.5px solid ${fg}`, opacity: 0.5, padding: 1, boxSizing: 'border-box' }}>
+            <div style={{ width: '78%', height: '100%', borderRadius: 1, background: fg }} />
+          </div>
+          <div style={{ width: 2, height: 4, borderRadius: 1, background: fg, opacity: 0.5 }} />
         </div>
       </div>
     </div>
+  );
+}
 
-    <!-- semantic tokens row -->
-    <div style="display:flex;gap:32px;margin-top:36px;align-items:center;">
-      <div style="font-size:var(--type-xs);font-weight:600;color:var(--nat-500);">시맨틱 토큰</div>
-      <div style="width:1px;height:32px;background:var(--nat-100);"></div>
-      <div style="display:flex;gap:20px;flex-wrap:wrap;">
-        <div style="display:flex;align-items:center;gap:8px;font-size:var(--type-xs);color:var(--nat-600);"><div style="width:20px;height:20px;border-radius:5px;background:var(--teal-500);"></div>Brand Primary</div>
-        <div style="display:flex;align-items:center;gap:8px;font-size:var(--type-xs);color:var(--nat-600);"><div style="width:20px;height:20px;border-radius:5px;background:var(--coral-500);"></div>Brand Accent</div>
-        <div style="display:flex;align-items:center;gap:8px;font-size:var(--type-xs);color:var(--nat-600);"><div style="width:20px;height:20px;border-radius:5px;background:var(--nat-500);"></div>Brand Neutral</div>
-        <div style="display:flex;align-items:center;gap:8px;font-size:var(--type-xs);color:var(--nat-600);"><div style="width:20px;height:20px;border-radius:5px;background:var(--nat-50);border:1px solid var(--nat-100);"></div>Surface Page</div>
-        <div style="display:flex;align-items:center;gap:8px;font-size:var(--type-xs);color:var(--nat-600);"><div style="width:20px;height:20px;border-radius:5px;background:#fff;border:1px solid var(--nat-100);"></div>Surface Card</div>
-        <div style="display:flex;align-items:center;gap:8px;font-size:var(--type-xs);color:var(--nat-600);"><div style="width:20px;height:20px;border-radius:5px;background:var(--nat-900);"></div>Text Primary</div>
-      </div>
+function HomeIndicator({ light }) {
+  return (
+    <div style={{ position: 'absolute', bottom: 8, left: 0, right: 0, height: 5, display: 'flex', justifyContent: 'center', zIndex: 30, pointerEvents: 'none' }}>
+      <div style={{ width: 134, height: 5, borderRadius: 3, background: light ? 'rgba(255,255,255,0.9)' : 'var(--color-natural-900)' }} />
     </div>
-  </section>
+  );
+}
 
-  <!-- ─── 06 타이포그래피 ────────────────────────── -->
-  <section data-label="06 타이포그래피" style="
-    background: var(--nat-50);
-    display: flex; flex-direction: column; justify-content: center;
-    padding: var(--pad-top) var(--pad-x) var(--pad-bot);">
+function App() {
+  const [tab, setTab] = React.useState('home');         // home | heart | chat | my
+  const [stack, setStack] = React.useState([]);          // [{route, params}]
+  const [authed, setAuthed] = React.useState(false);
+  const [onboarding, setOnboarding] = React.useState(false);
+  const [locationMode, setLocationMode] = React.useState(false);
+  const [saved, setSaved] = React.useState({});
+  const [toast, setToast] = React.useState(null);
 
-    <div style="display:grid;grid-template-columns:420px 1fr;gap:96px;align-items:center;">
-      <div>
-        <div style="font-size:var(--type-xs);font-weight:600;color:var(--teal-600);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;">Typography</div>
-        <div style="font-size:54px;font-weight:700;color:var(--nat-900);letter-spacing:-0.025em;margin-bottom:12px;">Pretendard</div>
-        <div style="font-size:var(--type-sm);font-weight:400;color:var(--nat-600);margin-bottom:44px;line-height:1.55;">한글 최적화 단일 패밀리<br>8pt 그리드 기반 타입 스케일</div>
+  const top = stack[stack.length - 1];
+  const push = (route, params) => setStack((s) => [...s, { route, params }]);
+  const pop = () => setStack((s) => s.slice(0, -1));
+  const showToast = (msg, icon) => { setToast({ msg, icon }); clearTimeout(window.__yt); window.__yt = setTimeout(() => setToast(null), 1900); };
 
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <div style="display:grid;grid-template-columns:90px 1fr;align-items:baseline;gap:16px;font-size:19px;"><span style="color:var(--nat-400);font-weight:500;">Display</span><span style="color:var(--nat-600);">40px · Bold 700 · −2%</span></div>
-          <div style="display:grid;grid-template-columns:90px 1fr;align-items:baseline;gap:16px;font-size:19px;"><span style="color:var(--nat-400);font-weight:500;">Title</span><span style="color:var(--nat-600);">28px · Bold 700 · −1.5%</span></div>
-          <div style="display:grid;grid-template-columns:90px 1fr;align-items:baseline;gap:16px;font-size:19px;"><span style="color:var(--nat-400);font-weight:500;">Heading</span><span style="color:var(--nat-600);">22px · SemiBold 600 · −1%</span></div>
-          <div style="display:grid;grid-template-columns:90px 1fr;align-items:baseline;gap:16px;font-size:19px;"><span style="color:var(--nat-400);font-weight:500;">Body L</span><span style="color:var(--nat-600);">17px · Regular 400 · 0</span></div>
-          <div style="display:grid;grid-template-columns:90px 1fr;align-items:baseline;gap:16px;font-size:19px;"><span style="color:var(--nat-400);font-weight:500;">Body M</span><span style="color:var(--nat-600);">15px · Regular 400 · 0</span></div>
-          <div style="display:grid;grid-template-columns:90px 1fr;align-items:baseline;gap:16px;font-size:19px;"><span style="color:var(--nat-400);font-weight:500;">Caption</span><span style="color:var(--nat-600);">12px · Regular 400 · 0</span></div>
+  if (onboarding) {
+    return (<><OnboardingFlow onComplete={() => { setOnboarding(false); setAuthed(true); }} onExit={() => setOnboarding(false)} /><StatusBar /><HomeIndicator /></>);
+  }
+  if (!authed) {
+    return (<><LoginScreen onSignup={() => setOnboarding(true)} onLogin={() => setAuthed(true)} /><StatusBar light /><HomeIndicator light /></>);
+  }
+
+  let body, hideTabbar = false, immersive = false;
+  if (top && top.route === 'profile') {
+    hideTabbar = true; immersive = true;
+    const isSaved = !!saved[top.params.id];
+    body = <ProfileDetailScreen profileId={top.params.id} onBack={pop} savedQuiet={isSaved}
+      onQuiet={() => { setSaved((s) => ({ ...s, [top.params.id]: !s[top.params.id] })); showToast(isSaved ? '마음함에서 꺼냈어요' : '마음에 담았어요 · 상대에게 알림은 가지 않아요', 'heart'); }}
+      onInterest={() => { showToast('관심을 표현했어요 · 상대에게 알림을 보냈어요', 'heart'); }} />;
+  } else if (top && top.route === 'chatroom') {
+    hideTabbar = true;
+    body = <ChatRoomScreen chatId={top.params.id} onBack={pop} />;
+  } else if (tab === 'home') {
+    body = <HomeScreen onOpenProfile={(id) => push('profile', { id })} />;
+  } else if (tab === 'heart') {
+    body = <HeartScreen onOpenProfile={(id) => push('profile', { id })} />;
+  } else if (tab === 'chat') {
+    body = <ChatListScreen onOpenChat={(id) => push('chatroom', { id })} onOpenProfile={(id) => push('profile', { id })} />;
+  } else {
+    body = <MyPageScreen />;
+  }
+
+  const topInset = immersive ? 0 : 47;       // status bar safe area
+  const bottomInset = hideTabbar ? 0 : (64 + 22); // tab bar + home-indicator safe area
+
+  return (
+    <div className="app-shell">
+      <div style={{ position: 'absolute', left: 0, right: 0, top: topInset, bottom: bottomInset }}>
+        {body}
+      </div>
+      {!hideTabbar && (
+        <div className="tabbar-slot">
+          <BottomTabBar active={tab} onChange={(k) => { setStack([]); setTab(k); }} badges={{ chat: true }} showLabels={false} />
         </div>
-      </div>
-
-      <div style="display:flex;flex-direction:column;gap:16px;">
-        <div style="font-size:68px;font-weight:700;color:var(--nat-900);letter-spacing:-0.03em;line-height:1;">설레는 만남,</div>
-        <div style="font-size:68px;font-weight:700;color:var(--teal-700);letter-spacing:-0.03em;line-height:1;margin-bottom:12px;">이유 있는 인연</div>
-        <div style="font-size:38px;font-weight:600;color:var(--nat-700);letter-spacing:-0.015em;line-height:1.3;">목(木)이 강한 두 사람</div>
-        <div style="font-size:29px;font-weight:400;color:var(--nat-600);line-height:1.55;">서로의 기운을 북돋아 함께 성장하는 궁합이에요.</div>
-        <div style="font-size:23px;font-weight:400;color:var(--nat-500);line-height:1.55;">마음에 담았어요 · 상대에게 알림은 가지 않아요</div>
-        <div style="font-size:19px;font-weight:400;color:var(--nat-400);">마포구 · 인근 지역 기준 · 상세 위치는 비공개예요</div>
-      </div>
+      )}
+      {toast && (
+        <div className="toast">
+          {toast.icon && <Icon name={toast.icon} size={15} color="var(--color-accent-400)" filled />}
+          {toast.msg}
+        </div>
+      )}
+      <StatusBar light={immersive} />
+      <HomeIndicator light={immersive} />
     </div>
-  </section>
+  );
+}
 
-  <!-- ─── 07 컴포넌트 라이브러리 ────────────────── -->
-  <section data-label="07 컴포넌트 라이브러리" style="
-    background: var(--nat-900);
-    display: flex; flex-direction: column; justify-content: center;
-    padding: var(--pad-top) var(--pad-x) var(--pad-bot);">
-
-    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 48% 62% at 92% 8%, rgba(90,199,196,0.09) 0%, transparent 52%);"></div>
-
-    <div style="font-size:var(--type-xs);font-weight:600;color:var(--teal-400);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;z-index:2;">Component Library</div>
-    <div style="font-size:var(--type-sub);font-weight:700;color:#fff;letter-spacing:-0.02em;margin-bottom:44px;z-index:2;">컴포넌트 라이브러리 전체 구조</div>
-
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;z-index:2;">
-      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:32px 30px;">
-        <div style="font-size:var(--type-xs);font-weight:700;color:var(--teal-400);margin-bottom:6px;">Core</div>
-        <div style="font-size:var(--type-body);font-weight:800;color:#fff;margin-bottom:20px;">10개</div>
-        <div style="display:flex;flex-direction:column;gap:8px;font-size:19px;color:rgba(255,255,255,0.6);">
-          <div>Button · IconButton</div>
-          <div>Input · Checkbox · Switch</div>
-          <div>Avatar · Badge · Tag</div>
-          <div>Icon · Card</div>
-        </div>
-      </div>
-      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:32px 30px;">
-        <div style="font-size:var(--type-xs);font-weight:700;color:var(--coral-400);margin-bottom:6px;">Dating</div>
-        <div style="font-size:var(--type-body);font-weight:800;color:#fff;margin-bottom:20px;">6개</div>
-        <div style="display:flex;flex-direction:column;gap:8px;font-size:19px;color:rgba(255,255,255,0.6);">
-          <div>FortuneBanner</div>
-          <div>MatchScore</div>
-          <div>HeartButton · TopicChip</div>
-          <div>ProfileFeedCard · ScoreBanner</div>
-        </div>
-      </div>
-      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:32px 30px;">
-        <div style="font-size:var(--type-xs);font-weight:700;color:rgba(255,255,255,0.65);margin-bottom:6px;">Navigation</div>
-        <div style="font-size:var(--type-body);font-weight:800;color:#fff;margin-bottom:20px;">4개</div>
-        <div style="display:flex;flex-direction:column;gap:8px;font-size:19px;color:rgba(255,255,255,0.6);">
-          <div>TopAppBar</div>
-          <div>BottomTabBar</div>
-          <div>SegmentedTabs</div>
-          <div>ListRow</div>
-        </div>
-      </div>
-      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:32px 30px;">
-        <div style="font-size:var(--type-xs);font-weight:700;color:rgba(255,255,255,0.65);margin-bottom:6px;">Feedback + 이모티콘</div>
-        <div style="font-size:var(--type-body);font-weight:800;color:#fff;margin-bottom:20px;">3개</div>
-        <div style="display:flex;flex-direction:column;gap:8px;font-size:19px;color:rgba(255,255,255,0.6);">
-          <div>ChatBubble</div>
-          <div>Sticker (30종)</div>
-          <div>Toast · Alert</div>
-        </div>
-      </div>
-    </div>
-
-    <div style="display:flex;align-items:center;gap:52px;margin-top:32px;z-index:2;">
-      <div>
-        <div style="font-size:60px;font-weight:800;color:#fff;line-height:1;letter-spacing:-0.03em;">23<span style="font-size:28px;color:var(--teal-400);margin-left:4px;">개</span></div>
-        <div style="font-size:19px;color:rgba(255,255,255,0.45);">총 컴포넌트</div>
-      </div>
-      <div style="width:1px;height:56px;background:rgba(255,255,255,0.15);"></div>
-      <div>
-        <div style="font-size:60px;font-weight:800;color:#fff;line-height:1;letter-spacing:-0.03em;">4<span style="font-size:28px;color:var(--teal-400);margin-left:4px;">개</span></div>
-        <div style="font-size:19px;color:rgba(255,255,255,0.45);">카테고리</div>
-      </div>
-      <div style="width:1px;height:56px;background:rgba(255,255,255,0.15);"></div>
-      <div>
-        <div style="font-size:60px;font-weight:800;color:#fff;line-height:1;letter-spacing:-0.03em;">30<span style="font-size:28px;color:var(--coral-400);margin-left:4px;">종</span></div>
-        <div style="font-size:19px;color:rgba(255,255,255,0.45);">이모티콘</div>
-      </div>
-      <div style="width:1px;height:56px;background:rgba(255,255,255,0.15);"></div>
-      <div>
-        <div style="font-size:60px;font-weight:800;color:#fff;line-height:1;letter-spacing:-0.03em;">3<span style="font-size:28px;color:rgba(255,255,255,0.35);margin-left:4px;">패밀리</span></div>
-        <div style="font-size:19px;color:rgba(255,255,255,0.45);">컬러 패밀리</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── 08 데이팅 전용 컴포넌트 ───────────────── -->
-  <section data-label="08 데이팅 컴포넌트" style="
-    background: var(--nat-50);
-    display: flex; flex-direction: column; justify-content: center;
-    padding: var(--pad-top) var(--pad-x) var(--pad-bot);">
-
-    <div style="font-size:var(--type-xs);font-weight:600;color:var(--teal-600);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;">Dating Components</div>
-    <div style="font-size:var(--type-sub);font-weight:700;color:var(--nat-900);letter-spacing:-0.02em;margin-bottom:48px;">데이팅 전용 컴포넌트</div>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;">
-      <!-- FortuneBanner -->
-      <div style="background:linear-gradient(138deg,var(--teal-800) 0%,var(--teal-600) 50%,var(--teal-400) 100%);border-radius:24px;padding:40px 40px 0;overflow:hidden;min-height:280px;position:relative;">
-        <div style="font-size:20px;font-weight:600;color:rgba(255,255,255,0.65);margin-bottom:10px;">FortuneBanner</div>
-        <div style="font-size:var(--type-body);font-weight:700;color:#fff;margin-bottom:6px;line-height:1.25;">오늘의 연애운</div>
-        <div style="font-size:22px;font-weight:400;color:rgba(255,255,255,0.82);line-height:1.45;margin-bottom:12px;">달빛이 인연을 불러오는 날.<br>설레는 만남이 기다려요.</div>
-        <img src="assets/mascot/yeowoong.png" style="position:absolute;bottom:-12px;right:-8px;width:140px;height:140px;object-fit:contain;" alt="">
-      </div>
-
-      <!-- MatchScore -->
-      <div style="background:#fff;border-radius:24px;padding:40px;box-shadow:0 4px 24px rgba(34,32,28,0.07);">
-        <div style="font-size:20px;font-weight:600;color:var(--nat-500);margin-bottom:16px;">MatchScore</div>
-        <div style="font-size:var(--type-body);font-weight:700;color:var(--nat-900);margin-bottom:2px;letter-spacing:-0.02em;">궁합 점수</div>
-        <div style="font-size:72px;font-weight:800;color:var(--teal-600);letter-spacing:-0.04em;line-height:1.0;">92<span style="font-size:28px;color:var(--nat-400);font-weight:500;margin-left:4px;">점</span></div>
-        <div style="height:8px;background:var(--teal-100);border-radius:100px;margin:14px 0 10px;overflow:hidden;">
-          <div style="width:92%;height:100%;background:var(--teal-500);border-radius:100px;"></div>
-        </div>
-        <div style="font-size:21px;color:var(--nat-500);">목화 일주 · 서로 기운을 북돋아요</div>
-      </div>
-
-      <!-- HeartButton + TopicChip -->
-      <div style="background:#fff;border-radius:24px;padding:40px;box-shadow:0 4px 24px rgba(34,32,28,0.07);display:flex;flex-direction:column;gap:24px;">
-        <div>
-          <div style="font-size:20px;font-weight:600;color:var(--nat-500);margin-bottom:14px;">HeartButton</div>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;">
-            <div style="background:var(--coral-500);border-radius:100px;padding:11px 22px;font-size:21px;font-weight:700;color:#fff;display:flex;align-items:center;gap:8px;">
-              <img src="assets/icons/heart-filled.png" style="width:20px;height:20px;object-fit:contain;filter:brightness(10);" alt="">
-              <span>마음에 담기</span>
-            </div>
-            <div style="background:var(--teal-50);border-radius:100px;padding:11px 22px;font-size:21px;font-weight:700;color:var(--teal-700);">관심 표현</div>
-          </div>
-        </div>
-        <div style="border-top:1px solid var(--nat-100);padding-top:22px;">
-          <div style="font-size:20px;font-weight:600;color:var(--nat-500);margin-bottom:12px;">TopicChip</div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;">
-            <div style="background:var(--teal-50);border-radius:100px;padding:7px 16px;font-size:19px;font-weight:500;color:var(--teal-700);">여행 얘기 어때요?</div>
-            <div style="background:var(--teal-50);border-radius:100px;padding:7px 16px;font-size:19px;font-weight:500;color:var(--teal-700);">취미가 뭐예요?</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── 09 마스코트 & 아이콘 ──────────────────── -->
-  <section data-label="09 마스코트와 아이콘" style="
-    background: var(--nat-50);
-    display: flex; flex-direction: column; justify-content: center;
-    padding: var(--pad-top) var(--pad-x) var(--pad-bot);">
-
-    <div style="display:grid;grid-template-columns:320px 1fr;gap:80px;align-items:center;">
-      <!-- Left: mascot -->
-      <div style="display:flex;flex-direction:column;align-items:center;gap:20px;">
-        <img src="assets/mascot/yeowoong.png" style="width:280px;height:280px;object-fit:contain;" alt="여웅">
-        <div style="text-align:center;">
-          <div style="font-size:var(--type-body);font-weight:700;color:var(--nat-900);letter-spacing:-0.02em;">여웅 (Yeowoong)</div>
-          <div style="font-size:var(--type-xs);font-weight:400;color:var(--nat-500);margin-top:6px;line-height:1.5;">이마의 초승달 · 민트 후디<br>인연을 잇는 붉은여우</div>
-        </div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
-          <div style="background:var(--teal-50);border-radius:100px;padding:6px 14px;font-size:18px;font-weight:500;color:var(--teal-700);">온보딩</div>
-          <div style="background:var(--teal-50);border-radius:100px;padding:6px 14px;font-size:18px;font-weight:500;color:var(--teal-700);">빈 상태</div>
-          <div style="background:var(--teal-50);border-radius:100px;padding:6px 14px;font-size:18px;font-weight:500;color:var(--teal-700);">연애운</div>
-        </div>
-      </div>
-
-      <!-- Right: icons -->
-      <div>
-        <div style="font-size:var(--type-xs);font-weight:600;color:var(--teal-600);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;">Mascot &amp; Icons</div>
-        <div style="font-size:var(--type-sub);font-weight:700;color:var(--nat-900);letter-spacing:-0.02em;margin-bottom:36px;">마스코트와 아이콘</div>
-
-        <div style="font-size:var(--type-sm);font-weight:600;color:var(--nat-600);margin-bottom:14px;">브랜드 라인 아이콘 — CSS mask 렌더링</div>
-        <div style="display:flex;gap:14px;margin-bottom:36px;">
-          <div style="background:#fff;border-radius:14px;padding:16px 18px;box-shadow:0 2px 8px rgba(34,32,28,0.06);display:flex;flex-direction:column;align-items:center;gap:7px;">
-            <img src="assets/icons/home.png" style="width:36px;height:36px;object-fit:contain;" alt="home">
-            <span style="font-size:15px;color:var(--nat-500);">home</span>
-          </div>
-          <div style="background:#fff;border-radius:14px;padding:16px 18px;box-shadow:0 2px 8px rgba(34,32,28,0.06);display:flex;flex-direction:column;align-items:center;gap:7px;">
-            <img src="assets/icons/heart.png" style="width:36px;height:36px;object-fit:contain;" alt="heart">
-            <span style="font-size:15px;color:var(--nat-500);">heart</span>
-          </div>
-          <div style="background:#fff;border-radius:14px;padding:16px 18px;box-shadow:0 2px 8px rgba(34,32,28,0.06);display:flex;flex-direction:column;align-items:center;gap:7px;">
-            <img src="assets/icons/chat-line.png" style="width:36px;height:36px;object-fit:contain;" alt="chat">
-            <span style="font-size:15px;color:var(--nat-500);">chat</span>
-          </div>
-          <div style="background:#fff;border-radius:14px;padding:16px 18px;box-shadow:0 2px 8px rgba(34,32,28,0.06);display:flex;flex-direction:column;align-items:center;gap:7px;">
-            <img src="assets/icons/user.png" style="width:36px;height:36px;object-fit:contain;" alt="user">
-            <span style="font-size:15px;color:var(--nat-500);">user</span>
-          </div>
-          <div style="background:#fff;border-radius:14px;padding:16px 18px;box-shadow:0 2px 8px rgba(34,32,28,0.06);display:flex;flex-direction:column;align-items:center;gap:7px;">
-            <img src="assets/icons/check-badge.png" style="width:36px;height:36px;object-fit:contain;" alt="badge">
-            <span style="font-size:15px;color:var(--nat-500);">badge</span>
-          </div>
-          <div style="background:#fff;border-radius:14px;padding:16px 18px;box-shadow:0 2px 8px rgba(34,32,28,0.06);display:flex;flex-direction:column;align-items:center;gap:7px;">
-            <img src="assets/icons/location.png" style="width:36px;height:36px;object-fit:contain;" alt="location">
-            <span style="font-size:15px;color:var(--nat-500);">location</span>
-          </div>
-        </div>
-
-        <div style="font-size:var(--type-sm);font-weight:600;color:var(--nat-600);margin-bottom:14px;">오행 아이콘 (五行) — 사주 맥락 전용</div>
-        <div style="display:flex;gap:14px;">
-          <div style="background:#fff;border-radius:14px;padding:16px 22px;box-shadow:0 2px 8px rgba(34,32,28,0.06);display:flex;flex-direction:column;align-items:center;gap:7px;">
-            <img src="assets/elements/wood.png" style="width:48px;height:48px;object-fit:contain;" alt="木">
-            <span style="font-size:18px;font-weight:600;color:var(--nat-600);">木</span>
-          </div>
-          <div style="background:#fff;border-radius:14px;padding:16px 22px;box-shadow:0 2px 8px rgba(34,32,28,0.06);display:flex;flex-direction:column;align-items:center;gap:7px;">
-            <img src="assets/elements/fire.png" style="width:48px;height:48px;object-fit:contain;" alt="火">
-            <span style="font-size:18px;font-weight:600;color:var(--nat-600);">火</span>
-          </div>
-          <div style="background:#fff;border-radius:14px;padding:16px 22px;box-shadow:0 2px 8px rgba(34,32,28,0.06);display:flex;flex-direction:column;align-items:center;gap:7px;">
-            <img src="assets/elements/earth.png" style="width:48px;height:48px;object-fit:contain;" alt="土">
-            <span style="font-size:18px;font-weight:600;color:var(--nat-600);">土</span>
-          </div>
-          <div style="background:#fff;border-radius:14px;padding:16px 22px;box-shadow:0 2px 8px rgba(34,32,28,0.06);display:flex;flex-direction:column;align-items:center;gap:7px;">
-            <img src="assets/elements/metal.png" style="width:48px;height:48px;object-fit:contain;" alt="金">
-            <span style="font-size:18px;font-weight:600;color:var(--nat-600);">金</span>
-          </div>
-          <div style="background:#fff;border-radius:14px;padding:16px 22px;box-shadow:0 2px 8px rgba(34,32,28,0.06);display:flex;flex-direction:column;align-items:center;gap:7px;">
-            <img src="assets/elements/water.png" style="width:48px;height:48px;object-fit:contain;" alt="水">
-            <span style="font-size:18px;font-weight:600;color:var(--nat-600);">水</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── 10 이모티콘 시스템 ────────────────────── -->
-  <section data-label="10 이모티콘 시스템" style="
-    background: #fff;
-    display: flex; flex-direction: column; justify-content: center;
-    padding: var(--pad-top) var(--pad-x) var(--pad-bot);">
-
-    <div style="display:grid;grid-template-columns:1fr auto;gap:80px;align-items:center;">
-      <div>
-        <div style="font-size:var(--type-xs);font-weight:600;color:var(--teal-600);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;">Emoticon System</div>
-        <div style="font-size:var(--type-sub);font-weight:700;color:var(--nat-900);letter-spacing:-0.02em;margin-bottom:20px;">이모티콘 시스템</div>
-        <div style="font-size:var(--type-sm);font-weight:400;color:var(--nat-600);line-height:1.6;margin-bottom:44px;max-width:560px;">여웅 캐릭터의 30종 이모티콘 세트. 채팅방에서 감정을 직접 전달하는 데이팅 앱 전용 스티커로, 브랜드 마스코트와 동일한 캐릭터로 시스템 일관성을 유지해요.</div>
-
-        <div style="display:flex;flex-direction:column;gap:20px;">
-          <div style="display:flex;align-items:center;gap:20px;">
-            <div style="width:52px;height:52px;background:var(--teal-50);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;color:var(--teal-600);flex-shrink:0;">30</div>
-            <div style="font-size:var(--type-sm);color:var(--nat-700);">6열 × 5행 스프라이트 시트, 30종 표정과 상황</div>
-          </div>
-          <div style="display:flex;align-items:center;gap:20px;">
-            <div style="width:52px;height:52px;background:var(--teal-50);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2D8E8C" stroke-width="2.2" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-            </div>
-            <div style="font-size:var(--type-sm);color:var(--nat-700);"><code style="background:var(--nat-50);padding:3px 10px;border-radius:7px;font-size:20px;font-family:monospace;">Sticker</code> 컴포넌트 + TypeScript 타입 정의</div>
-          </div>
-          <div style="display:flex;align-items:center;gap:20px;">
-            <div style="width:52px;height:52px;background:var(--coral-50);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-              <img src="assets/icons/chat-line.png" style="width:28px;height:28px;object-fit:contain;" alt="">
-            </div>
-            <div style="font-size:var(--type-sm);color:var(--nat-700);">채팅방 이모티콘 버튼 → 하단 피커 → 즉시 전송</div>
-          </div>
-          <div style="display:flex;align-items:center;gap:20px;">
-            <div style="width:52px;height:52px;background:var(--nat-50);border-radius:14px;border:1px solid var(--nat-100);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:22px;font-weight:700;color:var(--nat-500);">DS</div>
-            <div style="font-size:var(--type-sm);color:var(--nat-700);">디자인 시스템 "이모티콘" 카드 그룹으로 등록</div>
-          </div>
-        </div>
-      </div>
-
-      <img src="assets/emoticons/yuon-stickers.png" style="width:580px;height:580px;object-fit:contain;border-radius:24px;box-shadow:0 8px 48px rgba(34,32,28,0.10);" alt="이모티콘 시트">
-    </div>
-  </section>
-
-  <!-- ─── 11 UI 키트 ────────────────────────────── -->
-  <section data-label="11 UI 키트" style="
-    background: var(--nat-900);
-    display: flex; flex-direction: column; justify-content: center;
-    padding: var(--pad-top) 120px var(--pad-bot);">
-
-    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 52% 72% at 18% 48%, rgba(90,199,196,0.08) 0%, transparent 52%);"></div>
-
-    <div style="display:grid;grid-template-columns:1fr auto;gap:56px;align-items:center;z-index:2;">
-      <div>
-        <div style="font-size:var(--type-xs);font-weight:600;color:var(--teal-400);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;">UI Kit — Interactive Prototype</div>
-        <div style="font-size:var(--type-sub);font-weight:700;color:#fff;letter-spacing:-0.02em;margin-bottom:20px;">클릭형 앱 프로토타입</div>
-        <div style="font-size:var(--type-sm);font-weight:400;color:rgba(255,255,255,0.6);line-height:1.6;margin-bottom:44px;max-width:620px;">로그인부터 홈, 프로필 상세, 마음함, 채팅, 마이페이지까지 전체 사용자 흐름을 경험할 수 있는 인터랙티브 프로토타입.</div>
-
-        <div style="display:flex;flex-wrap:wrap;gap:12px;">
-          <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:100px;padding:11px 22px;font-size:22px;font-weight:500;color:rgba(255,255,255,0.85);">로그인</div>
-          <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:100px;padding:11px 22px;font-size:22px;font-weight:500;color:rgba(255,255,255,0.85);">온보딩</div>
-          <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:100px;padding:11px 22px;font-size:22px;font-weight:500;color:rgba(255,255,255,0.85);">홈 피드</div>
-          <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:100px;padding:11px 22px;font-size:22px;font-weight:500;color:rgba(255,255,255,0.85);">프로필 상세</div>
-          <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:100px;padding:11px 22px;font-size:22px;font-weight:500;color:rgba(255,255,255,0.85);">마음함</div>
-          <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:100px;padding:11px 22px;font-size:22px;font-weight:500;color:rgba(255,255,255,0.85);">채팅</div>
-          <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:100px;padding:11px 22px;font-size:22px;font-weight:500;color:rgba(255,255,255,0.85);">마이페이지</div>
-        </div>
-      </div>
-
-      <!-- phone mockups -->
-      <div style="display:flex;gap:18px;align-items:flex-end;flex-shrink:0;">
-        <!-- Login -->
-        <div style="width:192px;height:384px;background:linear-gradient(160deg,#A8E3E1 0%,#5AC7C4 42%,#2D8E8C 100%);border-radius:32px;box-shadow:0 16px 56px rgba(0,0,0,0.45);overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:28px 20px 24px;">
-          <div>
-            <img src="assets/logo/yuon-symbol-white.png" style="width:32px;height:32px;object-fit:contain;" alt="">
-          </div>
-          <div>
-            <div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.65);margin-bottom:6px;">YUON</div>
-            <div style="font-size:12px;font-weight:400;color:rgba(255,255,255,0.7);margin-bottom:20px;">진짜 사람과,<br>이유 있는 만남을</div>
-            <div style="background:rgba(255,255,255,0.88);border-radius:10px;padding:9px;text-align:center;font-size:10px;font-weight:700;color:var(--teal-700);">휴대폰 번호로 시작하기</div>
-          </div>
-        </div>
-        <!-- Home -->
-        <div style="width:192px;height:420px;background:var(--nat-50);border-radius:32px;box-shadow:0 16px 56px rgba(0,0,0,0.45);overflow:hidden;display:flex;flex-direction:column;">
-          <div style="background:var(--teal-500);padding:14px;display:flex;align-items:center;justify-content:space-between;">
-            <img src="assets/logo/yuon-symbol-white.png" style="width:22px;height:22px;object-fit:contain;" alt="">
-            <div style="font-size:12px;font-weight:700;color:#fff;">여운</div>
-            <div style="width:22px;"></div>
-          </div>
-          <div style="flex:1;padding:10px;display:flex;flex-direction:column;gap:8px;">
-            <div style="background:#fff;border-radius:12px;height:190px;overflow:hidden;position:relative;box-shadow:0 2px 8px rgba(34,32,28,0.08);">
-              <div style="background:linear-gradient(135deg,var(--teal-200),var(--teal-400));width:100%;height:100%;"></div>
-              <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(34,32,28,0.7));padding:10px;">
-                <div style="font-size:11px;font-weight:700;color:#fff;">지수 · 27</div>
-                <div style="font-size:9px;color:rgba(255,255,255,0.75);">궁합 92점</div>
-              </div>
-            </div>
-            <div style="background:#fff;border-radius:8px;padding:8px;display:flex;align-items:center;gap:6px;">
-              <div style="width:8px;height:8px;border-radius:50%;background:var(--teal-400);flex-shrink:0;"></div>
-              <div style="font-size:9px;color:var(--nat-600);">목화 일주 · 서로 기운을 북돋아요</div>
-            </div>
-          </div>
-        </div>
-        <!-- Chat -->
-        <div style="width:192px;height:384px;background:var(--nat-50);border-radius:32px;box-shadow:0 16px 56px rgba(0,0,0,0.45);overflow:hidden;display:flex;flex-direction:column;">
-          <div style="background:#fff;padding:12px 14px;border-bottom:1px solid var(--nat-100);display:flex;align-items:center;gap:8px;">
-            <div style="width:26px;height:26px;border-radius:50%;background:var(--teal-200);flex-shrink:0;"></div>
-            <div style="font-size:12px;font-weight:600;color:var(--nat-900);">지수</div>
-          </div>
-          <div style="flex:1;padding:12px;display:flex;flex-direction:column;gap:10px;overflow:hidden;">
-            <div style="background:var(--teal-50);border-radius:12px 12px 12px 3px;padding:9px 11px;font-size:10px;color:var(--nat-800);max-width:130px;line-height:1.4;">안녕하세요! 반가워요</div>
-            <div style="background:var(--teal-500);border-radius:12px 12px 3px 12px;padding:9px 11px;font-size:10px;color:#fff;max-width:130px;align-self:flex-end;line-height:1.4;">안녕해요 ☺️</div>
-            <div style="align-self:flex-end;width:56px;height:56px;background-image:url('assets/emoticons/yuon-stickers.png');background-size:600% 500%;background-position:33.3% 25%;background-repeat:no-repeat;border-radius:8px;"></div>
-          </div>
-          <div style="background:#fff;padding:9px 12px;border-top:1px solid var(--nat-100);font-size:10px;color:var(--nat-400);">메시지 입력...</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── 12 이번 세션 업데이트 ─────────────────── -->
-  <section data-label="12 이번 세션 업데이트" style="
-    background: var(--nat-50);
-    display: flex; flex-direction: column; justify-content: center;
-    padding: var(--pad-top) var(--pad-x) var(--pad-bot);">
-
-    <div style="font-size:var(--type-xs);font-weight:600;color:var(--teal-600);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;">Session Updates</div>
-    <div style="font-size:var(--type-sub);font-weight:700;color:var(--nat-900);letter-spacing:-0.02em;margin-bottom:44px;">이번 세션 주요 업데이트</div>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
-      <div style="background:#fff;border-radius:20px;padding:32px 36px;box-shadow:0 4px 16px rgba(34,32,28,0.06);display:flex;gap:22px;align-items:flex-start;">
-        <div style="min-width:48px;height:48px;background:var(--teal-50);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:var(--teal-600);">01</div>
-        <div>
-          <div style="font-size:var(--type-body);font-weight:700;color:var(--nat-900);margin-bottom:8px;letter-spacing:-0.02em;">"찜" → "마음에 담기"</div>
-          <div style="font-size:21px;font-weight:400;color:var(--nat-600);line-height:1.5;">사람을 물건 취급하는 뉘앙스 개선. 버튼·토스트·탭·카피 앱 전체 일괄 교체.</div>
-        </div>
-      </div>
-      <div style="background:#fff;border-radius:20px;padding:32px 36px;box-shadow:0 4px 16px rgba(34,32,28,0.06);display:flex;gap:22px;align-items:flex-start;">
-        <div style="min-width:48px;height:48px;background:var(--teal-50);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:var(--teal-600);">02</div>
-        <div>
-          <div style="font-size:var(--type-body);font-weight:700;color:var(--nat-900);margin-bottom:8px;letter-spacing:-0.02em;">로그인 그라데이션 정제</div>
-          <div style="font-size:21px;font-weight:400;color:var(--nat-600);line-height:1.5;">Accent Coral 혼용 제거 → Primary Teal 단독. 탁하던 배경이 깔끔하게 정리됨.</div>
-        </div>
-      </div>
-      <div style="background:#fff;border-radius:20px;padding:32px 36px;box-shadow:0 4px 16px rgba(34,32,28,0.06);display:flex;gap:22px;align-items:flex-start;">
-        <div style="min-width:48px;height:48px;background:var(--teal-50);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:var(--teal-600);">03</div>
-        <div>
-          <div style="font-size:var(--type-body);font-weight:700;color:var(--nat-900);margin-bottom:8px;letter-spacing:-0.02em;">로그인 버튼 위치 상향</div>
-          <div style="font-size:21px;font-weight:400;color:var(--nat-600);line-height:1.5;">엄지 닿기 편한 위치로 버튼 상향 조정. paddingBottom 40 → 80.</div>
-        </div>
-      </div>
-      <div style="background:#fff;border-radius:20px;padding:32px 36px;box-shadow:0 4px 16px rgba(34,32,28,0.06);display:flex;gap:22px;align-items:flex-start;">
-        <div style="min-width:48px;height:48px;background:var(--teal-50);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:var(--teal-600);">04</div>
-        <div>
-          <div style="font-size:var(--type-body);font-weight:700;color:var(--nat-900);margin-bottom:8px;letter-spacing:-0.02em;">이모티콘 시스템 구축</div>
-          <div style="font-size:21px;font-weight:400;color:var(--nat-600);line-height:1.5;">여웅 캐릭터 30종 등록. Sticker 컴포넌트 + TS 타입 + DS 카드 추가.</div>
-        </div>
-      </div>
-      <div style="background:linear-gradient(135deg,var(--teal-50) 0%,#fff 100%);border:1.5px solid var(--teal-100);border-radius:20px;padding:32px 36px;box-shadow:0 4px 16px rgba(34,32,28,0.06);display:flex;gap:22px;align-items:flex-start;grid-column:1/-1;">
-        <div style="min-width:48px;height:48px;background:var(--teal-500);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:#fff;">05</div>
-        <div>
-          <div style="font-size:var(--type-body);font-weight:700;color:var(--nat-900);margin-bottom:8px;letter-spacing:-0.02em;">채팅 이모티콘 전송 연동</div>
-          <div style="font-size:21px;font-weight:400;color:var(--nat-600);line-height:1.5;">채팅방에 이모티콘 버튼 추가. 하단 스티커 피커 UI → 선택 즉시 대화에 전송. 스티커는 채팅 버블과 별도 레이아웃으로 렌더링.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── 13 다음 단계 ──────────────────────────── -->
-  <section data-label="13 다음 단계" style="
-    background: linear-gradient(152deg, #0D4443 0%, #1C6A68 28%, #2D8E8C 55%, #5AC7C4 80%, #A8E3E1 100%);
-    display: flex; flex-direction: column; justify-content: center;
-    padding: var(--pad-top) 140px var(--pad-bot);">
-
-    <div style="position:absolute;top:-220px;right:-80px;width:680px;height:680px;border-radius:50%;background:rgba(255,255,255,0.05);"></div>
-    <div style="position:absolute;bottom:-260px;left:160px;width:560px;height:560px;border-radius:50%;background:rgba(255,255,255,0.04);"></div>
-
-    <div style="z-index:2;">
-      <div style="font-size:var(--type-xs);font-weight:600;color:rgba(255,255,255,0.6);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:28px;">Next Steps</div>
-      <div style="font-size:var(--type-title);font-weight:700;color:#fff;letter-spacing:-0.025em;line-height:1.05;margin-bottom:56px;">다음 단계</div>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;">
-        <div style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.18);border-radius:20px;padding:36px 32px;backdrop-filter:blur(6px);">
-          <div style="font-size:22px;font-weight:700;color:rgba(255,255,255,0.55);margin-bottom:20px;">단기</div>
-          <div style="display:flex;flex-direction:column;gap:14px;">
-            <div style="display:flex;gap:12px;align-items:flex-start;">
-              <div style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.55);flex-shrink:0;margin-top:10px;"></div>
-              <div style="font-size:var(--type-sm);font-weight:500;color:rgba(255,255,255,0.9);line-height:1.4;">Figma 변수 컬렉션 연동</div>
-            </div>
-            <div style="display:flex;gap:12px;align-items:flex-start;">
-              <div style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.55);flex-shrink:0;margin-top:10px;"></div>
-              <div style="font-size:var(--type-sm);font-weight:500;color:rgba(255,255,255,0.9);line-height:1.4;">브랜드 아이콘 풀셋 확정</div>
-            </div>
-            <div style="display:flex;gap:12px;align-items:flex-start;">
-              <div style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.55);flex-shrink:0;margin-top:10px;"></div>
-              <div style="font-size:var(--type-sm);font-weight:500;color:rgba(255,255,255,0.9);line-height:1.4;">UI 가이드.fig 마운트</div>
-            </div>
-          </div>
-        </div>
-        <div style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.18);border-radius:20px;padding:36px 32px;backdrop-filter:blur(6px);">
-          <div style="font-size:22px;font-weight:700;color:rgba(255,255,255,0.55);margin-bottom:20px;">중기</div>
-          <div style="display:flex;flex-direction:column;gap:14px;">
-            <div style="display:flex;gap:12px;align-items:flex-start;">
-              <div style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.55);flex-shrink:0;margin-top:10px;"></div>
-              <div style="font-size:var(--type-sm);font-weight:500;color:rgba(255,255,255,0.9);line-height:1.4;">다크 모드 토큰 정의</div>
-            </div>
-            <div style="display:flex;gap:12px;align-items:flex-start;">
-              <div style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.55);flex-shrink:0;margin-top:10px;"></div>
-              <div style="font-size:var(--type-sm);font-weight:500;color:rgba(255,255,255,0.9);line-height:1.4;">접근성 가이드라인</div>
-            </div>
-            <div style="display:flex;gap:12px;align-items:flex-start;">
-              <div style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.55);flex-shrink:0;margin-top:10px;"></div>
-              <div style="font-size:var(--type-sm);font-weight:500;color:rgba(255,255,255,0.9);line-height:1.4;">모션 가이드라인</div>
-            </div>
-          </div>
-        </div>
-        <div style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.18);border-radius:20px;padding:36px 32px;backdrop-filter:blur(6px);">
-          <div style="font-size:22px;font-weight:700;color:rgba(255,255,255,0.55);margin-bottom:20px;">장기</div>
-          <div style="display:flex;flex-direction:column;gap:14px;">
-            <div style="display:flex;gap:12px;align-items:flex-start;">
-              <div style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.55);flex-shrink:0;margin-top:10px;"></div>
-              <div style="font-size:var(--type-sm);font-weight:500;color:rgba(255,255,255,0.9);line-height:1.4;">React Native 확장</div>
-            </div>
-            <div style="display:flex;gap:12px;align-items:flex-start;">
-              <div style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.55);flex-shrink:0;margin-top:10px;"></div>
-              <div style="font-size:var(--type-sm);font-weight:500;color:rgba(255,255,255,0.9);line-height:1.4;">Storybook 연동</div>
-            </div>
-            <div style="display:flex;gap:12px;align-items:flex-start;">
-              <div style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.55);flex-shrink:0;margin-top:10px;"></div>
-              <div style="font-size:var(--type-sm);font-weight:500;color:rgba(255,255,255,0.9);line-height:1.4;">디자인·개발 핸드오프 자동화</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <img src="assets/logo/yuon-symbol-white.png" style="position:absolute;bottom:56px;right:120px;width:68px;height:68px;object-fit:contain;opacity:0.4;z-index:2;" alt="">
-  </section>
-
-</deck-stage>
-
-<template id="__bundler_thumbnail">
-<svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
-  <rect width="120" height="80" fill="#2D8E8C"/>
-  <rect x="12" y="20" width="48" height="40" rx="5" fill="rgba(255,255,255,0.15)"/>
-  <rect x="66" y="20" width="42" height="40" rx="5" fill="rgba(255,255,255,0.1)"/>
-  <text x="36" y="44" font-size="10" fill="white" text-anchor="middle" font-family="sans-serif" font-weight="700">여운</text>
-  <text x="87" y="38" font-size="7" fill="rgba(255,255,255,0.7)" text-anchor="middle" font-family="sans-serif">DS v1.0</text>
-</svg>
-</template>
-
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
 </body>
 </html>
