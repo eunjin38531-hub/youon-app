@@ -1,0 +1,84 @@
+/* 여운 (Yuon) — Color System
+   3 families (Primary Teal · Accent Coral Peach · Natural Warm Gray), 10 steps each.
+   Brand personality: 진실한 · 신비로운 · 따뜻한 · 끌리는 · 인연 같은
+   Source: uploads/color-system.md (hex extracted from brand imagery). */
+
+:root {
+  /* ── Primary — Teal (청록) — 신뢰 · 인증 · 궁합 점수 · 핵심 포인트 ── */
+  --color-primary-50:  #EDF9F8;
+  --color-primary-100: #CCEEED;
+  --color-primary-200: #A8E3E1;
+  --color-primary-300: #83D5D3;
+  --color-primary-400: #6CCECB;
+  --color-primary-500: #5AC7C4; /* Core */
+  --color-primary-600: #41AFAC;
+  --color-primary-700: #2D8E8C;
+  --color-primary-800: #1C6A68;
+  --color-primary-900: #0D4443;
+
+  /* ── Accent — Coral Peach (코랄 피치) — 관심 · 하트 · 감정 액션 ── */
+  --color-accent-50:  #FFF1EF;
+  --color-accent-100: #FFD6D1;
+  --color-accent-200: #FFB9B2;
+  --color-accent-300: #FFA397;
+  --color-accent-400: #FF9789;
+  --color-accent-500: #FF8C7D; /* Core */
+  --color-accent-600: #E87060;
+  --color-accent-700: #C45244;
+  --color-accent-800: #93372D;
+  --color-accent-900: #5C1A10;
+
+  /* ── Natural — Warm Gray (웜 그레이) — 텍스트 · 구조 · 배경 ── */
+  --color-natural-50:  #F6F4F1;
+  --color-natural-100: #E6E3DC;
+  --color-natural-200: #D1CDC5;
+  --color-natural-300: #BCB7AF;
+  --color-natural-400: #ABA49B;
+  --color-natural-500: #9E9488; /* Core */
+  --color-natural-600: #857D72;
+  --color-natural-700: #635D54;
+  --color-natural-800: #413D36;
+  --color-natural-900: #22201C;
+
+  /* ── Surface neutrals ── */
+  --color-white: #FFFFFF;
+  --color-black: #1A1814;
+
+  /* ── Semantic aliases ── */
+  --color-brand-primary:   var(--color-primary-500); /* #5AC7C4 */
+  --color-brand-accent:    var(--color-accent-500);  /* #FF8C7D */
+  --color-brand-neutral:   var(--color-natural-500); /* #9E9488 */
+
+  /* Text */
+  --color-text-primary:    var(--color-natural-900); /* 기본 본문 #22201C */
+  --color-text-body:       var(--color-natural-800); /* 본문 Body L #413D36 */
+  --color-text-secondary:  var(--color-natural-700); /* 설명 #635D54 */
+  --color-text-meta:       var(--color-natural-600); /* 메타·타임스탬프 #857D72 */
+  --color-text-tertiary:   var(--color-natural-500); /* 비활성·힌트 #9E9488 */
+  --color-text-on-primary: #FFFFFF;
+  --color-text-on-accent:  var(--color-accent-900);  /* #5C1A10 */
+
+  /* Surfaces & borders */
+  --color-surface-page:    var(--color-natural-50);  /* 페이지 배경 #F6F4F1 */
+  --color-surface-card:    var(--color-white);
+  --color-surface-sunken:  var(--color-natural-100);
+  --color-border-default:  var(--color-natural-100); /* #E6E3DC */
+  --color-border-strong:   var(--color-natural-200); /* #D1CDC5 */
+  --color-divider:         var(--color-natural-100);
+
+  /* Functional — trust, match, heart */
+  --color-trust-badge-bg:   var(--color-primary-100); /* #CCEEED */
+  --color-trust-badge-text: var(--color-primary-800); /* #1C6A68 */
+  --color-match-score:      var(--color-primary-500); /* 궁합 점수 #5AC7C4 */
+  --color-match-track:      var(--color-primary-100);
+  --color-heart-action:     var(--color-accent-500);  /* 관심 표현 #FF8C7D */
+  --color-heart-quiet:      var(--color-accent-300);   /* 조용한 하트 */
+
+  /* Status */
+  --color-focus-ring:      var(--color-primary-700);  /* #2D8E8C */
+  --color-error-bg:        var(--color-accent-50);    /* #FFF1EF */
+  --color-error-text:      var(--color-accent-800);   /* #93372D */
+  --color-success:         var(--color-primary-600);
+  --color-disabled-bg:     var(--color-natural-200);
+  --color-disabled-text:   var(--color-natural-400);
+}
