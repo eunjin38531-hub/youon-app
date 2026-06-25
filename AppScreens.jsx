@@ -29,7 +29,7 @@ function LoginScreen({ onSignup, onLogin }) {
       <div style={{ position: 'absolute', top: -80, right: -60, width: 240, height: 240, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.22), transparent 70%)' }} />
       <div style={{ position: 'absolute', bottom: 90, left: -80, width: 240, height: 240, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.14), transparent 70%)' }} />
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 22, zIndex: 1 }}>
-        <div style={{ width: 92, height: 92, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 48 }}>🌿</div>
+        <img src="yuon-symbol-white.png" alt="여운" style={{ width: 92, height: 92, objectFit: 'contain' }} />
         <div style={{ textAlign: 'center' }}>
           <p style={{ margin: '0 0 10px', fontSize: 27, fontWeight: 700, letterSpacing: '-0.025em', lineHeight: 1.32 }}>진짜 사람과,<br />이유 있는 만남을</p>
           <p style={{ margin: 0, fontSize: 15, opacity: 0.92, lineHeight: 1.5 }}>사주로 시작하는 신뢰 기반 데이팅</p>
