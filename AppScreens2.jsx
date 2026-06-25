@@ -32,6 +32,108 @@ function LikeCard({ p, onClick, locked }) {
   );
 }
 
+function SavedCarousel({ list, onOpenProfile }) {
+  const { Icon } = DS2;
+  const [cur, setCur] = React.useState(0);
+  const startX = React.useRef(null);
+
+  const prev = () => setCur((i) => Math.max(0, i - 1));
+  const next = () => setCur((i) => Math.min(list.length - 1, i + 1));
+
+  const onTouchStart = (e) => { startX.current = e.touches[0].clientX; };
+  const onTouchEnd = (e) => {
+    if (startX.current === null) return;
+    const dx = e.changedTouches[0].clientX - startX.current;
+    if (dx < -40) next();
+    else if (dx > 40) prev();
+    startX.current = null;
+  };
+
+  if (!list.length) return (
+    <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-text-meta)', fontSize: 14 }}>
+      아직 마음에 담은 사람이 없어요
+    </div>
+  );
+
+  const CARD_W = 200;
+  const SIDE_SCALE = 0.82;
+  const SIDE_OFFSET = 148;
+
+  return (
+    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 24, overflow: 'hidden' }}>
+      <div
+        style={{ position: 'relative', width: '100%', height: 320, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+      >
+        {list.map((p, i) => {
+          const offset = i - cur;
+          if (Math.abs(offset) > 1) return null;
+          const isCenter = offset === 0;
+          const x = offset * SIDE_OFFSET;
+          const scale = isCenter ? 1 : SIDE_SCALE;
+          const zIndex = isCenter ? 10 : 5;
+          const opacity = isCenter ? 1 : 0.72;
+          const elIcon = window.YuonData.elementIcons[p.el];
+          return (
+            <div
+              key={p.id}
+              onClick={() => isCenter ? onOpenProfile(p.id) : setCur(i)}
+              style={{
+                position: 'absolute',
+                width: CARD_W,
+                height: 280,
+                borderRadius: 20,
+                overflow: 'hidden',
+                background: 'var(--color-natural-300)',
+                boxShadow: isCenter ? '0 12px 40px rgba(30,28,24,0.22)' : '0 4px 16px rgba(30,28,24,0.12)',
+                transform: `translateX(${x}px) scale(${scale})`,
+                transition: 'transform 0.32s cubic-bezier(0.34,1.1,0.64,1), opacity 0.32s ease, box-shadow 0.32s ease',
+                zIndex,
+                opacity,
+                cursor: 'pointer',
+              }}
+            >
+              <img src={p.photo} alt={p.name} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(30,28,24,0.72) 0%, transparent 52%)' }} />
+              {/* score badge */}
+              <div style={{ position: 'absolute', top: 12, left: 12, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, padding: '7px 10px', borderRadius: 12, background: 'rgba(255,255,255,0.93)' }}>
+                <Icon name="heart" size={14} filled color="var(--color-accent-500)" />
+                <span style={{ fontSize: 13, fontWeight: 800, color: 'var(--color-text-primary)', lineHeight: 1 }}>{p.score}%</span>
+                <span style={{ fontSize: 9, fontWeight: 600, color: 'var(--color-text-meta)', lineHeight: 1 }}>궁합</span>
+              </div>
+              {/* info */}
+              <div style={{ position: 'absolute', left: 14, right: 14, bottom: 14 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 5, color: '#fff', fontSize: 16, fontWeight: 700, letterSpacing: '-0.01em', marginBottom: 6 }}>
+                  {p.name}, {p.age}
+                  {p.verified && <Icon name="badgeCheck" size={15} color="#fff" />}
+                </div>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, padding: '3px 9px', borderRadius: 'var(--radius-pill)', background: 'rgba(255,255,255,0.18)', backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)', fontSize: 11, fontWeight: 600, color: '#fff' }}>
+                  {elIcon ? <img src={elIcon} alt="" style={{ width: 16, height: 16, borderRadius: 5, objectFit: 'cover' }} /> : <span>🔥</span>}
+                  {p.sajuTag}
+                </div>
+                <p style={{ margin: '7px 0 0', fontSize: 12, color: 'rgba(255,255,255,0.85)', lineHeight: 1.45, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>{p.intro}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* dots */}
+      <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+        {list.map((_, i) => (
+          <div key={i} onClick={() => setCur(i)} style={{ width: i === cur ? 18 : 6, height: 6, borderRadius: 3, background: i === cur ? 'var(--color-accent-500)' : 'var(--color-natural-300)', transition: 'all 0.25s ease', cursor: 'pointer' }} />
+        ))}
+      </div>
+
+      {/* hint */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--color-text-meta)', fontSize: 12, fontWeight: 500 }}>
+        <span>👆</span> 좌우로 넘겨 더 많은 프로필을 확인해보세요
+      </div>
+    </div>
+  );
+}
+
 function HeartScreen({ onOpenProfile }) {
   const { TopAppBar, SegmentedTabs } = DS2;
   const data = window.YuonData;
@@ -41,22 +143,27 @@ function HeartScreen({ onOpenProfile }) {
     <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', background: 'var(--color-surface-page)' }}>
       <TopAppBar title="하트" />
       <SegmentedTabs tabs={[{ key: 'saved', label: '마음에 담은' }, { key: 'likedMe', label: '나를 괜찮게 본' }]} active={tab} onChange={setTab} />
-      <div style={{ flex: 1, overflowY: 'auto', padding: '16px 16px 24px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6, margin: '0 2px 14px' }}>
-          <span style={{ fontSize: 15, fontWeight: 700, color: 'var(--color-text-primary)' }}>
-            {tab === 'saved' ? '마음에 담은 사람' : '나를 괜찮게 본 사람'}
-          </span>
-          <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--color-accent-500)' }}>{list.length}</span>
-        </div>
-        <p style={{ fontSize: 13, lineHeight: 1.5, color: 'var(--color-text-meta)', margin: '0 2px 16px' }}>
-          {tab === 'saved' ? '내가 하트를 누른 목록이에요. 상대에게 알림은 가지 않아요.' : '나에게 관심을 표현한 사람들이에요. 관심을 표현하면 바로 대화를 시작할 수 있어요.'}
-        </p>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-          {list.map((p) => (
-            <LikeCard key={p.id} p={p} onClick={() => onOpenProfile(p.id)} />
-          ))}
-        </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '16px 18px 4px' }}>
+        <span style={{ fontSize: 15, fontWeight: 700, color: 'var(--color-text-primary)' }}>
+          {tab === 'saved' ? '마음에 담은 사람' : '나를 괜찮게 본 사람'}
+        </span>
+        <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--color-accent-500)' }}>{list.length}</span>
       </div>
+      <p style={{ fontSize: 13, lineHeight: 1.5, color: 'var(--color-text-meta)', margin: '0 18px 8px' }}>
+        {tab === 'saved' ? '내가 하트를 누른 목록이에요. 상대에게 알림은 가지 않아요.' : '나에게 관심을 표현한 사람들이에요. 관심을 표현하면 바로 대화를 시작할 수 있어요.'}
+      </p>
+      {tab === 'saved'
+        ? <SavedCarousel list={list} onOpenProfile={onOpenProfile} />
+        : (
+          <div style={{ flex: 1, overflowY: 'auto', padding: '8px 16px 24px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+              {list.map((p) => (
+                <LikeCard key={p.id} p={p} onClick={() => onOpenProfile(p.id)} />
+              ))}
+            </div>
+          </div>
+        )
+      }
     </div>
   );
 }
