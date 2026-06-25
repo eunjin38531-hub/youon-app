@@ -151,8 +151,10 @@ window.YuonData = (function () {
   ];
   // ── 내가 보낸 관심 ──
   const iLiked = [
-    { id: 'jihoon', name: '지훈', age: 31, score: 88, district: '강남구', sajuTag: '수목 상생', photo: photo('photo-1500648767791-00dcc994a43e'), at: '2일 전' },
-    { id: 'minjun', name: '민준', age: 30, score: 81, district: '용산구', sajuTag: '화토 상생', photo: photo('photo-1507003211169-0a1dd7228f2d'), at: '3일 전' },
+    { id: 'jihoon', name: '지훈', age: 31, score: 88, district: '강남구', sajuTag: '수목 상생', sajuComment: '사주가 잘 맞아요!', photo: photo('photo-1500648767791-00dcc994a43e'), at: '2일 전', intro: '주말엔 등산, 평일엔 책 한 권. 같이 걸으며 이야기 나눠요.', verified: true },
+    { id: 'minjun', name: '민준', age: 30, score: 81, district: '용산구', sajuTag: '화토 상생', sajuComment: '사주가 아름다워!!', photo: photo('photo-1507003211169-0a1dd7228f2d'), at: '3일 전', intro: '안녕하세요! 저는 서울 사는 요리 좋아하는 남자입니다.', verified: true },
+    { id: 'seoyeon', name: '서연', age: 29, score: 92, district: '마포구', sajuTag: '목화 상생', sajuComment: '목화 기운이 딱!', photo: photo('photo-1494790108377-be9c29b29330'), at: '오늘', intro: '안녕하세요! 저는 서울 사는 카페를 좋아하는 사람이에요.', verified: true },
+    { id: 'hana', name: '하나', age: 27, score: 85, district: '서대문구', sajuTag: '금토 안정', sajuComment: '안정적인 궁합!', photo: photo('photo-1534528741775-53994a69daeb'), at: '1시간 전', intro: '강아지와 산책하는 시간이 제일 좋아요. 천천히 알아가요.', verified: true },
   ];
 
   // ── 새로운 매칭 (Chat 상단 레일) ──
