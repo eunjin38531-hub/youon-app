@@ -29,42 +29,42 @@
   --color-accent-900: #5C1A10;
 
   /* ── Natural — Warm Gray (웜 그레이) — 텍스트 · 구조 · 배경 ── */
-  --color-natural-50:  #F6F4F1;
-  --color-natural-100: #E6E3DC;
-  --color-natural-200: #D1CDC5;
-  --color-natural-300: #BCB7AF;
-  --color-natural-400: #ABA49B;
-  --color-natural-500: #9E9488; /* Core */
-  --color-natural-600: #857D72;
-  --color-natural-700: #635D54;
-  --color-natural-800: #413D36;
-  --color-natural-900: #22201C;
+  --color-natural-100: #F7F5F2;
+  --color-natural-200: #E9E6E1;
+  --color-natural-300: #DAD7D1;
+  --color-natural-400: #CCC8C1;
+  --color-natural-500: #BCB7AF; /* Core */
+  --color-natural-550: #9E9890;
+  --color-natural-600: #807A71;
+  --color-natural-700: #5A564E;
+  --color-natural-800: #38352F;
+  --color-natural-900: #1E1C18;
 
   /* ── Surface neutrals ── */
   --color-white: #FFFFFF;
-  --color-black: #1A1814;
+  --color-black: #1E1C18;
 
   /* ── Semantic aliases ── */
   --color-brand-primary:   var(--color-primary-500); /* #5AC7C4 */
   --color-brand-accent:    var(--color-accent-500);  /* #FF8C7D */
-  --color-brand-neutral:   var(--color-natural-500); /* #9E9488 */
+  --color-brand-neutral:   var(--color-natural-500); /* #BCB7AF */
 
   /* Text */
-  --color-text-primary:    var(--color-natural-900); /* 기본 본문 #22201C */
-  --color-text-body:       var(--color-natural-800); /* 본문 Body L #413D36 */
-  --color-text-secondary:  var(--color-natural-700); /* 설명 #635D54 */
-  --color-text-meta:       var(--color-natural-600); /* 메타·타임스탬프 #857D72 */
-  --color-text-tertiary:   var(--color-natural-500); /* 비활성·힌트 #9E9488 */
+  --color-text-primary:    var(--color-natural-900); /* 기본 본문 #1E1C18 */
+  --color-text-body:       var(--color-natural-800); /* 본문 Body L #38352F */
+  --color-text-secondary:  var(--color-natural-700); /* 설명 #5A564E */
+  --color-text-meta:       var(--color-natural-600); /* 메타·타임스탬프 #807A71 */
+  --color-text-tertiary:   var(--color-natural-550); /* 비활성·힌트 #9E9890 */
   --color-text-on-primary: #FFFFFF;
   --color-text-on-accent:  var(--color-accent-900);  /* #5C1A10 */
 
   /* Surfaces & borders */
-  --color-surface-page:    var(--color-natural-50);  /* 페이지 배경 #F6F4F1 */
+  --color-surface-page:    var(--color-natural-100); /* 페이지 배경 #F7F5F2 */
   --color-surface-card:    var(--color-white);
-  --color-surface-sunken:  var(--color-natural-100);
-  --color-border-default:  var(--color-natural-100); /* #E6E3DC */
-  --color-border-strong:   var(--color-natural-200); /* #D1CDC5 */
-  --color-divider:         var(--color-natural-100);
+  --color-surface-sunken:  var(--color-natural-200);
+  --color-border-default:  var(--color-natural-200); /* #E9E6E1 */
+  --color-border-strong:   var(--color-natural-300); /* #DAD7D1 */
+  --color-divider:         var(--color-natural-200);
 
   /* Functional — trust, match, heart */
   --color-trust-badge-bg:   var(--color-primary-100); /* #CCEEED */
@@ -79,6 +79,6 @@
   --color-error-bg:        var(--color-accent-50);    /* #FFF1EF */
   --color-error-text:      var(--color-accent-800);   /* #93372D */
   --color-success:         var(--color-primary-600);
-  --color-disabled-bg:     var(--color-natural-200);
-  --color-disabled-text:   var(--color-natural-400);
+  --color-disabled-bg:     var(--color-natural-300);
+  --color-disabled-text:   var(--color-natural-550);
 }
