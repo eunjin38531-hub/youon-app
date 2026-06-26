@@ -1460,7 +1460,7 @@ function ProfileFeedCard({
   }, rest), /*#__PURE__*/React.createElement("div", {
     style: {
       position: 'relative',
-      aspectRatio: '3 / 2',
+      aspectRatio: '4 / 5',
       background: 'var(--color-natural-200)'
     }
   }, photo ? /*#__PURE__*/React.createElement("img", {
@@ -1566,7 +1566,7 @@ function ProfileFeedCard({
     "aria-hidden": "true"
   }, "\uD83D\uDD25"), sajuTag))), /*#__PURE__*/React.createElement("div", {
     style: {
-      padding: '10px 12px 14px'
+      padding: '14px 16px 18px'
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -1575,15 +1575,19 @@ function ProfileFeedCard({
       gap: 5,
       marginBottom: 4
     }
-  }, verified && /*#__PURE__*/React.createElement(__ds_scope.Icon, {
-    name: "badgeCheck",
-    size: 18
-  }), /*#__PURE__*/React.createElement("span", {
+  }, verified && /*#__PURE__*/React.createElement("span", {
     style: {
-      fontSize: 16,
+      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+      width: 22, height: 22, borderRadius: '50%',
+      background: 'var(--color-primary-500)', flexShrink: 0
+    }
+  }, /*#__PURE__*/React.createElement(__ds_scope.Icon, { name: "check", size: 13, color: "#fff" })),
+  /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 18,
       fontWeight: 700,
       color: 'var(--color-text-primary)',
-      letterSpacing: '-0.01em'
+      letterSpacing: '-0.02em'
     }
   }, name, age != null ? `, ${age}` : '')), intro && /*#__PURE__*/React.createElement("p", {
     style: {

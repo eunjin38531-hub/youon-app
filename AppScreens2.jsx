@@ -6,29 +6,47 @@ function LikeCard({ p, onClick, locked }) {
   const { Icon } = DS2;
   const elIcon = window.YuonData.elementIcons[p.el];
   return (
-    <button onClick={onClick} style={{ position: 'relative', display: 'block', padding: 0, border: 'none', borderRadius: 'var(--radius-lg)', overflow: 'hidden', background: 'var(--color-natural-200)', aspectRatio: '3 / 4', cursor: 'pointer', boxShadow: 'var(--shadow-sm)', WebkitTapHighlightColor: 'transparent' }}>
-      <img src={p.photo} alt={p.name} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', filter: locked ? 'blur(14px)' : 'none' }} />
-      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(30,28,24,0.6), transparent 46%)' }} />
-      {/* score badge */}
-      <div style={{ position: 'absolute', top: 10, left: 10, display: 'inline-flex', alignItems: 'center', gap: 4, height: 26, padding: '0 9px', borderRadius: 'var(--radius-pill)', background: 'rgba(255,255,255,0.92)' }}>
-        <Icon name="heart" size={13} filled color="var(--color-accent-500)" />
-        <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--color-text-primary)' }}>{p.score}</span>
-      </div>
-      {locked ? (
-        <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
-          <span style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(255,255,255,0.9)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Icon name="heart" size={20} filled color="var(--color-accent-500)" />
-          </span>
+    <div onClick={onClick} style={{ borderRadius: 'var(--radius-lg)', overflow: 'hidden', background: 'var(--color-surface-card)', boxShadow: 'var(--shadow-sm)', cursor: 'pointer', WebkitTapHighlightColor: 'transparent', border: '1px solid var(--color-border-default)' }}>
+      {/* photo */}
+      <div style={{ position: 'relative', aspectRatio: '4 / 5', background: 'var(--color-natural-200)' }}>
+        <img src={p.photo} alt={p.name} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', filter: locked ? 'blur(14px)' : 'none' }} />
+        {/* score badge */}
+        <div style={{ position: 'absolute', top: 8, left: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, padding: '6px 8px', borderRadius: 10, background: 'rgba(255,255,255,0.96)', boxShadow: '0 2px 8px rgba(0,0,0,0.12)' }}>
+          <Icon name="heart" size={14} filled color="var(--color-accent-500)" />
+          <span style={{ fontSize: 12, fontWeight: 800, color: 'var(--color-text-primary)', lineHeight: 1.1 }}>{p.score}점</span>
         </div>
-      ) : (
-        <div style={{ position: 'absolute', left: 12, right: 12, bottom: 12, textAlign: 'left' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 4, color: '#fff', fontSize: 15, fontWeight: 700, letterSpacing: '-0.01em' }}>{p.name}, {p.age}</div>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, marginTop: 5, padding: elIcon ? '3px 8px 3px 3px' : '3px 8px', borderRadius: 'var(--radius-pill)', background: 'rgba(255,255,255,0.22)', backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)', fontSize: 11, fontWeight: 600, color: '#fff' }}>
-            {elIcon ? <img src={elIcon} alt="" style={{ width: 18, height: 18, borderRadius: 6, objectFit: 'cover' }} /> : <span aria-hidden="true">🔥</span>}{p.sajuTag}
+        {/* pills overlay */}
+        {!locked && (
+          <div style={{ position: 'absolute', left: 8, right: 8, bottom: 8, display: 'flex', gap: 4, flexWrap: 'wrap' }}>
+            {p.at && <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, height: 24, padding: '0 8px', borderRadius: 'var(--radius-pill)', background: 'rgba(28,26,24,0.52)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', color: '#fff', fontSize: 11, fontWeight: 500 }}>
+              <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--color-primary-300)', flexShrink: 0 }} />{p.at}
+            </span>}
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, height: 24, padding: elIcon ? '0 8px 0 3px' : '0 8px', borderRadius: 'var(--radius-pill)', background: 'rgba(255,140,80,0.85)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', color: '#fff', fontSize: 11, fontWeight: 600 }}>
+              {elIcon ? <img src={elIcon} alt="" style={{ width: 18, height: 18, borderRadius: 5, objectFit: 'cover' }} /> : <span style={{ fontSize: 12 }}>🔥</span>}{p.sajuTag}
+            </span>
           </div>
+        )}
+        {locked && (
+          <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <span style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(255,255,255,0.9)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Icon name="heart" size={20} filled color="var(--color-accent-500)" />
+            </span>
+          </div>
+        )}
+      </div>
+      {/* info */}
+      {!locked && (
+        <div style={{ padding: '10px 12px 13px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 3 }}>
+            <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 20, height: 20, borderRadius: '50%', background: 'var(--color-primary-500)', flexShrink: 0 }}>
+              <Icon name="check" size={11} color="#fff" />
+            </span>
+            <span style={{ fontSize: 15, fontWeight: 700, color: 'var(--color-text-primary)', letterSpacing: '-0.01em' }}>{p.name}, {p.age}</span>
+          </div>
+          {p.intro && <p style={{ margin: 0, fontSize: 12, color: 'var(--color-text-secondary)', lineHeight: 1.4, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{p.intro}</p>}
         </div>
       )}
-    </button>
+    </div>
   );
 }
 
