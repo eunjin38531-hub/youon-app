@@ -1581,7 +1581,9 @@ function ProfileFeedCard({
       width: 22, height: 22, borderRadius: '50%',
       background: 'var(--color-primary-500)', flexShrink: 0
     }
-  }, /*#__PURE__*/React.createElement(__ds_scope.Icon, { name: "check", size: 13, color: "#fff" })),
+  }, /*#__PURE__*/React.createElement("svg", { width: 12, height: 11, viewBox: "0 0 12 10", fill: "none" },
+    /*#__PURE__*/React.createElement("path", { d: "M1 5L4.5 8.5L11 1.5", stroke: "#fff", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" })
+  )),
   /*#__PURE__*/React.createElement("span", {
     style: {
       fontSize: 18,
