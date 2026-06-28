@@ -1,52 +1,103 @@
 /* 여운 app — Heart, Chat list, Chat room, My page. Exposed on window. */
 const DS2 = window.YuonDesignSystem_8624c6;
 
+// ── 공통 UI 헬퍼 ──────────────────────────────────────────────────
+function VerifiedBadge({ size = 22 }) {
+  return (
+    <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: size, height: size, borderRadius: '50%', background: 'var(--color-primary-500)', flexShrink: 0 }}>
+      <svg width={size * 0.55} height={size * 0.55} viewBox="0 0 12 10" fill="none">
+        <path d="M1 5L4.5 8.5L11 1.5" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    </span>
+  );
+}
+
+function ScoreBadge({ score }) {
+  return (
+    <div style={{ position: 'absolute', top: 10, left: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, padding: '7px 10px 6px', borderRadius: 12, background: 'rgba(255,255,255,0.97)', boxShadow: '0 2px 10px rgba(0,0,0,0.14)', pointerEvents: 'none' }}>
+      <svg width="18" height="16" viewBox="0 0 18 16" fill="#FF5A5A"><path d="M9 15S1 9.5 1 4.5A4 4 0 0 1 9 3a4 4 0 0 1 8 1.5C17 9.5 9 15 9 15Z"/></svg>
+      <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--color-text-primary)', lineHeight: 1 }}>{score}점</span>
+    </div>
+  );
+}
+
+function ActivityPills({ at, sajuTag, elIcon }) {
+  return (
+    <div style={{ position: 'absolute', left: 10, bottom: 10, right: 10, display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
+      {at && (
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, height: 28, padding: '0 10px', borderRadius: 999, background: 'rgba(28,26,24,0.52)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', color: '#fff', fontSize: 12, fontWeight: 500 }}>
+          <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#7ECECA', flexShrink: 0 }} />{at}
+        </span>
+      )}
+      {sajuTag && (
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, height: 28, padding: elIcon ? '0 10px 0 4px' : '0 10px', borderRadius: 999, background: 'rgba(255,140,80,0.85)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', color: '#fff', fontSize: 12, fontWeight: 600 }}>
+          {elIcon ? <img src={elIcon} alt="" style={{ width: 20, height: 20, borderRadius: 6, objectFit: 'cover', flexShrink: 0 }} /> : <span style={{ fontSize: 13 }}>🔥</span>}
+          {sajuTag}
+        </span>
+      )}
+    </div>
+  );
+}
+
 // ── Heart ───────────────────────────────────────────────────────
 function LikeCard({ p, onClick, locked }) {
-  const { Icon } = DS2;
   const elIcon = window.YuonData.elementIcons[p.el];
   return (
-    <button onClick={onClick} style={{ position: 'relative', display: 'block', padding: 0, border: 'none', borderRadius: 'var(--radius-lg)', overflow: 'hidden', background: 'var(--color-natural-200)', aspectRatio: '3 / 4', cursor: 'pointer', boxShadow: 'var(--shadow-sm)', WebkitTapHighlightColor: 'transparent' }}>
-      <img src={p.photo} alt={p.name} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', filter: locked ? 'blur(14px)' : 'none' }} />
-      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(30,28,24,0.6), transparent 46%)' }} />
-      {/* score badge */}
-      <div style={{ position: 'absolute', top: 10, left: 10, display: 'inline-flex', alignItems: 'center', gap: 4, height: 26, padding: '0 9px', borderRadius: 'var(--radius-pill)', background: 'rgba(255,255,255,0.92)' }}>
-        <Icon name="heart" size={13} filled color="var(--color-accent-500)" />
-        <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--color-text-primary)' }}>{p.score}</span>
-      </div>
-      {locked ? (
-        <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
-          <span style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(255,255,255,0.9)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Icon name="heart" size={20} filled color="var(--color-accent-500)" />
-          </span>
-        </div>
-      ) : (
-        <div style={{ position: 'absolute', left: 12, right: 12, bottom: 12, textAlign: 'left' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 4, color: '#fff', fontSize: 15, fontWeight: 700, letterSpacing: '-0.01em' }}>{p.name}, {p.age}</div>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, marginTop: 5, padding: elIcon ? '3px 8px 3px 3px' : '3px 8px', borderRadius: 'var(--radius-pill)', background: 'rgba(255,255,255,0.22)', backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)', fontSize: 11, fontWeight: 600, color: '#fff' }}>
-            {elIcon ? <img src={elIcon} alt="" style={{ width: 18, height: 18, borderRadius: 6, objectFit: 'cover' }} /> : <span aria-hidden="true">🔥</span>}{p.sajuTag}
+    <div onClick={onClick} style={{ borderRadius: 16, overflow: 'hidden', background: '#fff', boxShadow: '0 2px 12px rgba(30,28,24,0.10)', cursor: 'pointer', WebkitTapHighlightColor: 'transparent', border: '1px solid var(--color-border-default)' }}>
+      <div style={{ position: 'relative', aspectRatio: '4 / 5', background: 'var(--color-natural-200)' }}>
+        <img src={p.photo} alt={p.name} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', filter: locked ? 'blur(14px)' : 'none' }} />
+        <ScoreBadge score={p.score} />
+        {!locked && <ActivityPills at={p.at} sajuTag={p.sajuTag} elIcon={elIcon} />}
+        {locked && (
+          <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <span style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(255,255,255,0.9)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <svg width="20" height="18" viewBox="0 0 18 16" fill="#FF5A5A"><path d="M9 15S1 9.5 1 4.5A4 4 0 0 1 9 3a4 4 0 0 1 8 1.5C17 9.5 9 15 9 15Z"/></svg>
+            </span>
           </div>
+        )}
+      </div>
+      {!locked && (
+        <div style={{ padding: '12px 14px 14px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
+            <VerifiedBadge size={22} />
+            <span style={{ fontSize: 16, fontWeight: 700, color: 'var(--color-text-primary)', letterSpacing: '-0.02em' }}>{p.name}, {p.age}</span>
+          </div>
+          {p.intro && <p style={{ margin: 0, fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.45, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{p.intro}</p>}
         </div>
       )}
-    </button>
+    </div>
   );
 }
 
 function SavedCarousel({ list, onOpenProfile }) {
-  const { Icon } = DS2;
   const [cur, setCur] = React.useState(0);
   const startX = React.useRef(null);
+  const startY = React.useRef(null);
+  const dragging = React.useRef(false);
 
   const prev = () => setCur((i) => Math.max(0, i - 1));
   const next = () => setCur((i) => Math.min(list.length - 1, i + 1));
 
-  const onTouchStart = (e) => { startX.current = e.touches[0].clientX; };
+  const onTouchStart = (e) => {
+    startX.current = e.touches[0].clientX;
+    startY.current = e.touches[0].clientY;
+    dragging.current = false;
+  };
+  const onTouchMove = (e) => {
+    if (startX.current === null) return;
+    const dx = Math.abs(e.touches[0].clientX - startX.current);
+    const dy = Math.abs(e.touches[0].clientY - startY.current);
+    if (dx > dy && dx > 8) { dragging.current = true; e.preventDefault(); }
+  };
   const onTouchEnd = (e) => {
     if (startX.current === null) return;
     const dx = e.changedTouches[0].clientX - startX.current;
-    if (dx < -40) next();
-    else if (dx > 40) prev();
+    if (dragging.current) {
+      if (dx < -40) next();
+      else if (dx > 40) prev();
+    }
     startX.current = null;
+    dragging.current = false;
   };
 
   if (!list.length) return (
@@ -55,25 +106,26 @@ function SavedCarousel({ list, onOpenProfile }) {
     </div>
   );
 
-  const CARD_W = 190;
-  const CARD_H = 340;
+  const CARD_W = 200;
 
   return (
-    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 20, overflow: 'hidden' }}>
+    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 18, overflow: 'hidden', padding: '8px 0 16px' }}>
+      {/* card fan */}
       <div
-        style={{ position: 'relative', width: '100%', height: CARD_H + 40, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+        style={{ position: 'relative', width: '100%', height: 370, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
         onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
       >
         {list.map((p, i) => {
           const offset = i - cur;
           if (Math.abs(offset) > 1) return null;
           const isCenter = offset === 0;
-          const x = offset * 155;
-          const rotate = offset * -8;
-          const scale = isCenter ? 1 : 0.84;
+          const x = offset * (CARD_W * 0.78);
+          const rotate = offset * -7;
+          const scale = isCenter ? 1 : 0.86;
           const zIndex = isCenter ? 10 : 5;
-          const opacity = isCenter ? 1 : 0.78;
+          const opacity = isCenter ? 1 : 0.8;
           const elIcon = window.YuonData.elementIcons[p.el];
           return (
             <div
@@ -82,38 +134,32 @@ function SavedCarousel({ list, onOpenProfile }) {
               style={{
                 position: 'absolute',
                 width: CARD_W,
-                borderRadius: 20,
+                borderRadius: 22,
                 overflow: 'hidden',
                 background: '#fff',
-                boxShadow: isCenter ? '0 16px 48px rgba(30,28,24,0.2)' : '0 4px 16px rgba(30,28,24,0.1)',
+                boxShadow: isCenter
+                  ? '0 20px 56px rgba(30,28,24,0.22)'
+                  : '0 6px 20px rgba(30,28,24,0.12)',
                 transform: `translateX(${x}px) scale(${scale}) rotate(${rotate}deg)`,
-                transition: 'transform 0.35s cubic-bezier(0.34,1.1,0.64,1), opacity 0.3s ease',
+                transition: 'transform 0.38s cubic-bezier(0.34,1.1,0.64,1), opacity 0.3s ease, box-shadow 0.3s ease',
                 zIndex,
                 opacity,
                 cursor: 'pointer',
               }}
             >
               {/* photo */}
-              <div style={{ position: 'relative', height: 220 }}>
-                <img src={p.photo} alt={p.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                {/* score badge */}
-                <div style={{ position: 'absolute', top: 10, left: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, padding: '6px 9px', borderRadius: 11, background: 'rgba(255,255,255,0.95)' }}>
-                  <Icon name="heart" size={13} filled color="var(--color-accent-500)" />
-                  <span style={{ fontSize: 12, fontWeight: 800, color: 'var(--color-text-primary)', lineHeight: 1 }}>{p.score}%</span>
-                  <span style={{ fontSize: 9, fontWeight: 600, color: 'var(--color-text-meta)', lineHeight: 1 }}>궁합</span>
-                </div>
+              <div style={{ position: 'relative', aspectRatio: '4 / 5' }}>
+                <img src={p.photo} alt={p.name} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                <ScoreBadge score={p.score} />
+                <ActivityPills at={p.at} sajuTag={p.sajuComment || p.sajuTag} elIcon={elIcon} />
               </div>
               {/* info */}
-              <div style={{ padding: '12px 14px 14px', background: '#fff' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 15, fontWeight: 700, color: 'var(--color-text-primary)', marginBottom: 6 }}>
-                  {p.name}, {p.age}
-                  {p.verified && <Icon name="badgeCheck" size={14} color="var(--color-primary-500)" />}
+              <div style={{ padding: '14px 16px 18px', background: '#fff' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 5 }}>
+                  <VerifiedBadge size={22} />
+                  <span style={{ fontSize: 18, fontWeight: 700, color: 'var(--color-text-primary)', letterSpacing: '-0.02em' }}>{p.name}, {p.age}</span>
                 </div>
-                <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, padding: '3px 9px', borderRadius: 'var(--radius-pill)', background: 'var(--color-primary-50)', fontSize: 11, fontWeight: 600, color: 'var(--color-primary-700)', marginBottom: 6 }}>
-                  {elIcon ? <img src={elIcon} alt="" style={{ width: 14, height: 14, borderRadius: 4, objectFit: 'cover' }} /> : <span>🔥</span>}
-                  {p.sajuTag}
-                </div>
-                <p style={{ margin: 0, fontSize: 11.5, color: 'var(--color-text-meta)', lineHeight: 1.45, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>{p.intro}</p>
+                <p style={{ margin: 0, fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.45, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>{p.intro}</p>
               </div>
             </div>
           );
@@ -123,13 +169,17 @@ function SavedCarousel({ list, onOpenProfile }) {
       {/* dots */}
       <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
         {list.map((_, i) => (
-          <div key={i} onClick={() => setCur(i)} style={{ width: i === cur ? 18 : 6, height: 6, borderRadius: 3, background: i === cur ? 'var(--color-accent-500)' : 'var(--color-natural-300)', transition: 'all 0.25s ease', cursor: 'pointer' }} />
+          <div
+            key={i}
+            onClick={() => setCur(i)}
+            style={{ width: i === cur ? 20 : 6, height: 6, borderRadius: 3, background: i === cur ? 'var(--color-accent-500)' : 'var(--color-natural-300)', transition: 'all 0.25s ease', cursor: 'pointer' }}
+          />
         ))}
       </div>
 
-      {/* hint */}
+      {/* swipe hint */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 5, color: 'var(--color-text-meta)', fontSize: 12, fontWeight: 500 }}>
-        <span>↔</span> 좌우로 넘겨 더 많은 프로필을 확인해보세요
+        <span style={{ fontSize: 14 }}>←</span> 좌우로 넘겨 더 많은 프로필을 확인해보세요 <span style={{ fontSize: 14 }}>→</span>
       </div>
     </div>
   );
