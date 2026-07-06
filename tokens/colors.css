@@ -58,7 +58,7 @@
   --color-text-on-accent:  var(--color-accent-900);  /* #5C1A10 */
 
   /* Surfaces & borders */
-  --color-surface-page:    var(--color-natural-100); /* 페이지 배경 #F7F5F2 */
+  --color-surface-page:    var(--color-white); /* 페이지 배경 흰색 */
   --color-surface-card:    var(--color-white);
   --color-surface-sunken:  var(--color-natural-200);
   --color-border-default:  var(--color-natural-200); /* #E9E6E1 */
