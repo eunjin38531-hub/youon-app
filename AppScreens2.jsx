@@ -311,6 +311,57 @@ function StickerPicker({ onSend }) {
 }
 
 // ── Chat room ───────────────────────────────────────────────────
+function HealthShareModal({ partnerName, onClose }) {
+  const features = [
+    { icon: '🏥', title: '검증된 기관 결과만 인정', desc: '병원·보건소 발급 결과지를 업로드하면 자동 검증돼요.' },
+    { icon: '👁', title: '항목명은 공개, 세부 수치는 비공개', desc: '"이상 없음 / 확인 필요"로만 표시돼요.' },
+    { icon: '🔄', title: '언제든 동의 철회 가능', desc: '철회 시 공유된 정보는 즉시 삭제돼요.' },
+  ];
+  return (
+    <div style={{ position: 'absolute', inset: 0, zIndex: 100, display: 'flex', flexDirection: 'column', background: 'var(--color-surface-page)' }}>
+      {/* header */}
+      <div style={{ display: 'flex', alignItems: 'center', padding: '12px 4px 12px 4px', borderBottom: '1px solid var(--color-border-default)' }}>
+        <button onClick={onClose} style={{ display: 'flex', alignItems: 'center', gap: 4, background: 'none', border: 'none', cursor: 'pointer', padding: '8px 12px', color: 'var(--color-text-primary)', fontSize: 15 }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <span style={{ fontSize: 17, fontWeight: 700, color: 'var(--color-text-primary)' }}>건강 정보 공유</span>
+      </div>
+      <div style={{ flex: 1, overflowY: 'auto', padding: '32px 24px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        {/* shield icon */}
+        <div style={{ width: 72, height: 72, borderRadius: '50%', background: 'var(--color-primary-50)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary-500)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <polyline points="9 12 11 14 15 10" stroke="var(--color-primary-500)" strokeWidth="1.8"/>
+          </svg>
+        </div>
+        <div style={{ fontSize: 17, fontWeight: 700, color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 8 }}>서로 동의하면 검사결과를 확인할 수 있어요</div>
+        <p style={{ margin: '0 0 28px', fontSize: 13, color: 'var(--color-text-meta)', textAlign: 'center', lineHeight: 1.55 }}>한쪽만 동의한 경우 상대에게 동의 여부는 전달되지 않아요.</p>
+        {/* feature list */}
+        <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 28 }}>
+          {features.map((f, i) => (
+            <div key={i} style={{ display: 'flex', gap: 14, padding: '14px 16px', borderRadius: 14, background: 'var(--color-surface-card)', border: '1px solid var(--color-border-default)' }}>
+              <span style={{ fontSize: 22, flexShrink: 0 }}>{f.icon}</span>
+              <div>
+                <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--color-text-primary)', marginBottom: 3 }}>{f.title}</div>
+                <div style={{ fontSize: 12, color: 'var(--color-text-meta)', lineHeight: 1.5 }}>{f.desc}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+        {/* partner status */}
+        <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 12, background: 'var(--color-natural-100)', marginBottom: 20 }}>
+          <span style={{ fontSize: 14, color: 'var(--color-text-secondary)', fontWeight: 500 }}>{partnerName}님 동의 상태</span>
+          <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text-meta)', padding: '4px 10px', borderRadius: 999, background: 'var(--color-natural-200)' }}>대기 중</span>
+        </div>
+        {/* CTA */}
+        <button style={{ width: '100%', height: 52, borderRadius: 16, background: 'var(--color-primary-500)', color: '#fff', fontFamily: 'var(--font-family-base)', fontSize: 15, fontWeight: 700, border: 'none', cursor: 'pointer' }}>
+          결과지 업로드하고 동의하기
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function ChatRoomScreen({ chatId, onBack }) {
   const { TopAppBar, IconButton, Icon, Avatar, MatchScore, ChatBubble, TopicChip, Tag } = DS2;
   const data = window.YuonData;
@@ -319,6 +370,7 @@ function ChatRoomScreen({ chatId, onBack }) {
   const [messages, setMessages] = React.useState(chat.messages);
   const [draft, setDraft] = React.useState('');
   const [panel, setPanel] = React.useState(false);
+  const [showHealth, setShowHealth] = React.useState(false);
   // 첫 대화 진입 시 사주 기반 대화 주제 말풍선 자동 표시 (flowchart §7)
   const [showTopics, setShowTopics] = React.useState(!!chat.isNew || chat.messages.length === 0);
   const [showStickers, setShowStickers] = React.useState(false);
@@ -401,9 +453,25 @@ function ChatRoomScreen({ chatId, onBack }) {
             <div style={{ height: 1, background: 'var(--color-divider)', margin: '4px 0 12px' }} />
             <span style={{ fontSize: 12, color: 'var(--color-text-meta)', fontWeight: 500 }}>대화 주제 추천</span>
             {data.topics.map((t, i) => <TopicChip key={i} onClick={() => { setMessages((m) => [...m, { from: 'me', text: t, time: '지금' }]); setPanel(false); }}>{t}</TopicChip>)}
+            {/* 건강 정보 공유 버튼 */}
+            <div style={{ height: 1, background: 'var(--color-divider)', margin: '8px 0' }} />
+            <button onClick={() => { setPanel(false); setShowHealth(true); }} style={{ display: 'flex', alignItems: 'center', gap: 12, width: '100%', padding: '13px 14px', borderRadius: 14, background: 'var(--color-surface-page)', border: '1px solid var(--color-border-default)', cursor: 'pointer', textAlign: 'left' }}>
+              <span style={{ width: 38, height: 38, borderRadius: 10, background: 'var(--color-primary-50)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary-500)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  <polyline points="9 12 11 14 15 10" stroke="var(--color-primary-500)" strokeWidth="1.8"/>
+                </svg>
+              </span>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--color-text-primary)' }}>건강 정보 공유</div>
+                <div style={{ fontSize: 12, color: 'var(--color-text-meta)', marginTop: 2 }}>상호 동의 시에만 열람</div>
+              </div>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-text-meta)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
           </div>
         </>
       )}
+      {showHealth && <HealthShareModal partnerName={p.name} onClose={() => setShowHealth(false)} />}
     </div>
   );
 }
