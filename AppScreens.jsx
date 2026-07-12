@@ -19,61 +19,119 @@ function SectionHeader({ title, accent, sub, action, onAction }) {
 }
 
 // ── Splash / Login ──────────────────────────────────────────────
+// Kakao icon SVG
+const KakaoIcon = () => (
+  <svg width="24" height="22" viewBox="0 0 24 22" fill="none">
+    <path d="M12 0C5.373 0 0 4.149 0 9.268c0 3.295 2.188 6.185 5.478 7.827L4.2 21.47a.436.436 0 0 0 .637.473L10.22 18.4c.585.077 1.182.115 1.78.115C18.627 18.515 24 14.367 24 9.268 24 4.149 18.627 0 12 0Z" fill="#3C1E1E"/>
+  </svg>
+);
+// Google icon
+const GoogleIcon = () => (
+  <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+    <path d="M21.6 11.25c0-.75-.07-1.47-.19-2.17H11v4.1h5.96a5.1 5.1 0 0 1-2.21 3.34v2.77h3.57c2.09-1.92 3.28-4.75 3.28-8.04Z" fill="#4285F4"/>
+    <path d="M11 22c2.99 0 5.49-1 7.32-2.71l-3.57-2.77C13.65 17.47 12.42 18 11 18c-2.88 0-5.32-1.94-6.19-4.55H1.13v2.86A11 11 0 0 0 11 22Z" fill="#34A853"/>
+    <path d="M4.81 13.45A6.6 6.6 0 0 1 4.47 11c0-.85.15-1.67.34-2.45V5.69H1.13A11 11 0 0 0 0 11c0 1.77.43 3.45 1.13 4.95l3.68-2.5Z" fill="#FBBC05"/>
+    <path d="M11 4.45c1.62 0 3.07.56 4.22 1.66l3.17-3.17C16.48 1.1 13.97 0 11 0A11 11 0 0 0 1.13 5.69l3.68 2.86C5.68 6.39 8.12 4.45 11 4.45Z" fill="#EA4335"/>
+  </svg>
+);
+// Email icon
+const EmailIcon = () => (
+  <svg width="22" height="18" viewBox="0 0 22 18" fill="none">
+    <rect x="1" y="1" width="20" height="16" rx="3" stroke="#999" strokeWidth="1.5"/>
+    <path d="M1 4l10 7 10-7" stroke="#999" strokeWidth="1.5" strokeLinecap="round"/>
+  </svg>
+);
+
 function LoginScreen({ onSignup, onLogin }) {
-  const socialBtns = [
-    { bg: '#FEE500', content: <svg width="22" height="20" viewBox="0 0 22 20" fill="none"><path d="M11 0C4.926 0 0 3.806 0 8.5c0 3.028 2.009 5.68 5.03 7.187L3.86 19.65a.4.4 0 0 0 .585.434L9.4 16.89c.524.07 1.059.11 1.6.11 6.074 0 11-3.806 11-8.5S17.074 0 11 0Z" fill="#3C1E1E"/></svg> },
-    { bg: '#fff', border: '#E0E0E0', content: <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M21.6 11.25c0-.75-.07-1.47-.19-2.17H11v4.1h5.96a5.1 5.1 0 0 1-2.21 3.34v2.77h3.57c2.09-1.92 3.28-4.75 3.28-8.04Z" fill="#4285F4"/><path d="M11 22c2.99 0 5.49-1 7.32-2.71l-3.57-2.77C13.65 17.47 12.42 18 11 18c-2.88 0-5.32-1.94-6.19-4.55H1.13v2.86A11 11 0 0 0 11 22Z" fill="#34A853"/><path d="M4.81 13.45A6.6 6.6 0 0 1 4.47 11c0-.85.15-1.67.34-2.45V5.69H1.13A11 11 0 0 0 0 11c0 1.77.43 3.45 1.13 4.95l3.68-2.5Z" fill="#FBBC05"/><path d="M11 4.45c1.62 0 3.07.56 4.22 1.66l3.17-3.17C16.48 1.1 13.97 0 11 0A11 11 0 0 0 1.13 5.69l3.68 2.86C5.68 6.39 8.12 4.45 11 4.45Z" fill="#EA4335"/></svg> },
-    { bg: '#03C75A', content: <span style={{ fontSize: 15, fontWeight: 800, color: '#fff', fontFamily: 'sans-serif' }}>N</span> },
-    { bg: '#fff', border: '#E0E0E0', content: <img src="send.svg" alt="email" width="20" height="20" style={{ filter: 'invert(0.4)' }} /> },
-  ];
   return (
-    <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden',
-      background: '#5AC7C4', color: '#fff' }}>
-      {/* subtle radial glow top */}
-      <div style={{ position: 'absolute', top: -60, left: '50%', transform: 'translateX(-50%)', width: 320, height: 320, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.18), transparent 70%)', pointerEvents: 'none' }} />
-      {/* top: logo + title */}
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', paddingTop: 80, zIndex: 1 }}>
-        {/* App icon */}
-        <div style={{ width: 80, height: 80, borderRadius: 22, background: 'rgba(255,255,255,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16, boxShadow: '0 4px 20px rgba(0,0,0,0.12)' }}>
-          <svg width="48" height="44" viewBox="0 0 48 44" fill="none">
-            <path d="M24 6C15.5 6 8 12.5 8 21c0 5.5 3.5 10.3 8.5 13L14 39l7-3.5c1 .2 2 .3 3 .3 8.5 0 16-5.8 16-14S32.5 6 24 6Z" fill="none"/>
-            <path d="M36 8a10 10 0 1 1-20 0 10 10 0 0 1 20 0Z" fill="none"/>
-            <path d="M24 3C13.5 3 5 10.2 5 19c0 6.2 3.8 11.7 9.5 14.8L12 41l9-4.5c1 .2 2 .3 3 .3 10.5 0 19-7.2 19-16S34.5 3 24 3Z" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.8)" strokeWidth="1.5"/>
-            {/* moon */}
-            <path d="M28 10a8 8 0 0 1-8 8 8 8 0 0 0 8 8 8 8 0 0 0 0-16Z" fill="white"/>
-            {/* star */}
-            <circle cx="34" cy="10" r="2" fill="white"/>
+    <div style={{
+      position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column',
+      overflow: 'hidden', background: '#5AC7C4',
+    }}>
+      {/* radial glow center-top */}
+      <div style={{ position: 'absolute', top: 60, left: '50%', transform: 'translateX(-50%)', width: 300, height: 300, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 65%)', pointerEvents: 'none' }} />
+
+      {/* ── 앱 아이콘 + YUON + 부제 ── */}
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 72, zIndex: 1 }}>
+        {/* 아이콘: 반투명 흰 rounded square + 달+별 */}
+        <div style={{ width: 80, height: 80, borderRadius: 22, background: 'rgba(255,255,255,0.28)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 18 }}>
+          <svg width="44" height="40" viewBox="0 0 44 40" fill="none">
+            {/* crescent moon */}
+            <path d="M22 6C16 6 11 11 11 18s5 12 11 12c-3-2-5-5.5-5-9.5C17 13.5 19.5 9.5 22 6Z" fill="white" opacity="0.9"/>
+            <path d="M22 6c4 2.5 7 7.5 7 12s-3 9.5-7 12c6 0 11-5 11-12S28 6 22 6Z" fill="white"/>
+            {/* star dot */}
+            <circle cx="34" cy="9" r="2.5" fill="white"/>
           </svg>
         </div>
-        {/* YUON wordmark */}
-        <div style={{ fontSize: 38, fontWeight: 800, letterSpacing: '0.12em', color: '#fff', marginBottom: 10, fontFamily: 'var(--font-family-base)' }}>YUON</div>
-        <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.9)', letterSpacing: '0.01em', marginBottom: 40 }}>안녕하세요, 유은에 오신 걸 환영해요</div>
-        {/* Character mascot */}
-        <div style={{ position: 'relative', width: 200, height: 200, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          {/* glow behind */}
-          <div style={{ position: 'absolute', width: 160, height: 160, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.22), transparent 70%)' }} />
-          {/* sparkles */}
-          <div style={{ position: 'absolute', top: 10, left: 20, fontSize: 14, opacity: 0.8 }}>✦</div>
-          <div style={{ position: 'absolute', top: 30, right: 15, fontSize: 10, opacity: 0.6 }}>✦</div>
-          <div style={{ position: 'absolute', bottom: 20, left: 10, fontSize: 10, opacity: 0.6 }}>✦</div>
-          <img src="여운 누끼 보라 카페트 1.png" alt="유은 캐릭터" style={{ width: 180, height: 180, objectFit: 'contain', position: 'relative', zIndex: 1 }} />
+
+        {/* YUON 워드마크 */}
+        <div style={{ fontSize: 40, fontWeight: 900, letterSpacing: '0.18em', color: '#fff', lineHeight: 1, marginBottom: 12 }}>YUON</div>
+
+        {/* 부제 */}
+        <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.88)', letterSpacing: '-0.01em' }}>
+          안녕하세요, 유은에 오신 걸 환영해요
         </div>
       </div>
-      {/* bottom CTA */}
-      <div style={{ padding: '0 24px 48px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0, zIndex: 1 }}>
-        <button onClick={onSignup} style={{ width: '100%', height: 54, borderRadius: 30, background: '#FF8C7D', color: '#fff', fontFamily: 'var(--font-family-base)', fontSize: 16, fontWeight: 700, border: 'none', cursor: 'pointer', letterSpacing: '-0.01em', marginBottom: 14, boxShadow: '0 6px 20px rgba(255,140,125,0.45)' }}>
+
+      {/* ── 캐릭터 마스코트 ── */}
+      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', zIndex: 1 }}>
+        {/* 뒤 글로우 */}
+        <div style={{ position: 'absolute', width: 220, height: 220, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 68%)', pointerEvents: 'none' }} />
+        {/* 반짝이 별 */}
+        <svg style={{ position: 'absolute', top: 10, left: '18%' }} width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M8 0l1.5 6.5L16 8l-6.5 1.5L8 16l-1.5-6.5L0 8l6.5-1.5Z" fill="white" opacity="0.7"/>
+        </svg>
+        <svg style={{ position: 'absolute', top: 30, right: '16%' }} width="10" height="10" viewBox="0 0 10 10" fill="none">
+          <path d="M5 0l1 4.5L10 5l-4.5 1L5 10 4 5.5 0 5l4.5-1Z" fill="white" opacity="0.5"/>
+        </svg>
+        <svg style={{ position: 'absolute', bottom: 15, left: '12%' }} width="10" height="10" viewBox="0 0 10 10" fill="none">
+          <path d="M5 0l1 4.5L10 5l-4.5 1L5 10 4 5.5 0 5l4.5-1Z" fill="white" opacity="0.5"/>
+        </svg>
+        {/* 캐릭터 이미지 */}
+        <img
+          src="dufkdddl 1.png"
+          alt="유은 캐릭터"
+          style={{ width: 220, height: 240, objectFit: 'contain', position: 'relative', zIndex: 1 }}
+          onError={(e) => { e.target.src = '여운 누끼 1 수정 화면 하트 3.png'; }}
+        />
+      </div>
+
+      {/* ── 하단 버튼 영역 ── */}
+      <div style={{ padding: '0 24px 44px', zIndex: 1 }}>
+        {/* 회원가입 CTA */}
+        <button
+          onClick={onSignup}
+          style={{ width: '100%', height: 56, borderRadius: 28, background: '#FF8C7D', color: '#fff', fontFamily: 'var(--font-family-base)', fontSize: 17, fontWeight: 700, border: 'none', cursor: 'pointer', letterSpacing: '-0.01em', marginBottom: 4, boxShadow: '0 8px 24px rgba(255,100,80,0.38)' }}
+        >
           회원가입 후 시작하기
         </button>
-        <button onClick={onLogin} style={{ background: 'transparent', border: 'none', color: 'rgba(255,255,255,0.85)', fontFamily: 'var(--font-family-base)', fontSize: 14, fontWeight: 500, padding: '8px 0 18px', cursor: 'pointer' }}>
+
+        {/* 로그인 링크 */}
+        <button
+          onClick={onLogin}
+          style={{ display: 'block', width: '100%', background: 'transparent', border: 'none', color: 'rgba(255,255,255,0.82)', fontFamily: 'var(--font-family-base)', fontSize: 14, fontWeight: 500, padding: '12px 0 20px', cursor: 'pointer', textAlign: 'center' }}
+        >
           이미 계정이 있어요
         </button>
-        {/* social login row */}
-        <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
-          {socialBtns.map((s, i) => (
-            <button key={i} onClick={onLogin} style={{ width: 48, height: 48, borderRadius: '50%', background: s.bg, border: s.border ? `1px solid ${s.border}` : 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 8px rgba(0,0,0,0.12)' }}>
-              {s.content}
-            </button>
-          ))}
+
+        {/* 소셜 로그인 */}
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 14 }}>
+          {/* 카카오 */}
+          <button onClick={onLogin} style={{ width: 52, height: 52, borderRadius: '50%', background: '#FEE500', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 10px rgba(0,0,0,0.13)' }}>
+            <KakaoIcon />
+          </button>
+          {/* 구글 */}
+          <button onClick={onLogin} style={{ width: 52, height: 52, borderRadius: '50%', background: '#fff', border: '1px solid #E8E8E8', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 10px rgba(0,0,0,0.10)' }}>
+            <GoogleIcon />
+          </button>
+          {/* 네이버 */}
+          <button onClick={onLogin} style={{ width: 52, height: 52, borderRadius: '50%', background: '#03C75A', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 10px rgba(0,0,0,0.13)' }}>
+            <span style={{ fontSize: 20, fontWeight: 900, color: '#fff', fontFamily: 'Arial,sans-serif', lineHeight: 1 }}>N</span>
+          </button>
+          {/* 이메일 */}
+          <button onClick={onLogin} style={{ width: 52, height: 52, borderRadius: '50%', background: '#fff', border: '1px solid #E8E8E8', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 10px rgba(0,0,0,0.10)' }}>
+            <EmailIcon />
+          </button>
         </div>
       </div>
     </div>
