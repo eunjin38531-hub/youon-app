@@ -12,8 +12,8 @@ function VerifiedBadge({ size = 22 }) {
 
 function ScoreBadge({ score }) {
   return (
-    <div style={{ position: 'absolute', top: 10, left: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, padding: '7px 10px 6px', borderRadius: 12, background: 'rgba(255,255,255,0.97)', boxShadow: '0 2px 10px rgba(0,0,0,0.14)', pointerEvents: 'none' }}>
-      <img src="_heart.svg" alt="" width="18" height="16" />
+    <div style={{ position: 'absolute', top: 10, left: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, padding: '7px 10px 6px', borderRadius: 12, background: 'rgba(255,255,255,0.97)', boxShadow: '0 2px 10px rgba(0,0,0,0.14)', pointerEvents: 'none' }}>
+      <span style={{ fontSize: 18, lineHeight: 1 }}>❤️</span>
       <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--color-text-primary)', lineHeight: 1 }}>{score}점</span>
     </div>
   );
@@ -28,8 +28,8 @@ function ActivityPills({ at, sajuTag, elIcon }) {
         </span>
       )}
       {sajuTag && (
-        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, height: 28, padding: elIcon ? '0 10px 0 4px' : '0 10px', borderRadius: 999, background: 'rgba(255,140,80,0.85)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', color: '#fff', fontSize: 12, fontWeight: 600 }}>
-          {elIcon ? <img src={elIcon} alt="" style={{ width: 20, height: 20, borderRadius: 6, objectFit: 'cover', flexShrink: 0 }} /> : <span style={{ fontSize: 13 }}>🔥</span>}
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, height: 28, padding: '0 10px', borderRadius: 999, background: 'rgba(255,120,60,0.88)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', color: '#fff', fontSize: 12, fontWeight: 600 }}>
+          {elIcon ? <span style={{ fontSize: 14 }}>{elIcon}</span> : null}
           {sajuTag}
         </span>
       )}
@@ -251,6 +251,7 @@ function ChatListScreen({ onOpenChat, onOpenProfile }) {
         <div style={{ height: 1, background: 'var(--color-divider)', margin: '8px 18px 0' }} />
         {/* conversation list */}
         <div style={{ padding: '4px 16px 24px' }}>
+          <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--color-text-primary)', padding: '10px 2px 10px' }}>채팅</div>
           {data.chats.map((c) => {
             const p = data.byId(c.profileId);
             return (

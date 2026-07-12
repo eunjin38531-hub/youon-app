@@ -160,11 +160,11 @@ window.YuonData = (function () {
   };
 
   const elementIcons = {
-    wood: '../../assets/elements/wood.png',
-    fire: '../../assets/elements/fire.png',
-    earth: '../../assets/elements/earth.png',
-    metal: '../../assets/elements/metal.png',
-    water: '../../assets/elements/water.png',
+    wood: '🌿',
+    fire: '🔥',
+    earth: '🪨',
+    metal: '✨',
+    water: '💧',
   };
 
   const profileEl = { seoyeon: 'wood', jihoon: 'water', hana: 'earth', minjun: 'fire' };

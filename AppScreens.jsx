@@ -215,8 +215,8 @@ function HomeScreen({ onOpenProfile }) {
 
       <div style={{ flex: 1, overflowY: 'auto', padding: '4px 0 24px' }}>
         {/* 오늘의 연애운 banner */}
-        <div style={{ margin: '4px 16px 0', borderRadius: 18, background: 'var(--color-primary-500)', padding: '18px 16px 16px', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', overflow: 'hidden', position: 'relative', minHeight: 120 }}>
-          <div style={{ flex: 1, zIndex: 1 }}>
+        <div style={{ margin: '4px 16px 0', position: 'relative' }}>
+          <div style={{ borderRadius: 18, background: 'var(--color-primary-500)', padding: '18px 130px 18px 18px', overflow: 'hidden', position: 'relative', minHeight: 120 }}>
             <div style={{ fontSize: 11, fontWeight: 600, color: 'rgba(255,255,255,0.8)', marginBottom: 6, letterSpacing: '0.04em' }}>오늘의 연애운</div>
             <div style={{ fontSize: 18, fontWeight: 800, color: '#fff', lineHeight: 1.3, letterSpacing: '-0.02em', marginBottom: 14 }}>오늘은 새로운 사람에게<br />마음이 열리는 날이에요</div>
             <button onClick={() => {}} style={{ display: 'inline-flex', alignItems: 'center', gap: 4, background: 'rgba(255,255,255,0.22)', border: 'none', borderRadius: 99, padding: '6px 14px', color: '#fff', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>
@@ -224,12 +224,8 @@ function HomeScreen({ onOpenProfile }) {
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round"><polyline points="9 18 15 12 9 6"/></svg>
             </button>
           </div>
-          {/* mascot illustration */}
-          <div style={{ position: 'relative', width: 110, height: 100, flexShrink: 0, marginTop: -4 }}>
-            <img src="image 95.png" alt="" style={{ position: 'absolute', right: -8, bottom: -10, width: 118, height: 118, objectFit: 'contain' }} />
-          </div>
-          {/* soft radial glow */}
-          <div style={{ position: 'absolute', top: -20, right: -20, width: 140, height: 140, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.18), transparent 70%)', pointerEvents: 'none' }} />
+          {/* mascot overflows the card */}
+          <img src="image 95.png" alt="" style={{ position: 'absolute', right: -8, bottom: -10, width: 140, height: 140, objectFit: 'contain', pointerEvents: 'none' }} />
         </div>
 
         {/* feed */}
@@ -244,15 +240,15 @@ function HomeScreen({ onOpenProfile }) {
                   <div style={{ position: 'relative', width: '100%', aspectRatio: '4 / 3', background: 'var(--color-natural-200)' }}>
                     <img src={p.photo} alt={p.name} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
                     {/* score badge top-left */}
-                    <div style={{ position: 'absolute', top: 10, left: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, padding: '6px 9px 5px', borderRadius: 12, background: 'rgba(255,255,255,0.97)', boxShadow: '0 2px 8px rgba(0,0,0,0.14)' }}>
-                      <img src="_heart.svg" alt="" width="16" height="14" />
+                    <div style={{ position: 'absolute', top: 10, left: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, padding: '7px 10px 6px', borderRadius: 12, background: 'rgba(255,255,255,0.97)', boxShadow: '0 2px 8px rgba(0,0,0,0.14)' }}>
+                      <span style={{ fontSize: 18, lineHeight: 1 }}>❤️</span>
                       <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--color-text-primary)', lineHeight: 1 }}>{p.score}점</span>
                     </div>
                     {/* activity pills bottom */}
                     <div style={{ position: 'absolute', left: 10, bottom: 10, display: 'flex', gap: 6 }}>
-                      {p.activity && <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, height: 26, padding: '0 10px', borderRadius: 999, background: 'rgba(28,26,24,0.52)', backdropFilter: 'blur(8px)', color: '#fff', fontSize: 12, fontWeight: 500 }}><span style={{ width: 6, height: 6, borderRadius: '50%', background: '#7ECECA' }} />{p.activity}</span>}
-                      {p.sajuTag && <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, height: 26, padding: elIcon ? '0 10px 0 4px' : '0 10px', borderRadius: 999, background: 'rgba(255,100,60,0.82)', backdropFilter: 'blur(8px)', color: '#fff', fontSize: 12, fontWeight: 600 }}>
-                        {elIcon ? <img src={elIcon} alt="" style={{ width: 18, height: 18, borderRadius: 5, objectFit: 'cover' }} /> : null}{p.sajuTag}
+                      {p.activity && <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, height: 26, padding: '0 10px', borderRadius: 999, background: 'rgba(28,26,24,0.55)', backdropFilter: 'blur(8px)', color: '#fff', fontSize: 12, fontWeight: 500 }}><span style={{ width: 6, height: 6, borderRadius: '50%', background: '#5AC7C4', flexShrink: 0 }} />{p.activity}</span>}
+                      {p.sajuTag && <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, height: 26, padding: '0 10px', borderRadius: 999, background: 'rgba(255,120,60,0.88)', backdropFilter: 'blur(8px)', color: '#fff', fontSize: 12, fontWeight: 600 }}>
+                        {elIcon ? <span style={{ fontSize: 14 }}>{elIcon}</span> : null}{p.sajuTag}
                       </span>}
                     </div>
                   </div>
@@ -332,9 +328,8 @@ function ProfileDetailScreen({ profileId, onBack, onQuiet, onInterest, savedQuie
             </button>
           </div>
           {/* 페이지 인디케이터 */}
-          <div style={{ position: 'absolute', bottom: 12, left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: 5 }}>
-            <span style={{ width: 20, height: 5, borderRadius: 3, background: '#fff' }} />
-            <span style={{ width: 5, height: 5, borderRadius: '50%', background: 'rgba(255,255,255,0.55)' }} />
+          <div style={{ position: 'absolute', bottom: 12, left: 0, right: 0, display: 'flex', justifyContent: 'center' }}>
+            <span style={{ padding: '3px 10px', borderRadius: 99, background: 'rgba(0,0,0,0.38)', color: '#fff', fontSize: 12, fontWeight: 600 }}>1/2</span>
           </div>
         </div>
 
@@ -389,12 +384,12 @@ function ProfileDetailScreen({ profileId, onBack, onQuiet, onInterest, savedQuie
           <div style={{ borderRadius: 20, background: 'var(--color-surface-card)', border: '1px solid var(--color-border-default)', padding: '22px 20px 20px' }}>
             {/* 원소 아이콘 + 캐릭터 */}
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
-              <img src={elIcons[meEl]} alt="" style={{ width: 40, height: 40, borderRadius: 12, objectFit: 'cover' }} />
+              <span style={{ width: 40, height: 40, borderRadius: 12, background: 'var(--color-natural-100)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22 }}>{elIcons[meEl]}</span>
               {/* 커플 캐릭터 */}
               <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <img src="image 95.png" alt="커플" style={{ width: 120, height: 120, objectFit: 'contain' }} />
+                <img src="Frame 427319215.png" alt="커플" style={{ width: 130, height: 110, objectFit: 'contain' }} />
               </div>
-              <img src={elIcons[p.el]} alt="" style={{ width: 40, height: 40, borderRadius: 12, objectFit: 'cover' }} />
+              <span style={{ width: 40, height: 40, borderRadius: 12, background: 'var(--color-natural-100)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22 }}>{elIcons[p.el]}</span>
             </div>
             {/* 점수 */}
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 2, marginBottom: 10 }}>
