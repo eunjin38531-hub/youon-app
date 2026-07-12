@@ -192,114 +192,135 @@ function OverlayTag({ icon, iconSrc, children, tone }) {
 function ProfileDetailScreen({ profileId, onBack, onQuiet, onInterest, savedQuiet }) {
   const { IconButton, Icon, Tag } = DS;
   const p = window.YuonData.byId(profileId);
-  const me = window.YuonData.me;
   const traits = window.YuonData.traits;
+  const elIcons = window.YuonData.elementIcons;
+  const meEl = 'fire';
   if (!p) return null;
+
+  const drinkLabel = p.drink === '안 함' ? '안 마셔요' : p.drink === '즐김' ? '자주 마셔요' : '가끔 마셔요';
+  const smokeLabel = p.smoke === '비흡연' ? '비흡연자예요' : '흡연자예요';
+
   return (
     <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', background: 'var(--color-surface-page)' }}>
       <div style={{ flex: 1, overflowY: 'auto', paddingBottom: 102 }}>
-        {/* photo header */}
-        <div style={{ position: 'relative', width: '100%', aspectRatio: '4 / 5', background: 'var(--color-natural-200)' }}>
+
+        {/* ── 사진 헤더 ── */}
+        <div style={{ position: 'relative', width: '100%', aspectRatio: '3 / 2.6', background: 'var(--color-natural-200)' }}>
           <img src={p.photo} alt={p.name} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(30,28,24,0.66), transparent 40%), linear-gradient(to bottom, rgba(30,28,24,0.28), transparent 16%)' }} />
+          {/* 상단 버튼 */}
           <div style={{ position: 'absolute', top: 52, left: 8, right: 8, display: 'flex', justifyContent: 'space-between' }}>
-            <IconButton icon={<Icon name="chevronLeft" color="#fff" />} onClick={onBack} ariaLabel="뒤로" />
-            <IconButton icon={<Icon name="moreHorizontal" color="#fff" />} ariaLabel="더보기" />
+            <button onClick={onBack} style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(0,0,0,0.32)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(0,0,0,0.32)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg>
+            </button>
           </div>
-          <div style={{ position: 'absolute', left: 20, right: 20, bottom: 22 }}>
-            <div style={{ display: 'flex', gap: 8, marginBottom: 14, flexWrap: 'wrap' }}>
-              <OverlayTag iconSrc={window.YuonData.elementIcons[p.el]}>{p.ilju}</OverlayTag>
-              <OverlayTag icon="✨" tone="gold">황금 인연</OverlayTag>
-            </div>
-            <div style={{ fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em', color: '#fff' }}>{p.name}, {p.age}</div>
-            <p style={{ margin: '4px 0 0', color: 'rgba(255,255,255,0.92)', fontSize: 15 }}>{p.district}</p>
+          {/* 페이지 인디케이터 */}
+          <div style={{ position: 'absolute', bottom: 12, left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: 5 }}>
+            <span style={{ width: 20, height: 5, borderRadius: 3, background: '#fff' }} />
+            <span style={{ width: 5, height: 5, borderRadius: '50%', background: 'rgba(255,255,255,0.55)' }} />
           </div>
         </div>
 
-        <div style={{ padding: '22px 20px 0' }}>
-          {/* {name}님의 프로필 */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6 }}>
-            <span style={{ fontSize: 18, fontWeight: 700, color: 'var(--color-primary-600)' }}>{p.name}</span>
-            <span style={{ fontSize: 18, fontWeight: 700, color: 'var(--color-text-primary)' }}>님의 프로필</span>
-            <Icon name="badgeCheck" size={20} />
-          </div>
-          <div style={{ marginTop: 8 }}>
-            <InfoRow label="직업" value={p.job} />
-            <InfoRow label="거주지" value={p.district} />
-            <InfoRow label="키" value={`${p.height}cm`} />
-            <InfoRow label="음주" value={p.drink === '안 함' ? '안 마셔요' : p.drink === '즐김' ? '자주 마셔요' : '가끔 마셔요'} />
-            <InfoRow label="흡연" value={p.smoke === '비흡연' ? '비흡연자예요' : '흡연자예요'} />
-            <InfoRow label="종교" value={p.religion} />
-          </div>
-
-          {/* 자기소개 */}
-          <SectionTitle>자기소개</SectionTitle>
-          <div style={{ padding: '16px 18px', borderRadius: 'var(--radius-lg)', background: 'var(--color-surface-card)', border: '1px solid var(--color-border-default)' }}>
-            <p style={{ margin: 0, fontSize: 15, lineHeight: 1.6, color: 'var(--color-text-body)' }}>{p.bio}</p>
-          </div>
-
-          {/* 첫인상 체크 */}
-          <SectionTitle sub="상대가 직접 설정한 키워드예요.">첫인상 체크</SectionTitle>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-            {p.impressions.map((k) => <Tag key={k} tone="accent">{k}</Tag>)}
-          </div>
-
-          {/* 당신과 {name}님은 — 사주 조화 */}
-          <div style={{ margin: '30px 0 12px' }}>
-            <span style={{ fontSize: 20, fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--color-text-primary)' }}>당신과 </span>
-            <span style={{ fontSize: 20, fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--color-accent-500)' }}>{p.name}</span>
-            <span style={{ fontSize: 20, fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--color-text-primary)' }}>님은</span>
-          </div>
-          <div style={{ borderRadius: 'var(--radius-xl)', background: 'var(--color-surface-card)', border: '1px solid var(--color-border-default)', overflow: 'hidden' }}>
-            <div style={{ padding: 18, position: 'relative' }}>
-              <div style={{ position: 'absolute', top: 18, right: 18, display: 'flex' }}>
-                <img src={me.photo} alt="" style={{ width: 44, height: 44, borderRadius: '50%', objectFit: 'cover', border: '2px solid var(--color-surface-card)' }} />
-                <img src={p.photo} alt="" style={{ width: 44, height: 44, borderRadius: '50%', objectFit: 'cover', border: '2px solid var(--color-surface-card)', marginLeft: -14 }} />
-              </div>
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: 2 }}>
-                <span style={{ fontSize: 36, fontWeight: 700, letterSpacing: '-0.03em', color: 'var(--color-text-primary)' }}>{p.score}</span>
-                <span style={{ fontSize: 18, fontWeight: 700, color: 'var(--color-text-meta)' }}>%</span>
-              </div>
-              <div style={{ marginTop: 2, fontSize: 14, fontWeight: 600, color: 'var(--color-text-secondary)' }}>우리 둘의 사주 조화</div>
-              {/* heart slider */}
-              <div style={{ position: 'relative', height: 12, marginTop: 16, borderRadius: 'var(--radius-pill)', background: 'var(--color-natural-100)' }}>
-                <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: `${p.score}%`, borderRadius: 'var(--radius-pill)', background: 'linear-gradient(90deg, var(--color-accent-300), var(--color-accent-500))' }} />
-                <div style={{ position: 'absolute', top: '50%', left: `${p.score}%`, transform: 'translate(-50%, -50%)', width: 30, height: 30, borderRadius: '50%', background: 'var(--color-surface-card)', boxShadow: 'var(--shadow-sm)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <Icon name="heart" size={16} filled color="var(--color-accent-500)" />
-                </div>
-              </div>
+        {/* ── 이름 + 활동정보 ── */}
+        <div style={{ padding: '18px 20px 0' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              {/* 인증 뱃지 */}
+              <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 24, height: 24, borderRadius: '50%', background: 'var(--color-primary-500)', flexShrink: 0 }}>
+                <svg width="13" height="11" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </span>
+              <span style={{ fontSize: 22, fontWeight: 700, color: 'var(--color-text-primary)', letterSpacing: '-0.02em' }}>{p.name}, {p.age}</span>
             </div>
-            <div style={{ height: 1, background: 'var(--color-divider)' }} />
-            <div style={{ padding: 18 }}>
-              <p style={{ margin: '0 0 12px', fontSize: 14, lineHeight: 1.65, color: 'var(--color-text-secondary)' }}>{p.synergy}</p>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
-                {p.sajuKeywords.map((k) => <Tag key={k} tone="primary">{k}</Tag>)}
-              </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 13, color: 'var(--color-text-meta)', fontWeight: 500 }}>
+                <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#4CAF50', flexShrink: 0 }} />{p.activity}
+              </span>
+              <span style={{ fontSize: 13, color: 'var(--color-text-meta)', fontWeight: 500 }}>19km</span>
             </div>
           </div>
 
-          {/* 성향과 재능 */}
-          <SectionTitle sub="소개 받은 분의 타고난 성향을 알려줄게요.">{p.name}님의 성향과 재능</SectionTitle>
-          <div style={{ padding: '20px 18px', borderRadius: 'var(--radius-xl)', background: 'var(--color-surface-card)', border: '1px solid var(--color-border-default)' }}>
-            {traits.map((t, i) => (
-              <div key={i} style={{ marginBottom: i < traits.length - 1 ? 22 : 0 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
-                  {String(t.icon).includes('/')
-                    ? <img src={t.icon} alt="" style={{ width: 26, height: 26, borderRadius: 8, objectFit: 'cover' }} />
-                    : <span style={{ fontSize: 20 }} aria-hidden="true">{t.icon}</span>}
-                  <span style={{ fontSize: 17, fontWeight: 700, color: 'var(--color-text-primary)' }}>{t.title}</span>
-                </div>
-                <p style={{ margin: 0, fontSize: 14, lineHeight: 1.6, color: 'var(--color-text-secondary)' }}>{t.desc}</p>
+          {/* ── 기본 정보 테이블 ── */}
+          <div style={{ marginTop: 16, borderRadius: 14, border: '1px solid var(--color-border-default)', overflow: 'hidden', background: 'var(--color-surface-card)' }}>
+            {[
+              { label: '직업', value: p.job },
+              { label: '거주지', value: p.district },
+              { label: '키', value: `${p.height}cm` },
+              { label: '음주', value: drinkLabel },
+              { label: '흡연', value: smokeLabel },
+              { label: '종교', value: p.religion },
+            ].map((row, i, arr) => (
+              <div key={row.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '13px 16px', borderBottom: i < arr.length - 1 ? '1px solid var(--color-divider)' : 'none' }}>
+                <span style={{ fontSize: 14, color: 'var(--color-text-meta)' }}>{row.label}</span>
+                <span style={{ fontSize: 14, fontWeight: 500, color: 'var(--color-text-primary)' }}>{row.value}</span>
               </div>
             ))}
-            <button style={{ marginTop: 20, width: '100%', height: 48, border: 'none', borderRadius: 'var(--radius-md)', background: 'var(--color-surface-sunken)', color: 'var(--color-text-secondary)', fontFamily: 'var(--font-family-base)', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>더 알아보기</button>
           </div>
 
-          {/* 취미 피드 */}
+          {/* ── 자기소개 ── */}
+          <SectionTitle>자기소개</SectionTitle>
+          <p style={{ margin: '0 0 12px', fontSize: 14, lineHeight: 1.7, color: 'var(--color-text-body)' }}>{p.bio}</p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+            {p.impressions.map((k) => (
+              <span key={k} style={{ display: 'inline-flex', alignItems: 'center', height: 32, padding: '0 14px', borderRadius: 999, border: '1px solid var(--color-border-strong)', fontSize: 13, fontWeight: 500, color: 'var(--color-text-secondary)', background: 'var(--color-surface-card)' }}>{k}</span>
+            ))}
+          </div>
+
+          {/* ── 당신과 {name}님은 ── */}
+          <div style={{ margin: '30px 0 14px' }}>
+            <span style={{ fontSize: 20, fontWeight: 700, color: 'var(--color-text-primary)' }}>당신과 </span>
+            <span style={{ fontSize: 20, fontWeight: 700, color: 'var(--color-accent-500)' }}>{p.name}</span>
+            <span style={{ fontSize: 20, fontWeight: 700, color: 'var(--color-text-primary)' }}>님은</span>
+          </div>
+          <div style={{ borderRadius: 20, background: 'var(--color-surface-card)', border: '1px solid var(--color-border-default)', padding: '22px 20px 20px' }}>
+            {/* 원소 아이콘 + 캐릭터 */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
+              <img src={elIcons[meEl]} alt="" style={{ width: 40, height: 40, borderRadius: 12, objectFit: 'cover' }} />
+              {/* 커플 캐릭터 자리 */}
+              <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 4 }}>
+                <span style={{ fontSize: 44 }}>🦊</span>
+                <svg width="18" height="16" viewBox="0 0 18 16" fill="#FF5A5A" style={{ flexShrink: 0 }}><path d="M9 15S1 9.5 1 4.5A4 4 0 0 1 9 3a4 4 0 0 1 8 1.5C17 9.5 9 15 9 15Z"/></svg>
+                <span style={{ fontSize: 44 }}>🐺</span>
+              </div>
+              <img src={elIcons[p.el]} alt="" style={{ width: 40, height: 40, borderRadius: 12, objectFit: 'cover' }} />
+            </div>
+            {/* 점수 */}
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 2, marginBottom: 10 }}>
+              <span style={{ fontSize: 40, fontWeight: 800, color: 'var(--color-accent-500)', letterSpacing: '-0.03em' }}>{p.score}점</span>
+            </div>
+            {/* 점수 바 */}
+            <div style={{ position: 'relative', height: 8, borderRadius: 999, background: 'var(--color-natural-100)', marginBottom: 16 }}>
+              <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: `${p.score}%`, borderRadius: 999, background: 'linear-gradient(90deg, var(--color-accent-300), var(--color-accent-500))' }} />
+            </div>
+            {/* 설명 */}
+            <p style={{ margin: 0, fontSize: 14, lineHeight: 1.65, color: 'var(--color-text-secondary)' }}>{p.synergy}</p>
+          </div>
+
+          {/* ── 성향과 재능 ── */}
+          <div style={{ margin: '30px 0 14px' }}>
+            <span style={{ fontSize: 20, fontWeight: 700, color: 'var(--color-accent-500)' }}>{p.name}</span>
+            <span style={{ fontSize: 20, fontWeight: 700, color: 'var(--color-text-primary)' }}>님의 성향과 재능</span>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+            {traits.map((t, i) => (
+              <div key={i} style={{ paddingBottom: i < traits.length - 1 ? 22 : 0, marginBottom: i < traits.length - 1 ? 22 : 0, borderBottom: i < traits.length - 1 ? '1px solid var(--color-divider)' : 'none' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
+                  <span style={{ width: 34, height: 34, borderRadius: 10, background: 'var(--color-natural-100)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontSize: 18 }}>
+                    {String(t.icon).includes('/') ? <img src={t.icon} alt="" style={{ width: 22, height: 22, borderRadius: 6, objectFit: 'cover' }} /> : t.icon}
+                  </span>
+                  <span style={{ fontSize: 15, fontWeight: 700, color: 'var(--color-text-primary)' }}>{t.title}</span>
+                </div>
+                <p style={{ margin: '0 0 0 44px', fontSize: 13, lineHeight: 1.6, color: 'var(--color-text-secondary)' }}>{t.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* ── 취미 피드 ── */}
           <SectionTitle>취미 피드</SectionTitle>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, paddingBottom: 8 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 6, paddingBottom: 8 }}>
             {(p.hobbies || []).map((h, i) => (
-              <div key={i} style={{ aspectRatio: '1 / 1', borderRadius: 14, overflow: 'hidden', background: 'var(--color-natural-200)' }}>
+              <div key={i} style={{ aspectRatio: '1 / 1', borderRadius: 10, overflow: 'hidden', background: 'var(--color-natural-200)' }}>
                 <img src={h} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
             ))}
@@ -307,13 +328,15 @@ function ProfileDetailScreen({ profileId, onBack, onQuiet, onInterest, savedQuie
         </div>
       </div>
 
-      {/* sticky action bar */}
+      {/* ── 하단 액션 바 ── */}
       <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, display: 'flex', alignItems: 'center', gap: 10, padding: '12px 16px 30px', background: 'var(--color-surface-card)', borderTop: '1px solid var(--color-border-default)' }}>
-        <button onClick={onQuiet} style={{ flex: 1, height: 56, border: `2px solid ${savedQuiet ? 'var(--color-accent-400)' : 'var(--color-border-strong)'}`, borderRadius: 'var(--radius-pill)', background: savedQuiet ? 'var(--color-accent-50)' : 'var(--color-surface-card)', color: savedQuiet ? 'var(--color-accent-600)' : 'var(--color-text-secondary)', fontFamily: 'var(--font-family-base)', fontSize: 15, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
-          <Icon name="heart" size={20} filled={savedQuiet} color={savedQuiet ? 'var(--color-accent-500)' : 'var(--color-natural-400)'} />마음에 담기
+        <button onClick={onQuiet} style={{ flex: 1, height: 54, border: `1.5px solid ${savedQuiet ? 'var(--color-accent-400)' : 'var(--color-border-strong)'}`, borderRadius: 'var(--radius-pill)', background: savedQuiet ? 'var(--color-accent-50)' : 'var(--color-surface-card)', color: savedQuiet ? 'var(--color-accent-600)' : 'var(--color-text-secondary)', fontFamily: 'var(--font-family-base)', fontSize: 15, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+          <svg width="18" height="16" viewBox="0 0 18 16" fill={savedQuiet ? 'var(--color-accent-500)' : 'var(--color-natural-300)'}><path d="M9 15S1 9.5 1 4.5A4 4 0 0 1 9 3a4 4 0 0 1 8 1.5C17 9.5 9 15 9 15Z"/></svg>
+          마음에 담기
         </button>
-        <button onClick={onInterest} style={{ flex: 1, height: 56, border: 'none', borderRadius: 'var(--radius-pill)', background: 'var(--color-accent-500)', color: '#fff', fontFamily: 'var(--font-family-base)', fontSize: 15, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
-          <Icon name="heart" size={20} filled color="#fff" />관심 표현
+        <button onClick={onInterest} style={{ flex: 1, height: 54, border: 'none', borderRadius: 'var(--radius-pill)', background: 'var(--color-accent-400)', color: '#fff', fontFamily: 'var(--font-family-base)', fontSize: 15, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+          <svg width="18" height="16" viewBox="0 0 18 16" fill="#fff"><path d="M9 15S1 9.5 1 4.5A4 4 0 0 1 9 3a4 4 0 0 1 8 1.5C17 9.5 9 15 9 15Z"/></svg>
+          관심 표현
         </button>
       </div>
     </div>
