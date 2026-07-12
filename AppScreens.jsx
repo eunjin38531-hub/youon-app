@@ -13,63 +13,64 @@ function Sparkle({ size, opacity = 0.75, style }) {
 // ── Splash / Login ──────────────────────────────────────────────
 function LoginScreen({ onSignup, onLogin }) {
   return (
-    <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', background: '#4DC5C2' }}>
+    <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', background: '#45C5C1' }}>
 
       {/* 상단: 아이콘 + 워드마크 + 서브타이틀 */}
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 60, zIndex: 1, position: 'relative', flexShrink: 0 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 72, zIndex: 1, position: 'relative', flexShrink: 0 }}>
         {/* 아이콘 뒤 큰 흰 글로우 */}
-        <div style={{ position: 'absolute', top: -20, left: '50%', transform: 'translateX(-50%)', width: 340, height: 340, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.28) 0%, transparent 60%)', pointerEvents: 'none' }} />
-        {/* 아이콘 박스 — 흰 배경 위에 teal 색상 PNG */}
-        <div style={{ position: 'relative', width: 120, height: 120, borderRadius: 30, background: 'rgba(255,255,255,0.92)', boxShadow: '0 6px 24px rgba(0,0,0,0.14)', marginBottom: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-          <img src="images/yuon-app-icon.png" alt="유온" style={{ width: 96, height: 96, objectFit: 'contain' }} />
+        <div style={{ position: 'absolute', top: 30, left: '50%', transform: 'translateX(-50%)', width: 320, height: 320, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.35) 0%, transparent 58%)', pointerEvents: 'none' }} />
+        {/* 아이콘 박스 — teal 배경 */}
+        <div style={{ position: 'relative', width: 152, height: 152, borderRadius: 38, background: 'linear-gradient(145deg, #5DD4D0 0%, #3DBEBB 100%)', boxShadow: '0 12px 40px rgba(0,80,80,0.28)', marginBottom: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+          <div style={{ position: 'absolute', inset: 0, borderRadius: 38, background: 'radial-gradient(ellipse at 38% 28%, rgba(255,255,255,0.30) 0%, transparent 60%)', pointerEvents: 'none' }} />
+          <img src="images/yuon-app-icon.png" alt="유온" style={{ width: 118, height: 118, objectFit: 'contain', position: 'relative' }} />
         </div>
-        <img src="images/yuon-wordmark.png" alt="YUON" style={{ height: 40, objectFit: 'contain', filter: 'brightness(0) invert(1)', marginBottom: 10, position: 'relative' }} />
-        <span style={{ fontSize: 14, color: 'rgba(255,255,255,0.85)', letterSpacing: '-0.01em', position: 'relative' }}>안녕하세요, 유온에 오신 걸 환영해요</span>
+        <img src="images/yuon-wordmark.png" alt="YUON" style={{ height: 52, objectFit: 'contain', filter: 'brightness(0) invert(1)', marginBottom: 14, position: 'relative' }} />
+        <span style={{ fontSize: 15, color: 'rgba(255,255,255,0.88)', letterSpacing: '-0.01em', position: 'relative' }}>안녕하세요, 유온에 오신 걸 환영해요</span>
       </div>
 
-      {/* 캐릭터 영역 */}
-      <div style={{ flex: 1, display: 'flex', alignItems: 'flex-end', justifyContent: 'center', position: 'relative', zIndex: 1, overflow: 'hidden' }}>
-        <Sparkle size={10} opacity={0.60} style={{ top: '12%', left: '8%' }} />
-        <Sparkle size={6}  opacity={0.40} style={{ top: '5%',  left: '30%' }} />
-        <Sparkle size={8}  opacity={0.50} style={{ top: '8%',  right: '12%' }} />
-        <Sparkle size={6}  opacity={0.40} style={{ top: '40%', right: '6%' }} />
-        <Sparkle size={7}  opacity={0.45} style={{ bottom: '20%', left: '7%' }} />
-        <Sparkle size={6}  opacity={0.40} style={{ bottom: '30%', right: '11%' }} />
-        <img src="images/dufkdddl 1.png" alt="유온 캐릭터" style={{ width: 340, height: 380, objectFit: 'contain', position: 'relative', marginBottom: -10 }} />
+      {/* 캐릭터 영역 — 화면 중앙에 띄움 */}
+      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', zIndex: 1 }}>
+        <Sparkle size={8}  opacity={0.55} style={{ top: '18%', left: '10%' }} />
+        <Sparkle size={5}  opacity={0.38} style={{ top: '10%', left: '38%' }} />
+        <Sparkle size={6}  opacity={0.45} style={{ top: '14%', right: '14%' }} />
+        <Sparkle size={5}  opacity={0.38} style={{ top: '55%', right: '8%' }} />
+        <Sparkle size={6}  opacity={0.42} style={{ bottom: '22%', left: '8%' }} />
+        <Sparkle size={5}  opacity={0.38} style={{ bottom: '32%', right: '12%' }} />
+        <img src="images/dufkdddl 1.png" alt="유온 캐릭터" style={{ width: 300, height: 300, objectFit: 'contain', position: 'relative' }} />
       </div>
 
       {/* 하단 CTA */}
-      <div style={{ padding: '0 24px 44px', zIndex: 1, flexShrink: 0 }}>
+      <div style={{ padding: '0 20px 48px', zIndex: 1, flexShrink: 0 }}>
         <button
           onClick={onSignup}
-          style={{ width: '100%', height: 56, borderRadius: 999, background: '#FF8471', color: '#fff', fontFamily: 'var(--font-family-base)', fontSize: 17, fontWeight: 700, border: 'none', cursor: 'pointer', letterSpacing: '-0.02em' }}
+          style={{ width: '100%', height: 60, borderRadius: 16, background: '#F07966', color: '#fff', fontFamily: 'var(--font-family-base)', fontSize: 17, fontWeight: 700, border: 'none', cursor: 'pointer', letterSpacing: '-0.01em' }}
         >
           회원가입 후 시작하기
         </button>
 
-        <div style={{ textAlign: 'center', padding: '14px 0 16px' }}>
+        <div style={{ textAlign: 'center', padding: '18px 0 20px' }}>
           <button
             onClick={onLogin}
-            style={{ background: 'transparent', border: 'none', color: 'rgba(255,255,255,0.85)', fontFamily: 'var(--font-family-base)', fontSize: 14, fontWeight: 400, cursor: 'pointer', textDecoration: 'underline', textUnderlineOffset: 3, letterSpacing: '-0.01em' }}
+            style={{ background: 'transparent', border: 'none', color: 'rgba(255,255,255,0.80)', fontFamily: 'var(--font-family-base)', fontSize: 14, fontWeight: 400, cursor: 'pointer', textDecoration: 'underline', textUnderlineOffset: 3, letterSpacing: '-0.01em' }}
           >
             이미 계정이 있어요
           </button>
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'center', gap: 14 }}>
-          <button onClick={onLogin} style={{ width: 56, height: 56, borderRadius: '50%', padding: 0, border: 'none', cursor: 'pointer', background: 'none' }}>
-            <img src="images/image 109.png" alt="카카오" style={{ width: 56, height: 56, borderRadius: '50%', display: 'block' }} />
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 16 }}>
+          <button onClick={onLogin} style={{ width: 60, height: 60, borderRadius: '50%', padding: 0, border: 'none', cursor: 'pointer', background: 'none' }}>
+            <img src="images/image 109.png" alt="카카오" style={{ width: 60, height: 60, borderRadius: '50%', display: 'block' }} />
           </button>
-          <button onClick={onLogin} style={{ width: 56, height: 56, borderRadius: '50%', padding: 0, border: 'none', cursor: 'pointer', background: 'none' }}>
-            <img src="images/image 110.png" alt="구글" style={{ width: 56, height: 56, borderRadius: '50%', display: 'block' }} />
+          <button onClick={onLogin} style={{ width: 60, height: 60, borderRadius: '50%', padding: 0, border: 'none', cursor: 'pointer', background: 'none' }}>
+            <img src="images/image 110.png" alt="구글" style={{ width: 60, height: 60, borderRadius: '50%', display: 'block' }} />
           </button>
-          <button onClick={onLogin} style={{ width: 56, height: 56, borderRadius: '50%', padding: 0, border: 'none', cursor: 'pointer', background: 'none' }}>
-            <img src="images/image 111.png" alt="네이버" style={{ width: 56, height: 56, borderRadius: '50%', display: 'block' }} />
+          <button onClick={onLogin} style={{ width: 60, height: 60, borderRadius: '50%', padding: 0, border: 'none', cursor: 'pointer', background: 'none' }}>
+            <img src="images/image 111.png" alt="네이버" style={{ width: 60, height: 60, borderRadius: '50%', display: 'block' }} />
           </button>
-          <button onClick={onLogin} style={{ width: 56, height: 56, borderRadius: '50%', background: '#fff', border: '1.5px solid #FFBCB3', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <svg width="26" height="20" viewBox="0 0 26 20" fill="none">
-              <rect x="1" y="1" width="24" height="18" rx="4" stroke="#FF8471" strokeWidth="1.8"/>
-              <path d="M1 5L13 12.5L25 5" stroke="#FF8471" strokeWidth="1.8" strokeLinecap="round"/>
+          <button onClick={onLogin} style={{ width: 60, height: 60, borderRadius: '50%', background: '#fff', border: '1.5px solid #F5C4BC', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <svg width="28" height="22" viewBox="0 0 28 22" fill="none">
+              <rect x="1" y="1" width="26" height="20" rx="4" stroke="#F07966" strokeWidth="1.8"/>
+              <path d="M1 6L14 13.5L27 6" stroke="#F07966" strokeWidth="1.8" strokeLinecap="round"/>
             </svg>
           </button>
         </div>
