@@ -108,7 +108,12 @@ function SavedCarousel({ list, onOpenProfile }) {
 
   return (
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 18, overflow: 'hidden', padding: '8px 0 16px' }}>
-      {/* card fan */}
+      {/* card fan with character on top */}
+      <div style={{ position: 'relative', width: '100%' }}>
+        {/* character sitting on top of center card */}
+        <div style={{ position: 'absolute', top: -50, left: '50%', transform: 'translateX(-50%)', zIndex: 20, pointerEvents: 'none', width: 90, display: 'flex', justifyContent: 'center' }}>
+          <img src="여운 뒤통수 12 누끼 3.png" alt="" style={{ width: 80, height: 80, objectFit: 'contain' }} />
+        </div>
       <div
         style={{ position: 'relative', width: '100%', height: 370, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
         onTouchStart={onTouchStart}
@@ -163,6 +168,7 @@ function SavedCarousel({ list, onOpenProfile }) {
           );
         })}
       </div>
+      </div>{/* end character+fan wrapper */}
 
       {/* dots */}
       <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>

@@ -20,24 +20,61 @@ function SectionHeader({ title, accent, sub, action, onAction }) {
 
 // ── Splash / Login ──────────────────────────────────────────────
 function LoginScreen({ onSignup, onLogin }) {
-  const { Button } = DS;
+  const socialBtns = [
+    { bg: '#FEE500', content: <svg width="22" height="20" viewBox="0 0 22 20" fill="none"><path d="M11 0C4.926 0 0 3.806 0 8.5c0 3.028 2.009 5.68 5.03 7.187L3.86 19.65a.4.4 0 0 0 .585.434L9.4 16.89c.524.07 1.059.11 1.6.11 6.074 0 11-3.806 11-8.5S17.074 0 11 0Z" fill="#3C1E1E"/></svg> },
+    { bg: '#fff', border: '#E0E0E0', content: <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M21.6 11.25c0-.75-.07-1.47-.19-2.17H11v4.1h5.96a5.1 5.1 0 0 1-2.21 3.34v2.77h3.57c2.09-1.92 3.28-4.75 3.28-8.04Z" fill="#4285F4"/><path d="M11 22c2.99 0 5.49-1 7.32-2.71l-3.57-2.77C13.65 17.47 12.42 18 11 18c-2.88 0-5.32-1.94-6.19-4.55H1.13v2.86A11 11 0 0 0 11 22Z" fill="#34A853"/><path d="M4.81 13.45A6.6 6.6 0 0 1 4.47 11c0-.85.15-1.67.34-2.45V5.69H1.13A11 11 0 0 0 0 11c0 1.77.43 3.45 1.13 4.95l3.68-2.5Z" fill="#FBBC05"/><path d="M11 4.45c1.62 0 3.07.56 4.22 1.66l3.17-3.17C16.48 1.1 13.97 0 11 0A11 11 0 0 0 1.13 5.69l3.68 2.86C5.68 6.39 8.12 4.45 11 4.45Z" fill="#EA4335"/></svg> },
+    { bg: '#03C75A', content: <span style={{ fontSize: 15, fontWeight: 800, color: '#fff', fontFamily: 'sans-serif' }}>N</span> },
+    { bg: '#fff', border: '#E0E0E0', content: <img src="send.svg" alt="email" width="20" height="20" style={{ filter: 'invert(0.4)' }} /> },
+  ];
   return (
     <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden',
-      background: 'radial-gradient(130% 90% at 82% 112%, rgba(168,227,225,0.55) 0%, rgba(168,227,225,0) 52%), linear-gradient(160deg, #A8E3E1 0%, #5AC7C4 42%, #2D8E8C 100%)',
-      color: '#fff', padding: '0 26px' }}>
-      {/* soft decorative orbs */}
-      <div style={{ position: 'absolute', top: -80, right: -60, width: 240, height: 240, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.22), transparent 70%)' }} />
-      <div style={{ position: 'absolute', bottom: 90, left: -80, width: 240, height: 240, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.14), transparent 70%)' }} />
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 22, zIndex: 1 }}>
-        <img src="yuon-symbol-white.png" alt="여운" style={{ width: 92, height: 92, objectFit: 'contain' }} />
-        <div style={{ textAlign: 'center' }}>
-          <p style={{ margin: '0 0 10px', fontSize: 27, fontWeight: 700, letterSpacing: '-0.025em', lineHeight: 1.32 }}>진짜 사람과,<br />이유 있는 만남을</p>
-          <p style={{ margin: 0, fontSize: 15, opacity: 0.92, lineHeight: 1.5 }}>사주로 시작하는 신뢰 기반 데이팅</p>
+      background: '#5AC7C4', color: '#fff' }}>
+      {/* subtle radial glow top */}
+      <div style={{ position: 'absolute', top: -60, left: '50%', transform: 'translateX(-50%)', width: 320, height: 320, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.18), transparent 70%)', pointerEvents: 'none' }} />
+      {/* top: logo + title */}
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', paddingTop: 80, zIndex: 1 }}>
+        {/* App icon */}
+        <div style={{ width: 80, height: 80, borderRadius: 22, background: 'rgba(255,255,255,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16, boxShadow: '0 4px 20px rgba(0,0,0,0.12)' }}>
+          <svg width="48" height="44" viewBox="0 0 48 44" fill="none">
+            <path d="M24 6C15.5 6 8 12.5 8 21c0 5.5 3.5 10.3 8.5 13L14 39l7-3.5c1 .2 2 .3 3 .3 8.5 0 16-5.8 16-14S32.5 6 24 6Z" fill="none"/>
+            <path d="M36 8a10 10 0 1 1-20 0 10 10 0 0 1 20 0Z" fill="none"/>
+            <path d="M24 3C13.5 3 5 10.2 5 19c0 6.2 3.8 11.7 9.5 14.8L12 41l9-4.5c1 .2 2 .3 3 .3 10.5 0 19-7.2 19-16S34.5 3 24 3Z" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.8)" strokeWidth="1.5"/>
+            {/* moon */}
+            <path d="M28 10a8 8 0 0 1-8 8 8 8 0 0 0 8 8 8 8 0 0 0 0-16Z" fill="white"/>
+            {/* star */}
+            <circle cx="34" cy="10" r="2" fill="white"/>
+          </svg>
+        </div>
+        {/* YUON wordmark */}
+        <div style={{ fontSize: 38, fontWeight: 800, letterSpacing: '0.12em', color: '#fff', marginBottom: 10, fontFamily: 'var(--font-family-base)' }}>YUON</div>
+        <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.9)', letterSpacing: '0.01em', marginBottom: 40 }}>안녕하세요, 유은에 오신 걸 환영해요</div>
+        {/* Character mascot */}
+        <div style={{ position: 'relative', width: 200, height: 200, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          {/* glow behind */}
+          <div style={{ position: 'absolute', width: 160, height: 160, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.22), transparent 70%)' }} />
+          {/* sparkles */}
+          <div style={{ position: 'absolute', top: 10, left: 20, fontSize: 14, opacity: 0.8 }}>✦</div>
+          <div style={{ position: 'absolute', top: 30, right: 15, fontSize: 10, opacity: 0.6 }}>✦</div>
+          <div style={{ position: 'absolute', bottom: 20, left: 10, fontSize: 10, opacity: 0.6 }}>✦</div>
+          <img src="여운 누끼 보라 카페트 1.png" alt="유은 캐릭터" style={{ width: 180, height: 180, objectFit: 'contain', position: 'relative', zIndex: 1 }} />
         </div>
       </div>
-      <div style={{ paddingBottom: 80, display: 'flex', flexDirection: 'column', gap: 8, zIndex: 1 }}>
-        <Button variant="accent" size="lg" fullWidth onClick={onSignup}>휴대폰 번호로 시작하기</Button>
-        <button onClick={onLogin} style={{ background: 'transparent', border: 'none', color: 'rgba(255,255,255,0.92)', fontFamily: 'var(--font-family-base)', fontSize: 14, fontWeight: 500, padding: 12, cursor: 'pointer' }}>이미 계정이 있어요</button>
+      {/* bottom CTA */}
+      <div style={{ padding: '0 24px 48px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0, zIndex: 1 }}>
+        <button onClick={onSignup} style={{ width: '100%', height: 54, borderRadius: 30, background: '#FF8C7D', color: '#fff', fontFamily: 'var(--font-family-base)', fontSize: 16, fontWeight: 700, border: 'none', cursor: 'pointer', letterSpacing: '-0.01em', marginBottom: 14, boxShadow: '0 6px 20px rgba(255,140,125,0.45)' }}>
+          회원가입 후 시작하기
+        </button>
+        <button onClick={onLogin} style={{ background: 'transparent', border: 'none', color: 'rgba(255,255,255,0.85)', fontFamily: 'var(--font-family-base)', fontSize: 14, fontWeight: 500, padding: '8px 0 18px', cursor: 'pointer' }}>
+          이미 계정이 있어요
+        </button>
+        {/* social login row */}
+        <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+          {socialBtns.map((s, i) => (
+            <button key={i} onClick={onLogin} style={{ width: 48, height: 48, borderRadius: '50%', background: s.bg, border: s.border ? `1px solid ${s.border}` : 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 8px rgba(0,0,0,0.12)' }}>
+              {s.content}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -120,38 +157,68 @@ function HomeScreen({ onOpenProfile }) {
   return (
     <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', background: 'var(--color-surface-page)' }}>
       {/* header */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 8px 8px 18px', flexShrink: 0, background: 'var(--color-surface-page)' }}>
-        <div>
-          <div style={{ fontSize: 12, fontWeight: 500, color: 'var(--color-text-tertiary)' }}>{today}</div>
-          {locOn ? (
-            <button onClick={() => setLocOpen(true)} style={{ display: 'inline-flex', alignItems: 'center', gap: 4, background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
-              <Icon name="mapPin" size={16} color="var(--color-primary-600)" />
-              <span style={{ fontSize: 19, fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--color-text-primary)' }}>{curRange.region}</span>
-              <Icon name="chevronDown" size={16} color="var(--color-natural-400)" />
-            </button>
-          ) : null}
-        </div>
-        <div style={{ position: 'relative' }}>
-          <IconButton icon={<Icon name="mapPin" size={22} color={locOn ? '#fff' : undefined} />} variant={locOn ? 'primary' : 'plain'} onClick={() => setLocOpen(true)} ariaLabel="위치" />
-        </div>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px 8px 18px', flexShrink: 0, background: 'var(--color-surface-page)' }}>
+        <div style={{ fontSize: 17, fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--color-text-primary)' }}>{today}</div>
+        <button onClick={() => setLocOpen(true)} style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 4, padding: 4 }}>
+          <img src="location.svg" alt="위치" width="22" height="22" style={{ opacity: locOn ? 1 : 0.55 }} />
+        </button>
       </div>
 
       <div style={{ flex: 1, overflowY: 'auto', padding: '4px 0 24px' }}>
-        <div style={{ padding: '0 16px' }}>
-          <FortuneBanner fortune={<>설레는 만남이<br />가까이 있어요</>} mascot="../../assets/mascot/yeowoong.png" onMore={() => {}} />
+        {/* 오늘의 연애운 banner */}
+        <div style={{ margin: '4px 16px 0', borderRadius: 18, background: 'var(--color-primary-500)', padding: '18px 16px 16px', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', overflow: 'hidden', position: 'relative', minHeight: 120 }}>
+          <div style={{ flex: 1, zIndex: 1 }}>
+            <div style={{ fontSize: 11, fontWeight: 600, color: 'rgba(255,255,255,0.8)', marginBottom: 6, letterSpacing: '0.04em' }}>오늘의 연애운</div>
+            <div style={{ fontSize: 18, fontWeight: 800, color: '#fff', lineHeight: 1.3, letterSpacing: '-0.02em', marginBottom: 14 }}>오늘은 새로운 사람에게<br />마음이 열리는 날이에요</div>
+            <button onClick={() => {}} style={{ display: 'inline-flex', alignItems: 'center', gap: 4, background: 'rgba(255,255,255,0.22)', border: 'none', borderRadius: 99, padding: '6px 14px', color: '#fff', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>
+              내 사주 연애운 보기
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+          {/* mascot illustration */}
+          <div style={{ position: 'relative', width: 100, height: 100, flexShrink: 0, marginTop: -4 }}>
+            <img src="여운 누끼 1 수정 화면 하트 3.png" alt="" style={{ position: 'absolute', right: -4, bottom: -8, width: 80, height: 80, objectFit: 'contain' }} />
+            <img src="여운 뒤통수 12 누끼 2.png" alt="" style={{ position: 'absolute', left: -4, bottom: -8, width: 72, height: 72, objectFit: 'contain' }} />
+          </div>
+          {/* soft radial glow */}
+          <div style={{ position: 'absolute', top: -20, right: -20, width: 140, height: 140, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.18), transparent 70%)', pointerEvents: 'none' }} />
         </div>
 
         {/* feed */}
-        <div style={{ padding: '0 16px', marginTop: 32 }}>
+        <div style={{ padding: '0 16px', marginTop: 28 }}>
           <SectionHeader title={locOn ? '' : '오늘의 '} accent={locOn ? `${curRange.region}의 인연` : '추천 인연'} sub={locOn ? '가까운 거리순으로 보여드려요' : '사주 궁합이 높은 순으로 보여드려요'} />
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-            {data.profiles.map((p) => (
-              <ProfileFeedCard key={p.id} photo={p.photo} name={p.name} age={p.age}
-                score={p.score} activity={p.activity} sajuTag={p.sajuTag}
-                elementIcon={data.elementIcons[p.el]}
-                intro={p.intro} verified={p.verified}
-                onClick={() => onOpenProfile(p.id)} />
-            ))}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            {data.profiles.map((p) => {
+              const elIcon = data.elementIcons[p.el];
+              return (
+                <div key={p.id} onClick={() => onOpenProfile(p.id)} style={{ borderRadius: 16, overflow: 'hidden', background: 'var(--color-surface-card)', boxShadow: '0 2px 12px rgba(30,28,24,0.09)', cursor: 'pointer', WebkitTapHighlightColor: 'transparent', border: '1px solid var(--color-border-default)' }}>
+                  {/* photo */}
+                  <div style={{ position: 'relative', width: '100%', aspectRatio: '4 / 3', background: 'var(--color-natural-200)' }}>
+                    <img src={p.photo} alt={p.name} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                    {/* score badge top-left */}
+                    <div style={{ position: 'absolute', top: 10, left: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, padding: '6px 9px 5px', borderRadius: 12, background: 'rgba(255,255,255,0.97)', boxShadow: '0 2px 8px rgba(0,0,0,0.14)' }}>
+                      <img src="_heart.svg" alt="" width="16" height="14" />
+                      <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--color-text-primary)', lineHeight: 1 }}>{p.score}점</span>
+                    </div>
+                    {/* activity pills bottom */}
+                    <div style={{ position: 'absolute', left: 10, bottom: 10, display: 'flex', gap: 6 }}>
+                      {p.activity && <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, height: 26, padding: '0 10px', borderRadius: 999, background: 'rgba(28,26,24,0.52)', backdropFilter: 'blur(8px)', color: '#fff', fontSize: 12, fontWeight: 500 }}><span style={{ width: 6, height: 6, borderRadius: '50%', background: '#7ECECA' }} />{p.activity}</span>}
+                      {p.sajuTag && <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, height: 26, padding: elIcon ? '0 10px 0 4px' : '0 10px', borderRadius: 999, background: 'rgba(255,100,60,0.82)', backdropFilter: 'blur(8px)', color: '#fff', fontSize: 12, fontWeight: 600 }}>
+                        {elIcon ? <img src={elIcon} alt="" style={{ width: 18, height: 18, borderRadius: 5, objectFit: 'cover' }} /> : null}{p.sajuTag}
+                      </span>}
+                    </div>
+                  </div>
+                  {/* info below */}
+                  <div style={{ padding: '12px 14px 14px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
+                      <img src="인증.svg" alt="인증" width="20" height="20" />
+                      <span style={{ fontSize: 16, fontWeight: 700, color: 'var(--color-text-primary)', letterSpacing: '-0.02em' }}>{p.name}, {p.age}</span>
+                    </div>
+                    {p.intro && <p style={{ margin: 0, fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.45, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{p.intro}</p>}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -276,10 +343,10 @@ function ProfileDetailScreen({ profileId, onBack, onQuiet, onInterest, savedQuie
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
               <img src={elIcons[meEl]} alt="" style={{ width: 40, height: 40, borderRadius: 12, objectFit: 'cover' }} />
               {/* 커플 캐릭터 */}
-              <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'flex-end', gap: 0 }}>
-                <img src="여운 뒤통수 12 누끼 2.png" alt="나" style={{ width: 72, height: 72, objectFit: 'contain' }} />
-                <img src="_heart.svg" alt="heart" width="22" height="22" style={{ marginBottom: 10, flexShrink: 0 }} />
-                <img src="여운 누끼 1 수정 화면 하트 3.png" alt="상대방" style={{ width: 72, height: 72, objectFit: 'contain' }} />
+              <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'flex-end', gap: 2 }}>
+                <img src="여운 누끼 1 화면 하트 수정22 3.png" alt="나" style={{ width: 76, height: 76, objectFit: 'contain' }} />
+                <img src="_heart.svg" alt="heart" width="20" height="20" style={{ marginBottom: 12, flexShrink: 0 }} />
+                <img src="여운 누끼 보라 카페트 1.png" alt="상대방" style={{ width: 76, height: 76, objectFit: 'contain' }} />
               </div>
               <img src={elIcons[p.el]} alt="" style={{ width: 40, height: 40, borderRadius: 12, objectFit: 'cover' }} />
             </div>
