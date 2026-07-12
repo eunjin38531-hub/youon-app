@@ -53,19 +53,11 @@ function LoginScreen({ onSignup, onLogin }) {
 
       {/* ── 앱 아이콘 + YUON + 부제 ── */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 72, zIndex: 1 }}>
-        {/* 아이콘: 반투명 흰 rounded square + 달+별 */}
-        <div style={{ width: 80, height: 80, borderRadius: 22, background: 'rgba(255,255,255,0.28)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 18 }}>
-          <svg width="44" height="40" viewBox="0 0 44 40" fill="none">
-            {/* crescent moon */}
-            <path d="M22 6C16 6 11 11 11 18s5 12 11 12c-3-2-5-5.5-5-9.5C17 13.5 19.5 9.5 22 6Z" fill="white" opacity="0.9"/>
-            <path d="M22 6c4 2.5 7 7.5 7 12s-3 9.5-7 12c6 0 11-5 11-12S28 6 22 6Z" fill="white"/>
-            {/* star dot */}
-            <circle cx="34" cy="9" r="2.5" fill="white"/>
-          </svg>
-        </div>
+        {/* 앱 아이콘 */}
+        <img src="yuon-app-icon.png" alt="유온" style={{ width: 80, height: 80, borderRadius: 22, marginBottom: 18 }} />
 
-        {/* YUON 워드마크 */}
-        <div style={{ fontSize: 40, fontWeight: 900, letterSpacing: '0.18em', color: '#fff', lineHeight: 1, marginBottom: 12 }}>YUON</div>
+        {/* YUON 워드마크 (흰색) */}
+        <img src="yuon-wordmark.png" alt="YUON" style={{ height: 38, objectFit: 'contain', filter: 'brightness(0) invert(1)', marginBottom: 14 }} />
 
         {/* 부제 */}
         <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.88)', letterSpacing: '-0.01em' }}>
@@ -91,8 +83,7 @@ function LoginScreen({ onSignup, onLogin }) {
         <img
           src="dufkdddl 1.png"
           alt="유은 캐릭터"
-          style={{ width: 220, height: 240, objectFit: 'contain', position: 'relative', zIndex: 1 }}
-          onError={(e) => { e.target.src = '여운 누끼 1 수정 화면 하트 3.png'; }}
+          style={{ width: 220, height: 260, objectFit: 'contain', position: 'relative', zIndex: 1 }}
         />
       </div>
 
@@ -234,9 +225,8 @@ function HomeScreen({ onOpenProfile }) {
             </button>
           </div>
           {/* mascot illustration */}
-          <div style={{ position: 'relative', width: 100, height: 100, flexShrink: 0, marginTop: -4 }}>
-            <img src="여운 누끼 1 수정 화면 하트 3.png" alt="" style={{ position: 'absolute', right: -4, bottom: -8, width: 80, height: 80, objectFit: 'contain' }} />
-            <img src="여운 뒤통수 12 누끼 2.png" alt="" style={{ position: 'absolute', left: -4, bottom: -8, width: 72, height: 72, objectFit: 'contain' }} />
+          <div style={{ position: 'relative', width: 110, height: 100, flexShrink: 0, marginTop: -4 }}>
+            <img src="image 95.png" alt="" style={{ position: 'absolute', right: -8, bottom: -10, width: 118, height: 118, objectFit: 'contain' }} />
           </div>
           {/* soft radial glow */}
           <div style={{ position: 'absolute', top: -20, right: -20, width: 140, height: 140, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.18), transparent 70%)', pointerEvents: 'none' }} />
@@ -401,10 +391,8 @@ function ProfileDetailScreen({ profileId, onBack, onQuiet, onInterest, savedQuie
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
               <img src={elIcons[meEl]} alt="" style={{ width: 40, height: 40, borderRadius: 12, objectFit: 'cover' }} />
               {/* 커플 캐릭터 */}
-              <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'flex-end', gap: 2 }}>
-                <img src="여운 누끼 1 화면 하트 수정22 3.png" alt="나" style={{ width: 76, height: 76, objectFit: 'contain' }} />
-                <img src="_heart.svg" alt="heart" width="20" height="20" style={{ marginBottom: 12, flexShrink: 0 }} />
-                <img src="여운 누끼 보라 카페트 1.png" alt="상대방" style={{ width: 76, height: 76, objectFit: 'contain' }} />
+              <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <img src="image 95.png" alt="커플" style={{ width: 120, height: 120, objectFit: 'contain' }} />
               </div>
               <img src={elIcons[p.el]} alt="" style={{ width: 40, height: 40, borderRadius: 12, objectFit: 'cover' }} />
             </div>
