@@ -8,12 +8,12 @@ window.YuonData = (function () {
     sua:     'images/Korean_woman_in_blazer_202606252151.jpeg',
     yerin:   'images/Korean_woman_in_silk_dress_202606252151.jpeg',
     me:      'images/A_whimsical_Korean_woman_in_202606252151.jpeg',
-    jihoon:  'images/Man_wearing_turtleneck_library_202606252151.jpeg',
-    minjun:  'images/An_active_and_sporty_Korean_202606252151.jpeg',
-    doyun:   'images/A_friendly_Korean_man_in_202606252151.jpeg',
-    h1:      'images/Man_in_suit_office_window_202606252151.jpeg',
-    h2:      'images/Man_in_leather_jacket_202606252151.jpeg',
-    h3:      'images/Korean_man_in_graphic_tee_202606252151.jpeg',
+    jihoon:  'images/01.jpg',
+    minjun:  'images/02.jpg',
+    doyun:   'images/03.jpg',
+    h1:      'images/06.jpg',
+    h2:      'images/05.jpg',
+    h3:      'images/04.jpg',
   };
 
   const profiles = [
