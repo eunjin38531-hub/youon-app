@@ -8,13 +8,13 @@ function LoginScreen({ onSignup, onLogin }) {
       {/* 배경 글로우 */}
       <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: 360, height: 360, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.22) 0%, transparent 65%)', pointerEvents: 'none' }} />
       {/* 스파클 텍스처 */}
-      <img src="image 100.png" alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.5, pointerEvents: 'none', mixBlendMode: 'screen' }} />
-      <img src="image 101.png" alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.4, pointerEvents: 'none', mixBlendMode: 'screen' }} />
+      <img src="images/image 100.png" alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.5, pointerEvents: 'none', mixBlendMode: 'screen' }} />
+      <img src="images/image 101.png" alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.4, pointerEvents: 'none', mixBlendMode: 'screen' }} />
 
       {/* 아이콘 + 워드마크 */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 80, zIndex: 1 }}>
-        <img src="yuon-app-icon.png" alt="유온" style={{ width: 80, height: 80, borderRadius: 20, marginBottom: 16 }} />
-        <img src="yuon-wordmark.png" alt="YUON" style={{ height: 36, objectFit: 'contain', filter: 'brightness(0) invert(1)', marginBottom: 12 }} />
+        <img src="images/yuon-app-icon.png" alt="유온" style={{ width: 80, height: 80, borderRadius: 20, marginBottom: 16 }} />
+        <img src="images/yuon-wordmark.png" alt="YUON" style={{ height: 36, objectFit: 'contain', filter: 'brightness(0) invert(1)', marginBottom: 12 }} />
         <span style={{ fontSize: 14, color: 'rgba(255,255,255,0.85)' }}>안녕하세요, 유온에 오신 걸 환영해요</span>
       </div>
 
@@ -27,7 +27,7 @@ function LoginScreen({ onSignup, onLogin }) {
         <svg style={{ position: 'absolute', top: '18%', right: '18%' }} width="9" height="9" viewBox="0 0 9 9" fill="none">
           <path d="M4.5 0l.9 3.6L9 4.5l-3.6.9L4.5 9 3.6 5.4 0 4.5l3.6-.9Z" fill="white" opacity="0.5" />
         </svg>
-        <img src="dufkdddl 1.png" alt="유온 캐릭터" style={{ width: 230, height: 260, objectFit: 'contain' }} />
+        <img src="images/dufkdddl 1.png" alt="유온 캐릭터" style={{ width: 230, height: 260, objectFit: 'contain' }} />
       </div>
 
       {/* 하단 버튼 */}
@@ -40,13 +40,13 @@ function LoginScreen({ onSignup, onLogin }) {
         </button>
         <div style={{ display: 'flex', justifyContent: 'center', gap: 14 }}>
           <button onClick={onLogin} style={{ width: 52, height: 52, borderRadius: '50%', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
-            <img src="image 109.png" alt="카카오" style={{ width: 52, height: 52 }} />
+            <img src="images/image 109.png" alt="카카오" style={{ width: 52, height: 52 }} />
           </button>
           <button onClick={onLogin} style={{ width: 52, height: 52, borderRadius: '50%', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
-            <img src="image 110.png" alt="구글" style={{ width: 52, height: 52 }} />
+            <img src="images/image 110.png" alt="구글" style={{ width: 52, height: 52 }} />
           </button>
           <button onClick={onLogin} style={{ width: 52, height: 52, borderRadius: '50%', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
-            <img src="image 111.png" alt="네이버" style={{ width: 52, height: 52 }} />
+            <img src="images/image 111.png" alt="네이버" style={{ width: 52, height: 52 }} />
           </button>
           <button onClick={onLogin} style={{ width: 52, height: 52, borderRadius: '50%', background: 'rgba(255,255,255,0.2)', border: '1.5px solid rgba(255,255,255,0.5)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <svg width="22" height="18" viewBox="0 0 22 18" fill="none"><rect x="1" y="1" width="20" height="16" rx="3" stroke="rgba(255,255,255,0.9)" strokeWidth="1.5"/><path d="M1 4l10 7 10-7" stroke="rgba(255,255,255,0.9)" strokeWidth="1.5" strokeLinecap="round"/></svg>
@@ -151,7 +151,7 @@ function HomeScreen({ onOpenProfile }) {
               </button>
             </div>
             {/* 캐릭터 — 카드 오른쪽에 맞닿게 */}
-            <img src="image 95.png" alt="" style={{ position: 'absolute', right: -6, bottom: -10, width: 160, height: 160, objectFit: 'contain', pointerEvents: 'none' }} />
+            <img src="images/image 95.png" alt="" style={{ position: 'absolute', right: -6, bottom: -10, width: 160, height: 160, objectFit: 'contain', pointerEvents: 'none' }} />
           </div>
         </div>
 
@@ -301,7 +301,7 @@ function ProfileDetailScreen({ profileId, onBack, onQuiet, onInterest, savedQuie
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
                 <span style={{ width: 44, height: 44, borderRadius: 12, background: '#FFF1EF', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24 }}>{elIcons[meEl]}</span>
               </div>
-              <img src="Frame 427319215.png" alt="커플" style={{ width: 160, height: 130, objectFit: 'contain', flex: 1 }} />
+              <img src="images/Frame 427319215.png" alt="커플" style={{ width: 160, height: 130, objectFit: 'contain', flex: 1 }} />
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
                 <span style={{ width: 44, height: 44, borderRadius: 12, background: '#EDF9F8', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24 }}>{elIcons[p.el]}</span>
               </div>

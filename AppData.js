@@ -3,17 +3,17 @@ window.YuonData = (function () {
 
   // 로컬 이미지
   const IMG = {
-    seoyeon: 'A_creative-looking_Korean_woman_in_202606252151.jpeg',
-    hana:    'A_youthful_Korean_woman_in_202606252151.jpeg',
-    sua:     'Korean_woman_in_blazer_202606252151.jpeg',
-    yerin:   'Korean_woman_in_silk_dress_202606252151.jpeg',
-    me:      'A_whimsical_Korean_woman_in_202606252151.jpeg',
-    jihoon:  'Man_wearing_turtleneck_library_202606252151.jpeg',
-    minjun:  'An_active_and_sporty_Korean_202606252151.jpeg',
-    doyun:   'A_friendly_Korean_man_in_202606252151.jpeg',
-    h1:      'Man_in_suit_office_window_202606252151.jpeg',
-    h2:      'Man_in_leather_jacket_202606252151.jpeg',
-    h3:      'Korean_man_in_graphic_tee_202606252151.jpeg',
+    seoyeon: 'images/A_creative-looking_Korean_woman_in_202606252151.jpeg',
+    hana:    'images/A_youthful_Korean_woman_in_202606252151.jpeg',
+    sua:     'images/Korean_woman_in_blazer_202606252151.jpeg',
+    yerin:   'images/Korean_woman_in_silk_dress_202606252151.jpeg',
+    me:      'images/A_whimsical_Korean_woman_in_202606252151.jpeg',
+    jihoon:  'images/Man_wearing_turtleneck_library_202606252151.jpeg',
+    minjun:  'images/An_active_and_sporty_Korean_202606252151.jpeg',
+    doyun:   'images/A_friendly_Korean_man_in_202606252151.jpeg',
+    h1:      'images/Man_in_suit_office_window_202606252151.jpeg',
+    h2:      'images/Man_in_leather_jacket_202606252151.jpeg',
+    h3:      'images/Korean_man_in_graphic_tee_202606252151.jpeg',
   };
 
   const profiles = [

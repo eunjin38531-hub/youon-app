@@ -45,7 +45,7 @@ function LikeCard({ p, onClick, locked }) {
       {!locked && (
         <div style={{ padding: '12px 14px 14px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
-            <img src="인증.svg" alt="" width="20" height="20" />
+            <img src="icons/인증.svg" alt="" width="20" height="20" />
             <span style={{ fontSize: 15, fontWeight: 700, color: '#1E1C18', letterSpacing: '-0.02em' }}>{p.name}, {p.age}</span>
           </div>
           {p.intro && <p style={{ margin: 0, fontSize: 13, color: '#7A7770', lineHeight: 1.45, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{p.intro}</p>}
@@ -102,7 +102,7 @@ function SavedCarousel({ list, onOpenProfile, charTop, charBottom, emptyMsg }) {
                 </div>
                 <div style={{ padding: '12px 14px 16px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
-                    <img src="인증.svg" alt="" width="18" height="18" />
+                    <img src="icons/인증.svg" alt="" width="18" height="18" />
                     <span style={{ fontSize: 15, fontWeight: 700, color: '#1E1C18', letterSpacing: '-0.02em' }}>{p.name}, {p.age}</span>
                   </div>
                   <p style={{ margin: 0, fontSize: 13, color: '#7A7770', lineHeight: 1.4, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{p.intro}</p>
@@ -152,15 +152,15 @@ function HeartScreen({ onOpenProfile }) {
         {/* 배경: 마음에 담은 = teal 그라디언트, 나를 괜찮게 본 = 만다라 텍스처 */}
         {isSaved
           ? <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, #D6F2F1 0%, #fff 55%)', zIndex: 0 }} />
-          : <img src="여운 누끼 보라 카페트 1.png" alt="" style={{ position: 'absolute', top: -20, left: '50%', transform: 'translateX(-50%)', width: '110%', opacity: 0.25, pointerEvents: 'none', zIndex: 0 }} />
+          : <img src="characters/여운 누끼 보라 카페트 1.png" alt="" style={{ position: 'absolute', top: -20, left: '50%', transform: 'translateX(-50%)', width: '110%', opacity: 0.25, pointerEvents: 'none', zIndex: 0 }} />
         }
         <div style={{ position: 'relative', zIndex: 1, height: '100%' }}>
           {isSaved
             ? <SavedCarousel list={list} onOpenProfile={onOpenProfile}
-                charTop="여운 뒤통수 12 누끼 3.png"
+                charTop="characters/여운 뒤통수 12 누끼 3.png"
                 emptyMsg="아직 마음에 담은 사람이 없어요" />
             : <SavedCarousel list={list} onOpenProfile={onOpenProfile}
-                charBottom="여운 뒤통수 12 누끼 2.png"
+                charBottom="characters/여운 뒤통수 12 누끼 2.png"
                 emptyMsg="아직 나를 괜찮게 본 사람이 없어요" />
           }
         </div>
@@ -223,21 +223,21 @@ function ChatListScreen({ onOpenChat, onOpenProfile }) {
 // ── Chat room ───────────────────────────────────────────────────
 function HealthShareModal({ partnerName, onClose }) {
   const features = [
-    { icon: 'document.svg', title: '검증된 기관 결과만 인정', desc: '병원·보건소 발급 결과지를 업로드하면 자동 검증돼요.' },
-    { icon: 'eye.svg', title: '항목명은 공개, 세부 수치는 비공개', desc: '"이상 없음 / 확인 필요"로만 표시돼요.' },
-    { icon: 'refresh.svg', title: '언제든 동의 철회 가능', desc: '철회 시 공유된 정보는 즉시 삭제돼요.' },
+    { icon: 'icons/document.svg', title: '검증된 기관 결과만 인정', desc: '병원·보건소 발급 결과지를 업로드하면 자동 검증돼요.' },
+    { icon: 'icons/eye.svg', title: '항목명은 공개, 세부 수치는 비공개', desc: '"이상 없음 / 확인 필요"로만 표시돼요.' },
+    { icon: 'icons/refresh.svg', title: '언제든 동의 철회 가능', desc: '철회 시 공유된 정보는 즉시 삭제돼요.' },
   ];
   return (
     <div style={{ position: 'absolute', inset: 0, zIndex: 100, display: 'flex', flexDirection: 'column', background: '#fff' }}>
       <div style={{ display: 'flex', alignItems: 'center', padding: '12px 4px 12px 4px', borderBottom: '1px solid #F0EDEA' }}>
         <button onClick={onClose} style={{ display: 'flex', alignItems: 'center', background: 'none', border: 'none', cursor: 'pointer', padding: '8px 12px' }}>
-          <img src="chevron-left.svg" width="20" height="20" />
+          <img src="icons/chevron-left.svg" width="20" height="20" />
         </button>
         <span style={{ fontSize: 17, fontWeight: 700, color: '#1E1C18' }}>건강 정보 공유</span>
       </div>
       <div style={{ flex: 1, overflowY: 'auto', padding: '32px 24px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div style={{ width: 72, height: 72, borderRadius: '50%', background: '#EDF9F8', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
-          <img src="shield-check.svg" alt="" width="36" height="36" style={{ filter: 'invert(55%) sepia(60%) saturate(400%) hue-rotate(140deg)' }} />
+          <img src="icons/shield-check.svg" alt="" width="36" height="36" style={{ filter: 'invert(55%) sepia(60%) saturate(400%) hue-rotate(140deg)' }} />
         </div>
         <div style={{ fontSize: 17, fontWeight: 700, color: '#1E1C18', textAlign: 'center', marginBottom: 8 }}>서로 동의하면 검사결과를 확인할 수 있어요</div>
         <p style={{ margin: '0 0 28px', fontSize: 13, color: '#888', textAlign: 'center', lineHeight: 1.55 }}>한쪽만 동의한 경우 상대에게 동의 여부는 전달되지 않아요.</p>
@@ -339,7 +339,7 @@ function ChatRoomScreen({ chatId, onBack }) {
                 <div style={{ fontSize: 14, fontWeight: 600, color: '#1E1C18' }}>건강 정보 공유</div>
                 <div style={{ fontSize: 12, color: '#888', marginTop: 2 }}>상호 동의 시에만 열람</div>
               </div>
-              <img src="chevron-left.svg" width="16" height="16" style={{ transform: 'rotate(180deg)', opacity: 0.4 }} />
+              <img src="icons/chevron-left.svg" width="16" height="16" style={{ transform: 'rotate(180deg)', opacity: 0.4 }} />
             </button>
           </div>
         </>
