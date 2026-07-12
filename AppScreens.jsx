@@ -18,9 +18,12 @@ function LoginScreen({ onSignup, onLogin }) {
       {/* 아이콘 + 워드마크 영역 */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 68, zIndex: 1, position: 'relative' }}>
         {/* 아이콘 뒤 글로우 */}
-        <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: 280, height: 280, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.28) 0%, transparent 60%)', pointerEvents: 'none' }} />
-        <img src="images/yuon-app-icon.png" alt="유온" style={{ width: 160, height: 160, borderRadius: 36, marginBottom: 20, position: 'relative' }} />
-        <img src="images/yuon-wordmark.png" alt="YUON" style={{ height: 46, objectFit: 'contain', filter: 'brightness(0) invert(1)', marginBottom: 12, position: 'relative' }} />
+        <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: 300, height: 300, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.30) 0%, transparent 58%)', pointerEvents: 'none' }} />
+        {/* 아이콘 — 라운드 사각형 박스 + 그림자 */}
+        <div style={{ position: 'relative', width: 130, height: 130, borderRadius: 30, background: 'linear-gradient(145deg, #5ED4D1, #3DBEBB)', boxShadow: '0 8px 32px rgba(0,0,0,0.18), 0 0 0 1px rgba(255,255,255,0.12)', marginBottom: 22, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+          <img src="images/yuon-app-icon.png" alt="유온" style={{ width: '130%', height: '130%', objectFit: 'contain' }} />
+        </div>
+        <img src="images/yuon-wordmark.png" alt="YUON" style={{ height: 46, objectFit: 'contain', filter: 'brightness(0) invert(1)', marginBottom: 14, position: 'relative' }} />
         <span style={{ fontSize: 15, color: 'rgba(255,255,255,0.9)', letterSpacing: '-0.01em', position: 'relative' }}>안녕하세요, 유온에 오신 걸 환영해요</span>
       </div>
 
@@ -37,7 +40,7 @@ function LoginScreen({ onSignup, onLogin }) {
         <img
           src="images/dufkdddl 1.png"
           alt="유온 캐릭터"
-          style={{ width: 210, height: 240, objectFit: 'contain', position: 'relative' }}
+          style={{ width: 260, height: 300, objectFit: 'contain', position: 'relative' }}
         />
       </div>
 
@@ -73,10 +76,10 @@ function LoginScreen({ onSignup, onLogin }) {
             <img src="images/image 111.png" alt="네이버" style={{ width: 54, height: 54, borderRadius: '50%', display: 'block' }} />
           </button>
           {/* 이메일 */}
-          <button onClick={onLogin} style={{ width: 54, height: 54, borderRadius: '50%', background: 'rgba(255,255,255,0.18)', border: '1.5px solid rgba(255,255,255,0.6)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <button onClick={onLogin} style={{ width: 54, height: 54, borderRadius: '50%', background: '#fff', border: '1.5px solid #FFBCB3', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <svg width="26" height="20" viewBox="0 0 26 20" fill="none">
-              <rect x="1" y="1" width="24" height="18" rx="3.5" stroke="white" strokeWidth="1.8"/>
-              <path d="M1 5L13 12.5L25 5" stroke="white" strokeWidth="1.8" strokeLinecap="round"/>
+              <rect x="1" y="1" width="24" height="18" rx="3.5" stroke="#FF8471" strokeWidth="1.8"/>
+              <path d="M1 5L13 12.5L25 5" stroke="#FF8471" strokeWidth="1.8" strokeLinecap="round"/>
             </svg>
           </button>
         </div>
