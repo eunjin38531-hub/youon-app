@@ -16,11 +16,11 @@ function LoginScreen({ onSignup, onLogin }) {
     <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', background: '#4DC5C2' }}>
 
       {/* 아이콘 + 워드마크 영역 */}
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 72, zIndex: 1, position: 'relative' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 68, zIndex: 1, position: 'relative' }}>
         {/* 아이콘 뒤 글로우 */}
-        <div style={{ position: 'absolute', top: 30, left: '50%', transform: 'translateX(-50%)', width: 220, height: 220, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.25) 0%, transparent 65%)', pointerEvents: 'none' }} />
-        <img src="images/yuon-app-icon.png" alt="유온" style={{ width: 120, height: 120, borderRadius: 28, marginBottom: 22, position: 'relative' }} />
-        <img src="images/yuon-wordmark.png" alt="YUON" style={{ height: 44, objectFit: 'contain', filter: 'brightness(0) invert(1)', marginBottom: 12, position: 'relative' }} />
+        <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: 280, height: 280, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.28) 0%, transparent 60%)', pointerEvents: 'none' }} />
+        <img src="images/yuon-app-icon.png" alt="유온" style={{ width: 160, height: 160, borderRadius: 36, marginBottom: 20, position: 'relative' }} />
+        <img src="images/yuon-wordmark.png" alt="YUON" style={{ height: 46, objectFit: 'contain', filter: 'brightness(0) invert(1)', marginBottom: 12, position: 'relative' }} />
         <span style={{ fontSize: 15, color: 'rgba(255,255,255,0.9)', letterSpacing: '-0.01em', position: 'relative' }}>안녕하세요, 유온에 오신 걸 환영해요</span>
       </div>
 
