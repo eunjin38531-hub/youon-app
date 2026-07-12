@@ -87,7 +87,7 @@ function LocationSheet({ open, onClose, range, onApply }) {
             return <div key={d} style={{ position: 'absolute', width: d, height: d, borderRadius: '50%', border: `1.5px solid ${on ? '#5AC7C4' : '#E0DDD8'}`, background: on ? `rgba(90,199,196,${0.04 + (3 - lvl) * 0.04})` : 'transparent' }} />;
           })}
           <div style={{ position: 'relative', width: 42, height: 42, borderRadius: '50%', background: '#5AC7C4', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 14px rgba(90,199,196,0.45)' }}>
-            <img src="location.svg" alt="" width="20" height="20" style={{ filter: 'brightness(0) invert(1)' }} />
+            <img src="icons/location.svg" alt="" width="20" height="20" style={{ filter: 'brightness(0) invert(1)' }} />
           </div>
           <span style={{ position: 'absolute', bottom: 4, fontSize: 12, fontWeight: 600, color: '#5AC7C4' }}>{cur.region}</span>
         </div>
@@ -134,7 +134,7 @@ function HomeScreen({ onOpenProfile }) {
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 18px 8px', flexShrink: 0 }}>
         <span style={{ fontSize: 17, fontWeight: 700, color: '#1E1C18', letterSpacing: '-0.02em' }}>{today}</span>
         <button onClick={() => setLocOpen(true)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4, display: 'flex' }}>
-          <img src="location.svg" alt="위치" width="24" height="24" style={{ opacity: locOn ? 1 : 0.6 }} />
+          <img src="icons/location.svg" alt="위치" width="24" height="24" style={{ opacity: locOn ? 1 : 0.6 }} />
         </button>
       </div>
 
@@ -167,37 +167,38 @@ function HomeScreen({ onOpenProfile }) {
         </div>
 
         {/* 프로필 카드 목록 */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 20, padding: '0 16px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 16, padding: '0 16px' }}>
           {data.profiles.map((p) => {
             const elIcon = data.elementIcons[p.el];
+            const elBg = { fire: 'rgba(255,100,50,0.88)', water: 'rgba(60,170,200,0.88)', earth: 'rgba(80,190,160,0.88)', wood: 'rgba(90,180,80,0.88)', metal: 'rgba(140,100,200,0.88)' }[p.el] || 'rgba(255,100,50,0.88)';
             return (
-              <div key={p.id} onClick={() => onOpenProfile(p.id)} style={{ borderRadius: 16, overflow: 'hidden', background: '#fff', boxShadow: '0 2px 16px rgba(30,28,24,0.10)', cursor: 'pointer', WebkitTapHighlightColor: 'transparent' }}>
+              <div key={p.id} onClick={() => onOpenProfile(p.id)} style={{ borderRadius: 20, overflow: 'hidden', background: '#fff', boxShadow: '0 2px 20px rgba(30,28,24,0.10)', cursor: 'pointer', WebkitTapHighlightColor: 'transparent' }}>
                 {/* 사진 */}
-                <div style={{ position: 'relative', width: '100%', aspectRatio: '4 / 3.2', background: '#E9E6E1' }}>
-                  <img src={p.photo} alt={p.name} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                <div style={{ position: 'relative', width: '100%', aspectRatio: '1 / 1.05', background: '#E9E6E1' }}>
+                  <img src={p.photo} alt={p.name} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
                   {/* 스코어 뱃지 */}
-                  <div style={{ position: 'absolute', top: 10, left: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, padding: '7px 10px 6px', borderRadius: 12, background: 'rgba(255,255,255,0.97)', boxShadow: '0 2px 8px rgba(0,0,0,0.14)' }}>
-                    <span style={{ fontSize: 18, lineHeight: 1 }}>❤️</span>
+                  <div style={{ position: 'absolute', top: 12, left: 12, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, padding: '8px 11px 7px', borderRadius: 14, background: 'rgba(255,255,255,0.97)', boxShadow: '0 2px 10px rgba(0,0,0,0.15)' }}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#FF4D6A"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
                     <span style={{ fontSize: 12, fontWeight: 700, color: '#1E1C18', lineHeight: 1 }}>{p.score}점</span>
                   </div>
                   {/* 활동 필 */}
-                  <div style={{ position: 'absolute', left: 10, bottom: 10, display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+                  <div style={{ position: 'absolute', left: 12, bottom: 12, display: 'flex', gap: 6, flexWrap: 'wrap' }}>
                     {p.activity && (
-                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, height: 28, padding: '0 10px', borderRadius: 999, background: 'rgba(28,26,24,0.55)', backdropFilter: 'blur(8px)', color: '#fff', fontSize: 12, fontWeight: 500 }}>
-                        <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#5AC7C4', flexShrink: 0 }} />{p.activity}
+                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, height: 28, padding: '0 10px', borderRadius: 999, background: 'rgba(20,20,20,0.52)', backdropFilter: 'blur(8px)', color: '#fff', fontSize: 12, fontWeight: 500 }}>
+                        <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#4CD964', flexShrink: 0 }} />{p.activity}
                       </span>
                     )}
                     {p.sajuTag && (
-                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, height: 28, padding: '0 10px', borderRadius: 999, background: 'rgba(255,120,60,0.88)', backdropFilter: 'blur(8px)', color: '#fff', fontSize: 12, fontWeight: 600 }}>
-                        {elIcon && <span style={{ fontSize: 13 }}>{elIcon}</span>}{p.sajuTag}
+                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, height: 28, padding: '0 10px', borderRadius: 999, background: elBg, backdropFilter: 'blur(8px)', color: '#fff', fontSize: 12, fontWeight: 600 }}>
+                        {elIcon && <span style={{ fontSize: 12 }}>{elIcon}</span>}{p.sajuTag}
                       </span>
                     )}
                   </div>
                 </div>
                 {/* 이름 + 소개 */}
                 <div style={{ padding: '12px 14px 14px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 5 }}>
-                    <img src="인증.svg" alt="" width="20" height="20" />
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
+                    <img src="icons/인증.svg" alt="" width="20" height="20" />
                     <span style={{ fontSize: 16, fontWeight: 700, color: '#1E1C18', letterSpacing: '-0.02em' }}>{p.name}, {p.age}</span>
                   </div>
                   {p.intro && <p style={{ margin: 0, fontSize: 13, color: '#7A7770', lineHeight: 1.45, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{p.intro}</p>}
@@ -234,10 +235,10 @@ function ProfileDetailScreen({ profileId, onBack, onQuiet, onInterest, savedQuie
           {/* 상단 버튼 */}
           <div style={{ position: 'absolute', top: 54, left: 12, right: 12, display: 'flex', justifyContent: 'space-between' }}>
             <button onClick={onBack} style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(0,0,0,0.35)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <img src="chevron-left.svg" width="20" height="20" style={{ filter: 'brightness(0) invert(1)' }} />
+              <img src="icons/chevron-left.svg" width="20" height="20" style={{ filter: 'brightness(0) invert(1)' }} />
             </button>
             <button style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(0,0,0,0.35)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <img src="menu-dots.svg" width="20" height="20" style={{ filter: 'brightness(0) invert(1)' }} />
+              <img src="icons/menu-dots.svg" width="20" height="20" style={{ filter: 'brightness(0) invert(1)' }} />
             </button>
           </div>
           {/* 1/2 인디케이터 */}
@@ -250,7 +251,7 @@ function ProfileDetailScreen({ profileId, onBack, onQuiet, onInterest, savedQuie
           {/* 이름 + 활동 */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <img src="인증.svg" width="22" height="22" />
+              <img src="icons/인증.svg" width="22" height="22" />
               <span style={{ fontSize: 20, fontWeight: 700, color: '#1E1C18', letterSpacing: '-0.02em' }}>{p.name}, {p.age}</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
