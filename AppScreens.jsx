@@ -16,31 +16,28 @@ function LoginScreen({ onSignup, onLogin }) {
     <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', background: '#4DC5C2' }}>
 
       {/* 아이콘 + 워드마크 영역 */}
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 68, zIndex: 1, position: 'relative' }}>
-        {/* 아이콘 뒤 글로우 */}
-        <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: 300, height: 300, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.30) 0%, transparent 58%)', pointerEvents: 'none' }} />
-        {/* 아이콘 — 라운드 사각형 박스 + 그림자 */}
-        <div style={{ position: 'relative', width: 130, height: 130, borderRadius: 30, background: 'linear-gradient(145deg, #5ED4D1, #3DBEBB)', boxShadow: '0 8px 32px rgba(0,0,0,0.18), 0 0 0 1px rgba(255,255,255,0.12)', marginBottom: 22, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-          <img src="images/yuon-app-icon.png" alt="유온" style={{ width: '130%', height: '130%', objectFit: 'contain' }} />
-        </div>
-        <img src="images/yuon-wordmark.png" alt="YUON" style={{ height: 46, objectFit: 'contain', filter: 'brightness(0) invert(1)', marginBottom: 14, position: 'relative' }} />
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 60, zIndex: 1, position: 'relative' }}>
+        {/* 아이콘 뒤 흰 글로우 */}
+        <div style={{ position: 'absolute', top: -10, left: '50%', transform: 'translateX(-50%)', width: 320, height: 320, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.32) 0%, transparent 55%)', pointerEvents: 'none' }} />
+        {/* 아이콘 이미지 — PNG에 라운드박스 포함됨, 크게 표시 */}
+        <img src="images/yuon-app-icon.png" alt="유온" style={{ width: 220, height: 220, objectFit: 'contain', position: 'relative', marginBottom: 14 }} />
+        <img src="images/yuon-wordmark.png" alt="YUON" style={{ height: 48, objectFit: 'contain', filter: 'brightness(0) invert(1)', marginBottom: 12, position: 'relative' }} />
         <span style={{ fontSize: 15, color: 'rgba(255,255,255,0.9)', letterSpacing: '-0.01em', position: 'relative' }}>안녕하세요, 유온에 오신 걸 환영해요</span>
       </div>
 
       {/* 캐릭터 영역 */}
-      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', zIndex: 1 }}>
-        {/* 스파클 — 피그마 위치 기준 */}
-        <Sparkle size={10} opacity={0.6} style={{ top: '16%', left: '12%' }} />
-        <Sparkle size={7}  opacity={0.5} style={{ top: '10%', left: '28%' }} />
-        <Sparkle size={8}  opacity={0.55} style={{ top: '8%', right: '20%' }} />
-        <Sparkle size={6}  opacity={0.45} style={{ top: '28%', right: '10%' }} />
-        <Sparkle size={7}  opacity={0.5} style={{ top: '42%', right: '8%' }} />
-        <Sparkle size={6}  opacity={0.45} style={{ bottom: '22%', left: '10%' }} />
-        <Sparkle size={8}  opacity={0.55} style={{ bottom: '14%', right: '18%' }} />
+      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', zIndex: 1, minHeight: 240 }}>
+        {/* 스파클 */}
+        <Sparkle size={9}  opacity={0.55} style={{ top: '18%', left: '8%' }} />
+        <Sparkle size={6}  opacity={0.45} style={{ top: '12%', left: '30%' }} />
+        <Sparkle size={7}  opacity={0.50} style={{ top: '10%', right: '18%' }} />
+        <Sparkle size={6}  opacity={0.45} style={{ top: '35%', right: '8%' }} />
+        <Sparkle size={7}  opacity={0.50} style={{ bottom: '20%', left: '10%' }} />
+        <Sparkle size={6}  opacity={0.45} style={{ bottom: '28%', right: '14%' }} />
         <img
           src="images/dufkdddl 1.png"
           alt="유온 캐릭터"
-          style={{ width: 260, height: 300, objectFit: 'contain', position: 'relative' }}
+          style={{ width: 300, height: 340, objectFit: 'contain', position: 'relative' }}
         />
       </div>
 
