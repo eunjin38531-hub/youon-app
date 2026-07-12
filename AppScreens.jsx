@@ -14,7 +14,7 @@ function LoginScreen({ onSignup, onLogin }) {
       {/* 아이콘 + 워드마크 */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 80, zIndex: 1 }}>
         <img src="yuon-app-icon.png" alt="유온" style={{ width: 80, height: 80, borderRadius: 20, marginBottom: 16 }} />
-        <img src="yuon-symbol-white.png" alt="YUON" style={{ height: 36, objectFit: 'contain', marginBottom: 12 }} />
+        <img src="yuon-wordmark.png" alt="YUON" style={{ height: 36, objectFit: 'contain', filter: 'brightness(0) invert(1)', marginBottom: 12 }} />
         <span style={{ fontSize: 14, color: 'rgba(255,255,255,0.85)' }}>안녕하세요, 유온에 오신 걸 환영해요</span>
       </div>
 

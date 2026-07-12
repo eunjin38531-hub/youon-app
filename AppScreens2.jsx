@@ -74,11 +74,11 @@ function SavedCarousel({ list, onOpenProfile }) {
 
   const CARD_W = 200;
   return (
-    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 18, overflow: 'hidden', padding: '20px 0 16px' }}>
+    <div style={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 18, overflow: 'hidden', padding: '20px 0 16px' }}>
       <div style={{ position: 'relative', width: '100%' }}>
-        {/* 캐릭터 */}
-        <div style={{ position: 'absolute', top: -58, left: '50%', transform: 'translateX(-50%)', zIndex: 20, pointerEvents: 'none' }}>
-          <img src="dufkdddl 1.png" alt="" style={{ width: 88, height: 88, objectFit: 'contain' }} />
+        {/* 캐릭터 — 카드 위에 앉아있는 여운이 뒤통수 */}
+        <div style={{ position: 'absolute', top: -52, left: '50%', transform: 'translateX(-50%)', zIndex: 20, pointerEvents: 'none' }}>
+          <img src="여운 뒤통수 12 누끼 3.png" alt="" style={{ width: 96, height: 96, objectFit: 'contain' }} />
         </div>
         <div style={{ position: 'relative', width: '100%', height: 370, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
           onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
@@ -139,7 +139,9 @@ function HeartScreen({ onOpenProfile }) {
         {tab === 'saved' ? '내가 하트를 누른 목록이에요. 상대에게 알림은 가지 않아요.' : '나에게 관심을 표현한 사람들이에요.'}
       </p>
       {tab === 'saved'
-        ? <SavedCarousel list={list} onOpenProfile={onOpenProfile} />
+        ? <div style={{ flex: 1, background: 'linear-gradient(180deg, #EDF9F8 0%, #fff 60%)', overflow: 'hidden' }}>
+            <SavedCarousel list={list} onOpenProfile={onOpenProfile} />
+          </div>
         : <div style={{ flex: 1, overflowY: 'auto', padding: '8px 16px 24px' }}>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
               {list.map((p) => <LikeCard key={p.id} p={p} onClick={() => onOpenProfile(p.id)} />)}
@@ -204,9 +206,9 @@ function ChatListScreen({ onOpenChat, onOpenProfile }) {
 // ── Chat room ───────────────────────────────────────────────────
 function HealthShareModal({ partnerName, onClose }) {
   const features = [
-    { icon: '🏥', title: '검증된 기관 결과만 인정', desc: '병원·보건소 발급 결과지를 업로드하면 자동 검증돼요.' },
-    { icon: '🔒', title: '항목명은 공개, 세부 수치는 비공개', desc: '"이상 없음 / 확인 필요"로만 표시돼요.' },
-    { icon: '🔄', title: '언제든 동의 철회 가능', desc: '철회 시 공유된 정보는 즉시 삭제돼요.' },
+    { icon: 'document.svg', title: '검증된 기관 결과만 인정', desc: '병원·보건소 발급 결과지를 업로드하면 자동 검증돼요.' },
+    { icon: 'eye.svg', title: '항목명은 공개, 세부 수치는 비공개', desc: '"이상 없음 / 확인 필요"로만 표시돼요.' },
+    { icon: 'refresh.svg', title: '언제든 동의 철회 가능', desc: '철회 시 공유된 정보는 즉시 삭제돼요.' },
   ];
   return (
     <div style={{ position: 'absolute', inset: 0, zIndex: 100, display: 'flex', flexDirection: 'column', background: '#fff' }}>
@@ -217,13 +219,17 @@ function HealthShareModal({ partnerName, onClose }) {
         <span style={{ fontSize: 17, fontWeight: 700, color: '#1E1C18' }}>건강 정보 공유</span>
       </div>
       <div style={{ flex: 1, overflowY: 'auto', padding: '32px 24px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{ width: 72, height: 72, borderRadius: '50%', background: '#EDF9F8', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20, fontSize: 32 }}>🛡️</div>
+        <div style={{ width: 72, height: 72, borderRadius: '50%', background: '#EDF9F8', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
+          <img src="shield-check.svg" alt="" width="36" height="36" style={{ filter: 'invert(55%) sepia(60%) saturate(400%) hue-rotate(140deg)' }} />
+        </div>
         <div style={{ fontSize: 17, fontWeight: 700, color: '#1E1C18', textAlign: 'center', marginBottom: 8 }}>서로 동의하면 검사결과를 확인할 수 있어요</div>
         <p style={{ margin: '0 0 28px', fontSize: 13, color: '#888', textAlign: 'center', lineHeight: 1.55 }}>한쪽만 동의한 경우 상대에게 동의 여부는 전달되지 않아요.</p>
         <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 28 }}>
           {features.map((f, i) => (
             <div key={i} style={{ display: 'flex', gap: 14, padding: '14px 16px', borderRadius: 14, background: '#fff', border: '1px solid #E9E6E1' }}>
-              <span style={{ fontSize: 22, flexShrink: 0 }}>{f.icon}</span>
+              <div style={{ width: 36, height: 36, borderRadius: 10, background: '#F7F5F2', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <img src={f.icon} alt="" width="20" height="20" style={{ filter: 'invert(40%) sepia(10%) saturate(400%) hue-rotate(10deg)' }} />
+              </div>
               <div>
                 <div style={{ fontSize: 14, fontWeight: 600, color: '#1E1C18', marginBottom: 3 }}>{f.title}</div>
                 <div style={{ fontSize: 12, color: '#888', lineHeight: 1.5 }}>{f.desc}</div>
