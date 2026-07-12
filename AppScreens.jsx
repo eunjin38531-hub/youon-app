@@ -210,10 +210,10 @@ function ProfileDetailScreen({ profileId, onBack, onQuiet, onInterest, savedQuie
           {/* 상단 버튼 */}
           <div style={{ position: 'absolute', top: 52, left: 8, right: 8, display: 'flex', justifyContent: 'space-between' }}>
             <button onClick={onBack} style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(0,0,0,0.32)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+              <img src="chevron-left.svg" alt="뒤로" width="20" height="20" style={{ filter: 'brightness(0) invert(1)' }} />
             </button>
             <button style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(0,0,0,0.32)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg>
+              <img src="menu-dots.svg" alt="더보기" width="20" height="20" style={{ filter: 'brightness(0) invert(1)' }} />
             </button>
           </div>
           {/* 페이지 인디케이터 */}
@@ -228,9 +228,7 @@ function ProfileDetailScreen({ profileId, onBack, onQuiet, onInterest, savedQuie
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               {/* 인증 뱃지 */}
-              <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 24, height: 24, borderRadius: '50%', background: 'var(--color-primary-500)', flexShrink: 0 }}>
-                <svg width="13" height="11" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-              </span>
+              <img src="인증.svg" alt="인증" width="24" height="24" style={{ flexShrink: 0 }} />
               <span style={{ fontSize: 22, fontWeight: 700, color: 'var(--color-text-primary)', letterSpacing: '-0.02em' }}>{p.name}, {p.age}</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
@@ -277,11 +275,11 @@ function ProfileDetailScreen({ profileId, onBack, onQuiet, onInterest, savedQuie
             {/* 원소 아이콘 + 캐릭터 */}
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
               <img src={elIcons[meEl]} alt="" style={{ width: 40, height: 40, borderRadius: 12, objectFit: 'cover' }} />
-              {/* 커플 캐릭터 자리 */}
-              <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 4 }}>
-                <span style={{ fontSize: 44 }}>🦊</span>
-                <svg width="18" height="16" viewBox="0 0 18 16" fill="#FF5A5A" style={{ flexShrink: 0 }}><path d="M9 15S1 9.5 1 4.5A4 4 0 0 1 9 3a4 4 0 0 1 8 1.5C17 9.5 9 15 9 15Z"/></svg>
-                <span style={{ fontSize: 44 }}>🐺</span>
+              {/* 커플 캐릭터 */}
+              <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'flex-end', gap: 0 }}>
+                <img src="여운 뒤통수 12 누끼 2.png" alt="나" style={{ width: 72, height: 72, objectFit: 'contain' }} />
+                <img src="_heart.svg" alt="heart" width="22" height="22" style={{ marginBottom: 10, flexShrink: 0 }} />
+                <img src="여운 누끼 1 수정 화면 하트 3.png" alt="상대방" style={{ width: 72, height: 72, objectFit: 'contain' }} />
               </div>
               <img src={elIcons[p.el]} alt="" style={{ width: 40, height: 40, borderRadius: 12, objectFit: 'cover' }} />
             </div>
@@ -331,11 +329,11 @@ function ProfileDetailScreen({ profileId, onBack, onQuiet, onInterest, savedQuie
       {/* ── 하단 액션 바 ── */}
       <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, display: 'flex', alignItems: 'center', gap: 10, padding: '12px 16px 30px', background: 'var(--color-surface-card)', borderTop: '1px solid var(--color-border-default)' }}>
         <button onClick={onQuiet} style={{ flex: 1, height: 54, border: `1.5px solid ${savedQuiet ? 'var(--color-accent-400)' : 'var(--color-border-strong)'}`, borderRadius: 'var(--radius-pill)', background: savedQuiet ? 'var(--color-accent-50)' : 'var(--color-surface-card)', color: savedQuiet ? 'var(--color-accent-600)' : 'var(--color-text-secondary)', fontFamily: 'var(--font-family-base)', fontSize: 15, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
-          <svg width="18" height="16" viewBox="0 0 18 16" fill={savedQuiet ? 'var(--color-accent-500)' : 'var(--color-natural-300)'}><path d="M9 15S1 9.5 1 4.5A4 4 0 0 1 9 3a4 4 0 0 1 8 1.5C17 9.5 9 15 9 15Z"/></svg>
+          <img src="heart.svg" alt="" width="18" height="18" style={{ filter: savedQuiet ? 'none' : 'grayscale(1) opacity(0.4)' }} />
           마음에 담기
         </button>
         <button onClick={onInterest} style={{ flex: 1, height: 54, border: 'none', borderRadius: 'var(--radius-pill)', background: 'var(--color-accent-400)', color: '#fff', fontFamily: 'var(--font-family-base)', fontSize: 15, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
-          <svg width="18" height="16" viewBox="0 0 18 16" fill="#fff"><path d="M9 15S1 9.5 1 4.5A4 4 0 0 1 9 3a4 4 0 0 1 8 1.5C17 9.5 9 15 9 15Z"/></svg>
+          <img src="_heart.svg" alt="" width="18" height="18" style={{ filter: 'brightness(0) invert(1)' }} />
           관심 표현
         </button>
       </div>

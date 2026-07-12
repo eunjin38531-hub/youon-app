@@ -4,10 +4,8 @@ const DS2 = window.YuonDesignSystem_8624c6;
 // ── 공통 UI 헬퍼 ──────────────────────────────────────────────────
 function VerifiedBadge({ size = 22 }) {
   return (
-    <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: size, height: size, borderRadius: '50%', background: 'var(--color-primary-500)', flexShrink: 0 }}>
-      <svg width={size * 0.55} height={size * 0.55} viewBox="0 0 12 10" fill="none">
-        <path d="M1 5L4.5 8.5L11 1.5" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
+    <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: size, height: size, flexShrink: 0 }}>
+      <img src="인증.svg" alt="인증" width={size} height={size} />
     </span>
   );
 }
@@ -15,7 +13,7 @@ function VerifiedBadge({ size = 22 }) {
 function ScoreBadge({ score }) {
   return (
     <div style={{ position: 'absolute', top: 10, left: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, padding: '7px 10px 6px', borderRadius: 12, background: 'rgba(255,255,255,0.97)', boxShadow: '0 2px 10px rgba(0,0,0,0.14)', pointerEvents: 'none' }}>
-      <svg width="18" height="16" viewBox="0 0 18 16" fill="#FF5A5A"><path d="M9 15S1 9.5 1 4.5A4 4 0 0 1 9 3a4 4 0 0 1 8 1.5C17 9.5 9 15 9 15Z"/></svg>
+      <img src="_heart.svg" alt="" width="18" height="16" />
       <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--color-text-primary)', lineHeight: 1 }}>{score}점</span>
     </div>
   );
@@ -51,7 +49,7 @@ function LikeCard({ p, onClick, locked }) {
         {locked && (
           <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <span style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(255,255,255,0.9)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <svg width="20" height="18" viewBox="0 0 18 16" fill="#FF5A5A"><path d="M9 15S1 9.5 1 4.5A4 4 0 0 1 9 3a4 4 0 0 1 8 1.5C17 9.5 9 15 9 15Z"/></svg>
+              <img src="_heart.svg" alt="" width="20" height="18" />
             </span>
           </div>
         )}
@@ -313,26 +311,23 @@ function StickerPicker({ onSend }) {
 // ── Chat room ───────────────────────────────────────────────────
 function HealthShareModal({ partnerName, onClose }) {
   const features = [
-    { icon: '🏥', title: '검증된 기관 결과만 인정', desc: '병원·보건소 발급 결과지를 업로드하면 자동 검증돼요.' },
-    { icon: '👁', title: '항목명은 공개, 세부 수치는 비공개', desc: '"이상 없음 / 확인 필요"로만 표시돼요.' },
-    { icon: '🔄', title: '언제든 동의 철회 가능', desc: '철회 시 공유된 정보는 즉시 삭제돼요.' },
+    { icon: 'document.svg', title: '검증된 기관 결과만 인정', desc: '병원·보건소 발급 결과지를 업로드하면 자동 검증돼요.' },
+    { icon: 'eye.svg', title: '항목명은 공개, 세부 수치는 비공개', desc: '"이상 없음 / 확인 필요"로만 표시돼요.' },
+    { icon: 'refresh.svg', title: '언제든 동의 철회 가능', desc: '철회 시 공유된 정보는 즉시 삭제돼요.' },
   ];
   return (
     <div style={{ position: 'absolute', inset: 0, zIndex: 100, display: 'flex', flexDirection: 'column', background: 'var(--color-surface-page)' }}>
       {/* header */}
       <div style={{ display: 'flex', alignItems: 'center', padding: '12px 4px 12px 4px', borderBottom: '1px solid var(--color-border-default)' }}>
         <button onClick={onClose} style={{ display: 'flex', alignItems: 'center', gap: 4, background: 'none', border: 'none', cursor: 'pointer', padding: '8px 12px', color: 'var(--color-text-primary)', fontSize: 15 }}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          <img src="chevron-left.svg" alt="뒤로" width="20" height="20" />
         </button>
         <span style={{ fontSize: 17, fontWeight: 700, color: 'var(--color-text-primary)' }}>건강 정보 공유</span>
       </div>
       <div style={{ flex: 1, overflowY: 'auto', padding: '32px 24px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         {/* shield icon */}
         <div style={{ width: 72, height: 72, borderRadius: '50%', background: 'var(--color-primary-50)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary-500)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            <polyline points="9 12 11 14 15 10" stroke="var(--color-primary-500)" strokeWidth="1.8"/>
-          </svg>
+          <img src="shield-check.svg" alt="보안" width="36" height="36" />
         </div>
         <div style={{ fontSize: 17, fontWeight: 700, color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 8 }}>서로 동의하면 검사결과를 확인할 수 있어요</div>
         <p style={{ margin: '0 0 28px', fontSize: 13, color: 'var(--color-text-meta)', textAlign: 'center', lineHeight: 1.55 }}>한쪽만 동의한 경우 상대에게 동의 여부는 전달되지 않아요.</p>
@@ -340,7 +335,7 @@ function HealthShareModal({ partnerName, onClose }) {
         <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 28 }}>
           {features.map((f, i) => (
             <div key={i} style={{ display: 'flex', gap: 14, padding: '14px 16px', borderRadius: 14, background: 'var(--color-surface-card)', border: '1px solid var(--color-border-default)' }}>
-              <span style={{ fontSize: 22, flexShrink: 0 }}>{f.icon}</span>
+              <img src={f.icon} alt="" width="24" height="24" style={{ flexShrink: 0, marginTop: 1 }} />
               <div>
                 <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--color-text-primary)', marginBottom: 3 }}>{f.title}</div>
                 <div style={{ fontSize: 12, color: 'var(--color-text-meta)', lineHeight: 1.5 }}>{f.desc}</div>
@@ -457,16 +452,13 @@ function ChatRoomScreen({ chatId, onBack }) {
             <div style={{ height: 1, background: 'var(--color-divider)', margin: '8px 0' }} />
             <button onClick={() => { setPanel(false); setShowHealth(true); }} style={{ display: 'flex', alignItems: 'center', gap: 12, width: '100%', padding: '13px 14px', borderRadius: 14, background: 'var(--color-surface-page)', border: '1px solid var(--color-border-default)', cursor: 'pointer', textAlign: 'left' }}>
               <span style={{ width: 38, height: 38, borderRadius: 10, background: 'var(--color-primary-50)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary-500)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                  <polyline points="9 12 11 14 15 10" stroke="var(--color-primary-500)" strokeWidth="1.8"/>
-                </svg>
+                <img src="shield-check.svg" alt="" width="20" height="20" />
               </span>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--color-text-primary)' }}>건강 정보 공유</div>
                 <div style={{ fontSize: 12, color: 'var(--color-text-meta)', marginTop: 2 }}>상호 동의 시에만 열람</div>
               </div>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-text-meta)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              <img src="chevron-left.svg" alt="" width="16" height="16" style={{ transform: 'rotate(180deg)', opacity: 0.4 }} />
             </button>
           </div>
         </>
