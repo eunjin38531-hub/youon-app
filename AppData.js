@@ -90,7 +90,7 @@ window.YuonData = (function () {
   profiles.forEach((p, i) => { p.ilju = iljus[i % iljus.length]; p.religion = religions[i % religions.length]; });
 
   const traits = [
-    { icon: '../../assets/elements/fire.png', title: '표현력이 풍부해요', desc: '화(火) 기운이 강해 감정을 솔직하게 표현하고, 주변 분위기를 자연스럽게 이끌어요.' },
+    { icon: '✏️', title: '표현력이 풍부해요', desc: '화(火) 기운이 강해 감정을 솔직하게 표현하고, 주변 분위기를 자연스럽게 이끌어요.' },
     { icon: '🎨', title: '창의적인 아이디어', desc: '독특한 시각으로 문제를 보고, 틀을 깨는 아이디어를 즐겨요. 기획·콘텐츠에 강점이 있어요.' },
     { icon: '🤝', title: '사교성과 리더십', desc: '자연스럽게 분위기를 이끌고 사람을 모아요. 모임의 중심 역할을 맡는 경우가 많아요.' },
   ];
