@@ -140,26 +140,26 @@ function HomeScreen({ onOpenProfile }) {
 
       <div style={{ flex: 1, overflowY: 'auto', padding: '4px 0 24px' }}>
         {/* 오늘의 연애운 배너 */}
-        <div style={{ margin: '0 16px', position: 'relative' }}>
-          <div style={{ borderRadius: 20, background: '#5AC7C4', padding: '20px 20px 20px 20px', overflow: 'hidden', minHeight: 130 }}>
-            <div style={{ maxWidth: '60%' }}>
+        <div style={{ margin: '0 16px 0', position: 'relative', overflow: 'visible' }}>
+          <div style={{ borderRadius: 20, background: '#5AC7C4', padding: '22px 0 22px 22px', minHeight: 140, position: 'relative', overflow: 'hidden' }}>
+            <div style={{ maxWidth: '56%' }}>
               <div style={{ fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.82)', marginBottom: 8, letterSpacing: '0.03em' }}>오늘의 연애운</div>
-              <div style={{ fontSize: 18, fontWeight: 800, color: '#fff', lineHeight: 1.35, letterSpacing: '-0.02em', marginBottom: 16 }}>오늘은 새로운 사람에게<br />마음이 열리는 날이에요</div>
-              <button style={{ display: 'inline-flex', alignItems: 'center', gap: 4, background: 'rgba(255,255,255,0.22)', border: 'none', borderRadius: 99, padding: '7px 14px', color: '#fff', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>
+              <div style={{ fontSize: 18, fontWeight: 800, color: '#fff', lineHeight: 1.35, letterSpacing: '-0.02em', marginBottom: 18 }}>오늘은 새로운 사람에게<br />마음이 열리는 날이에요</div>
+              <button style={{ display: 'inline-flex', alignItems: 'center', gap: 4, background: 'rgba(255,255,255,0.22)', border: 'none', borderRadius: 99, padding: '8px 14px', color: '#fff', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>
                 내 사주 연애운 보기
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round"><polyline points="9 18 15 12 9 6"/></svg>
               </button>
             </div>
+            {/* 캐릭터 — 카드 오른쪽에 맞닿게 */}
+            <img src="image 95.png" alt="" style={{ position: 'absolute', right: -6, bottom: -10, width: 160, height: 160, objectFit: 'contain', pointerEvents: 'none' }} />
           </div>
-          {/* 캐릭터 카드 밖으로 넘침 */}
-          <img src="image 95.png" alt="" style={{ position: 'absolute', right: -4, bottom: -16, width: 148, height: 148, objectFit: 'contain', pointerEvents: 'none' }} />
         </div>
 
         {/* 추천 인연 섹션 헤더 */}
-        <div style={{ padding: '28px 18px 4px' }}>
-          <div style={{ fontSize: 17, fontWeight: 700, color: '#1E1C18', letterSpacing: '-0.02em', marginBottom: 4 }}>
-            {locOn ? '' : '오늘의 '}
-            <span style={{ color: '#FF8C7D' }}>{locOn ? `${curRange.region}의 인연` : '추천 인연'}</span>
+        <div style={{ padding: '24px 18px 2px' }}>
+          <div style={{ fontSize: 17, letterSpacing: '-0.02em', marginBottom: 4 }}>
+            <span style={{ fontWeight: 400, color: '#1E1C18' }}>{locOn ? '' : '오늘의 '}</span>
+            <span style={{ fontWeight: 700, color: locOn ? '#1E1C18' : '#FF8C7D' }}>{locOn ? `${curRange.region}의 인연` : '추천 인연'}</span>
           </div>
           <div style={{ fontSize: 13, color: '#888', marginBottom: 16 }}>
             {locOn ? '가까운 거리순으로 보여드려요' : '사주 궁합이 높은 순으로 보여드려요'}
@@ -173,7 +173,7 @@ function HomeScreen({ onOpenProfile }) {
             return (
               <div key={p.id} onClick={() => onOpenProfile(p.id)} style={{ borderRadius: 16, overflow: 'hidden', background: '#fff', boxShadow: '0 2px 16px rgba(30,28,24,0.10)', cursor: 'pointer', WebkitTapHighlightColor: 'transparent' }}>
                 {/* 사진 */}
-                <div style={{ position: 'relative', width: '100%', aspectRatio: '4 / 3', background: '#E9E6E1' }}>
+                <div style={{ position: 'relative', width: '100%', aspectRatio: '4 / 3.2', background: '#E9E6E1' }}>
                   <img src={p.photo} alt={p.name} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
                   {/* 스코어 뱃지 */}
                   <div style={{ position: 'absolute', top: 10, left: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, padding: '7px 10px 6px', borderRadius: 12, background: 'rgba(255,255,255,0.97)', boxShadow: '0 2px 8px rgba(0,0,0,0.14)' }}>
@@ -248,14 +248,14 @@ function ProfileDetailScreen({ profileId, onBack, onQuiet, onInterest, savedQuie
 
         <div style={{ padding: '18px 20px 0' }}>
           {/* 이름 + 활동 */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <img src="인증.svg" width="24" height="24" />
-              <span style={{ fontSize: 22, fontWeight: 700, color: '#1E1C18', letterSpacing: '-0.02em' }}>{p.name}, {p.age}</span>
+              <img src="인증.svg" width="22" height="22" />
+              <span style={{ fontSize: 20, fontWeight: 700, color: '#1E1C18', letterSpacing: '-0.02em' }}>{p.name}, {p.age}</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 13, color: '#888' }}>
-                <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#4CAF50' }} />{p.activity}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 13, color: '#888', padding: '3px 10px', borderRadius: 99, background: '#F3F1EE' }}>
+                <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#5AC7C4', flexShrink: 0 }} />{p.activity}
               </span>
               <span style={{ fontSize: 13, color: '#888' }}>19km</span>
             </div>
@@ -279,44 +279,48 @@ function ProfileDetailScreen({ profileId, onBack, onQuiet, onInterest, savedQuie
           </div>
 
           {/* 자기소개 */}
-          <div style={{ margin: '24px 0 10px', fontSize: 18, fontWeight: 700, color: '#1E1C18' }}>자기소개</div>
-          <p style={{ margin: '0 0 14px', fontSize: 14, lineHeight: 1.7, color: '#5A564E' }}>{p.bio}</p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 30 }}>
+          <div style={{ margin: '20px 0 10px', fontSize: 17, fontWeight: 700, color: '#1E1C18' }}>자기소개</div>
+          <div style={{ borderRadius: 14, background: '#F7F5F2', padding: '14px 16px', marginBottom: 12 }}>
+            <p style={{ margin: 0, fontSize: 14, lineHeight: 1.7, color: '#5A564E' }}>{p.bio}</p>
+          </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 28 }}>
             {p.impressions.map((k) => (
               <span key={k} style={{ display: 'inline-flex', alignItems: 'center', height: 34, padding: '0 14px', borderRadius: 999, border: '1px solid #E0DDD8', fontSize: 13, fontWeight: 500, color: '#5A564E', background: '#fff' }}>{k}</span>
             ))}
           </div>
 
           {/* 당신과 name님은 */}
-          <div style={{ marginBottom: 14 }}>
-            <span style={{ fontSize: 20, fontWeight: 700, color: '#1E1C18' }}>당신과 </span>
-            <span style={{ fontSize: 20, fontWeight: 700, color: '#FF8C7D' }}>{p.name}</span>
-            <span style={{ fontSize: 20, fontWeight: 700, color: '#1E1C18' }}>님은</span>
+          <div style={{ marginBottom: 12 }}>
+            <span style={{ fontSize: 18, fontWeight: 400, color: '#1E1C18' }}>당신과 </span>
+            <span style={{ fontSize: 18, fontWeight: 700, color: '#FF8C7D' }}>{p.name}</span>
+            <span style={{ fontSize: 18, fontWeight: 400, color: '#1E1C18' }}>님은</span>
           </div>
-          <div style={{ borderRadius: 20, background: '#fff', border: '1px solid #E9E6E1', padding: '22px 20px 20px', marginBottom: 30 }}>
+          <div style={{ borderRadius: 20, background: '#fff', border: '1px solid #E9E6E1', padding: '20px 20px 20px', marginBottom: 28 }}>
             {/* 원소 + 커플 */}
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
-              <span style={{ width: 42, height: 42, borderRadius: 12, background: '#FFF1EF', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22 }}>{elIcons[meEl]}</span>
-              <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
-                <img src="Frame 427319215.png" alt="커플" style={{ width: 130, height: 110, objectFit: 'contain' }} />
+            <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 14 }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
+                <span style={{ width: 44, height: 44, borderRadius: 12, background: '#FFF1EF', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24 }}>{elIcons[meEl]}</span>
               </div>
-              <span style={{ width: 42, height: 42, borderRadius: 12, background: '#EDF9F8', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22 }}>{elIcons[p.el]}</span>
+              <img src="Frame 427319215.png" alt="커플" style={{ width: 160, height: 130, objectFit: 'contain', flex: 1 }} />
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
+                <span style={{ width: 44, height: 44, borderRadius: 12, background: '#EDF9F8', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24 }}>{elIcons[p.el]}</span>
+              </div>
             </div>
             {/* 점수 */}
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: 2, marginBottom: 10 }}>
-              <span style={{ fontSize: 42, fontWeight: 800, color: '#FF8C7D', letterSpacing: '-0.03em' }}>{p.score}점</span>
+            <div style={{ marginBottom: 8 }}>
+              <span style={{ fontSize: 40, fontWeight: 800, color: '#FF8C7D', letterSpacing: '-0.03em' }}>{p.score}점</span>
             </div>
             {/* 점수 바 */}
             <div style={{ position: 'relative', height: 8, borderRadius: 999, background: '#F0EDEA', marginBottom: 14 }}>
               <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: `${p.score}%`, borderRadius: 999, background: 'linear-gradient(90deg, #FFA397, #FF8C7D)' }} />
             </div>
-            <p style={{ margin: 0, fontSize: 14, lineHeight: 1.65, color: '#5A564E' }}>{p.synergy}</p>
+            <p style={{ margin: 0, fontSize: 13, lineHeight: 1.65, color: '#5A564E' }}>{p.synergy}</p>
           </div>
 
           {/* 성향과 재능 */}
           <div style={{ marginBottom: 14 }}>
-            <span style={{ fontSize: 20, fontWeight: 700, color: '#FF8C7D' }}>{p.name}</span>
-            <span style={{ fontSize: 20, fontWeight: 700, color: '#1E1C18' }}>님의 성향과 재능</span>
+            <span style={{ fontSize: 18, fontWeight: 700, color: '#FF8C7D' }}>{p.name}</span>
+            <span style={{ fontSize: 18, fontWeight: 700, color: '#1E1C18' }}>님의 성향과 재능</span>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', marginBottom: 30 }}>
             {traits.map((t, i) => (
@@ -343,9 +347,9 @@ function ProfileDetailScreen({ profileId, onBack, onQuiet, onInterest, savedQuie
       </div>
 
       {/* 하단 액션 바 */}
-      <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, display: 'flex', gap: 10, padding: '12px 16px 28px', background: '#fff', borderTop: '1px solid #F0EDEA' }}>
-        <button onClick={onQuiet} style={{ flex: 1, height: 54, borderRadius: 999, background: '#fff', border: `1.5px solid ${savedQuiet ? '#FF8C7D' : '#E0DDD8'}`, color: savedQuiet ? '#FF8C7D' : '#5A564E', fontFamily: 'var(--font-family-base)', fontSize: 15, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
-          <img src="heart.svg" alt="" width="18" height="18" style={{ filter: savedQuiet ? 'invert(60%) sepia(80%) saturate(400%) hue-rotate(320deg)' : 'opacity(0.4)' }} />
+      <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, display: 'flex', gap: 10, padding: '12px 16px 30px', background: '#fff', borderTop: '1px solid #F0EDEA' }}>
+        <button onClick={onQuiet} style={{ flex: 1, height: 54, borderRadius: 999, background: '#FFF1EF', border: `1.5px solid ${savedQuiet ? '#FF8C7D' : '#FFCDC8'}`, color: '#FF8C7D', fontFamily: 'var(--font-family-base)', fontSize: 15, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+          <span style={{ fontSize: 16 }}>🤍</span>
           마음에 담기
         </button>
         <button onClick={onInterest} style={{ flex: 1, height: 54, borderRadius: 999, background: '#FF8C7D', border: 'none', color: '#fff', fontFamily: 'var(--font-family-base)', fontSize: 15, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
