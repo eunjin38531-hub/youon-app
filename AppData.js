@@ -3,17 +3,17 @@ window.YuonData = (function () {
 
   // 로컬 이미지
   const IMG = {
-    seoyeon: 'images/01.jpg',  // 오피스 직장인
-    hana:    'images/03.jpg',  // 집 고양이
-    sua:     'images/05.jpg',  // 블레이저 코워킹
-    yerin:   'images/04.jpg',  // 꽃집
-    me:      'images/11.jpg',  // 카페
-    jihoon:  'images/13.jpg',  // 정장 남성
-    minjun:  'images/13.jpg',
-    doyun:   'images/13.jpg',
-    h1:      'images/13.jpg',
-    h2:      'images/13.jpg',
-    h3:      'images/13.jpg',
+    seoyeon: 'images/w01.jpg',
+    hana:    'images/w03.jpg',
+    sua:     'images/w05.jpg',
+    yerin:   'images/w04.jpg',
+    me:      'images/w11.jpg',
+    jihoon:  'images/01.jpg',
+    minjun:  'images/02.jpg',
+    doyun:   'images/03.jpg',
+    h1:      'images/04.jpg',
+    h2:      'images/05.jpg',
+    h3:      'images/06.jpg',
   };
 
   const profiles = [
