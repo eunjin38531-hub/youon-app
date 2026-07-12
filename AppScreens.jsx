@@ -230,7 +230,7 @@ function ProfileDetailScreen({ profileId, onBack, onQuiet, onInterest, savedQuie
       <div style={{ flex: 1, overflowY: 'auto', paddingBottom: 90 }}>
 
         {/* 사진 */}
-        <div style={{ position: 'relative', width: '100%', aspectRatio: '3 / 2.8', background: '#E9E6E1' }}>
+        <div style={{ position: 'relative', width: '100%', aspectRatio: '1 / 1.18', background: '#E9E6E1' }}>
           <img src={p.photo} alt={p.name} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
           {/* 상단 버튼 */}
           <div style={{ position: 'absolute', top: 54, left: 12, right: 12, display: 'flex', justifyContent: 'space-between' }}>
@@ -309,7 +309,7 @@ function ProfileDetailScreen({ profileId, onBack, onQuiet, onInterest, savedQuie
             </div>
             {/* 점수 */}
             <div style={{ marginBottom: 8 }}>
-              <span style={{ fontSize: 40, fontWeight: 800, color: '#FF8C7D', letterSpacing: '-0.03em' }}>{p.score}점</span>
+              <span style={{ fontSize: 40, fontWeight: 800, color: '#FF8C7D', letterSpacing: '-0.03em' }}>{p.compatScore || p.score}점</span>
             </div>
             {/* 점수 바 */}
             <div style={{ position: 'relative', height: 8, borderRadius: 999, background: '#F0EDEA', marginBottom: 14 }}>
@@ -350,11 +350,11 @@ function ProfileDetailScreen({ profileId, onBack, onQuiet, onInterest, savedQuie
       {/* 하단 액션 바 */}
       <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, display: 'flex', gap: 10, padding: '12px 16px 30px', background: '#fff', borderTop: '1px solid #F0EDEA' }}>
         <button onClick={onQuiet} style={{ flex: 1, height: 54, borderRadius: 999, background: '#FFF1EF', border: `1.5px solid ${savedQuiet ? '#FF8C7D' : '#FFCDC8'}`, color: '#FF8C7D', fontFamily: 'var(--font-family-base)', fontSize: 15, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
-          <span style={{ fontSize: 16 }}>🤍</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF8C7D" strokeWidth="2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
           마음에 담기
         </button>
         <button onClick={onInterest} style={{ flex: 1, height: 54, borderRadius: 999, background: '#FF8C7D', border: 'none', color: '#fff', fontFamily: 'var(--font-family-base)', fontSize: 15, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
-          <span style={{ fontSize: 16 }}>❤️</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
           관심 표현
         </button>
       </div>
