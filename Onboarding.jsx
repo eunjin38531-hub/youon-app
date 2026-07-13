@@ -153,11 +153,11 @@ function StepProfile({ onNext, onBack, step, total }) {
       <FieldLabel>닉네임</FieldLabel>
       <Input value={nick} onChange={(e) => setNick(e.target.value)} placeholder="2~10자" style={{ marginBottom: 18 }} />
       <div style={{ display: 'flex', gap: 12, marginBottom: 18 }}>
-        <div style={{ flex: 1 }}>
+        <div style={{ width: 90, flexShrink: 0 }}>
           <FieldLabel>키</FieldLabel>
           <Input value={height} onChange={(e) => setHeight(e.target.value)} placeholder="cm" inputMode="numeric" />
         </div>
-        <div style={{ flex: 1.4 }}>
+        <div style={{ flex: 1, minWidth: 0 }}>
           <FieldLabel>직업</FieldLabel>
           <Input value={job} onChange={(e) => setJob(e.target.value)} placeholder="예: 디자이너" />
         </div>
