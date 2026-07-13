@@ -7,7 +7,7 @@ window.YuonData = (function () {
     hana:    'images/w03.jpg',
     sua:     'images/w05.jpg',
     yerin:   'images/w04.jpg',
-    me:      'images/w11.jpg',
+    me:      'images/01.jpg',
     jihoon:  'images/w06.jpg',
     minjun:  'images/w07.jpg',
     doyun:   'images/w08.jpg',
