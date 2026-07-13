@@ -148,8 +148,8 @@ function StepProfile({ onNext, onBack, step, total }) {
   const ok = nick.trim() && area.trim() && hobbies.length > 0;
   return (
     <ObShell step={step} total={total} onBack={onBack} title="프로필을 작성해주세요"
-      sub="매칭 상대에게 보여질 정보예요. 솔직하게 적을수록 좋은 인연을 만날 확률이 높아져요."
-      footer={<Button variant="primary" size="lg" fullWidth disabled={!ok} onClick={onNext}>다음</Button>}>
+      sub="매칭 상대에게 보여질 정보에요. 솔직하게 적을수록 좋은 인연을 만날 확률이 높아요."
+      footer={<Button variant="primary" size="lg" fullWidth onClick={onNext}>다음</Button>}>
       <FieldLabel>닉네임</FieldLabel>
       <Input value={nick} onChange={(e) => setNick(e.target.value)} placeholder="2~10자" style={{ marginBottom: 18 }} />
       <div style={{ display: 'flex', gap: 12, marginBottom: 18 }}>
@@ -164,7 +164,7 @@ function StepProfile({ onNext, onBack, step, total }) {
       </div>
       <FieldLabel>거주지</FieldLabel>
       <Input value={area} onChange={(e) => setArea(e.target.value)} placeholder="예: 서울 마포구" style={{ marginBottom: 18 }} />
-      <FieldLabel>취미 · 관심사 <span style={{ color: 'var(--color-text-tertiary)', fontWeight: 500 }}>({hobbies.length}/5)</span></FieldLabel>
+      <FieldLabel>취미 · 관심사</FieldLabel>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
         {hobbyOpts.map((h) => {
           const on = hobbies.includes(h);
