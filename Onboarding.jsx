@@ -155,11 +155,11 @@ function StepProfile({ onNext, onBack, step, total }) {
       <div style={{ display: 'flex', gap: 12, marginBottom: 18 }}>
         <div style={{ width: 90, flexShrink: 0 }}>
           <FieldLabel>키</FieldLabel>
-          <Input value={height} onChange={(e) => setHeight(e.target.value)} placeholder="cm" inputMode="numeric" />
+          <Input value={height} onChange={(e) => setHeight(e.target.value)} placeholder="cm" inputMode="numeric" style={{ width: '100%' }} />
         </div>
-        <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{ flex: 1, minWidth: 0, overflow: 'hidden' }}>
           <FieldLabel>직업</FieldLabel>
-          <Input value={job} onChange={(e) => setJob(e.target.value)} placeholder="예: 디자이너" />
+          <Input value={job} onChange={(e) => setJob(e.target.value)} placeholder="예: 디자이너" style={{ width: '100%', boxSizing: 'border-box' }} />
         </div>
       </div>
       <FieldLabel>거주지</FieldLabel>
