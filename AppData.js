@@ -8,12 +8,12 @@ window.YuonData = (function () {
     sua:     'images/w05.jpg',
     yerin:   'images/w04.jpg',
     me:      'images/w11.jpg',
-    jihoon:  'images/01.jpg',
-    minjun:  'images/02.jpg',
-    doyun:   'images/03.jpg',
-    h1:      'images/04.jpg',
-    h2:      'images/05.jpg',
-    h3:      'images/06.jpg',
+    jihoon:  'images/w06.jpg',
+    minjun:  'images/w07.jpg',
+    doyun:   'images/w08.jpg',
+    h1:      'images/w09.jpg',
+    h2:      'images/w10.jpg',
+    h3:      'images/w12.jpg',
   };
 
   const profiles = [
