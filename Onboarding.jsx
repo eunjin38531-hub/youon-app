@@ -35,6 +35,17 @@ function FieldLabel({ children }) {
   return <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text-secondary)', marginBottom: 8 }}>{children}</div>;
 }
 
+function RawInput({ value, onChange, placeholder, inputMode }) {
+  const [focused, setFocused] = React.useState(false);
+  return (
+    <div style={{ display: 'block', width: '100%', boxSizing: 'border-box', height: 52, padding: '0 16px', background: '#fff', border: `1.5px solid ${focused ? 'var(--color-primary-500)' : 'var(--color-border-strong)'}`, borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center' }}>
+      <input value={value} onChange={onChange} placeholder={placeholder} inputMode={inputMode}
+        onFocus={() => setFocused(true)} onBlur={() => setFocused(false)}
+        style={{ width: '100%', border: 'none', outline: 'none', background: 'transparent', fontFamily: 'var(--font-family-base)', fontSize: 16, color: 'var(--color-text-primary)', minWidth: 0 }} />
+    </div>
+  );
+}
+
 // ── step 0: 약관 동의 ────────────────────────────────────────────
 function StepTerms({ onNext, onBack, step, total }) {
   const { Button, Checkbox, Icon } = ObDS;
@@ -155,11 +166,11 @@ function StepProfile({ onNext, onBack, step, total }) {
       <div style={{ display: 'flex', gap: 12, marginBottom: 18 }}>
         <div style={{ width: 90, flexShrink: 0 }}>
           <FieldLabel>키</FieldLabel>
-          <Input value={height} onChange={(e) => setHeight(e.target.value)} placeholder="cm" inputMode="numeric" style={{ width: '100%' }} />
+          <Input value={height} onChange={(e) => setHeight(e.target.value)} placeholder="cm" inputMode="numeric" />
         </div>
-        <div style={{ flex: 1, minWidth: 0, overflow: 'hidden' }}>
+        <div style={{ flex: 1, minWidth: 0 }}>
           <FieldLabel>직업</FieldLabel>
-          <Input value={job} onChange={(e) => setJob(e.target.value)} placeholder="예: 디자이너" style={{ width: '100%', boxSizing: 'border-box' }} />
+          <RawInput value={job} onChange={(e) => setJob(e.target.value)} placeholder="예: 디자이너" />
         </div>
       </div>
       <FieldLabel>거주지</FieldLabel>
