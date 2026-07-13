@@ -20,11 +20,11 @@ function LoginScreen({ onSignup, onLogin }) {
         {/* 아이콘 뒤 큰 흰 글로우 */}
         <div style={{ position: 'absolute', top: 20, left: '50%', transform: 'translateX(-50%)', width: 280, height: 280, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.28) 0%, transparent 58%)', pointerEvents: 'none' }} />
         {/* 아이콘 박스 */}
-        <div style={{ position: 'relative', width: 120, height: 120, borderRadius: 30, background: 'linear-gradient(145deg, #5DD4D0 0%, #3DBEBB 100%)', boxShadow: '0 8px 30px rgba(0,80,80,0.22)', marginBottom: 20, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-          <div style={{ position: 'absolute', inset: 0, borderRadius: 30, background: 'radial-gradient(ellipse at 38% 28%, rgba(255,255,255,0.28) 0%, transparent 60%)', pointerEvents: 'none' }} />
-          <img src="images/yuon-app-icon.png" alt="유온" style={{ width: 90, height: 90, objectFit: 'contain', position: 'relative' }} />
+        <div style={{ position: 'relative', width: 140, height: 140, borderRadius: 34, background: 'linear-gradient(145deg, #5DD4D0 0%, #3DBEBB 100%)', boxShadow: '0 10px 36px rgba(0,80,80,0.25)', marginBottom: 22, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+          <div style={{ position: 'absolute', inset: 0, borderRadius: 34, background: 'radial-gradient(ellipse at 38% 28%, rgba(255,255,255,0.30) 0%, transparent 60%)', pointerEvents: 'none' }} />
+          <img src="images/yuon-app-icon.png" alt="유온" style={{ width: 108, height: 108, objectFit: 'contain', position: 'relative' }} />
         </div>
-        <img src="images/yuon-wordmark.png" alt="YUON" style={{ height: 44, objectFit: 'contain', filter: 'brightness(0) invert(1)', marginBottom: 12, position: 'relative' }} />
+        <img src="images/yuon-wordmark.png" alt="YUON" style={{ height: 52, objectFit: 'contain', filter: 'brightness(0) invert(1)', marginBottom: 14, position: 'relative' }} />
         <span style={{ fontSize: 15, color: 'rgba(255,255,255,0.90)', letterSpacing: '-0.01em', position: 'relative' }}>안녕하세요, 유온에 오신 걸 환영해요</span>
       </div>
 
@@ -36,14 +36,14 @@ function LoginScreen({ onSignup, onLogin }) {
         <Sparkle size={5}  opacity={0.38} style={{ top: '60%', right: '6%' }} />
         <Sparkle size={6}  opacity={0.42} style={{ bottom: '18%', left: '6%' }} />
         <Sparkle size={5}  opacity={0.38} style={{ bottom: '28%', right: '10%' }} />
-        <img src="images/dufkdddl 1.png" alt="유온 캐릭터" style={{ width: 260, height: 260, objectFit: 'contain', position: 'relative' }} />
+        <img src="images/dufkdddl 1.png" alt="유온 캐릭터" style={{ width: 300, height: 300, objectFit: 'contain', position: 'relative' }} />
       </div>
 
       {/* 하단 CTA */}
       <div style={{ padding: '0 24px 44px', zIndex: 1, flexShrink: 0 }}>
         <button
           onClick={onSignup}
-          style={{ width: '100%', height: 58, borderRadius: 999, background: '#fff', color: '#3DBEBB', fontFamily: 'var(--font-family-base)', fontSize: 17, fontWeight: 700, border: 'none', cursor: 'pointer', letterSpacing: '-0.01em' }}
+          style={{ width: '100%', height: 58, borderRadius: 16, background: '#F07966', color: '#fff', fontFamily: 'var(--font-family-base)', fontSize: 17, fontWeight: 700, border: 'none', cursor: 'pointer', letterSpacing: '-0.01em' }}
         >
           회원가입 후 시작하기
         </button>
@@ -57,16 +57,17 @@ function LoginScreen({ onSignup, onLogin }) {
           </button>
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'center', gap: 14 }}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 16 }}>
           {/* 카카오 */}
-          <button onClick={onLogin} style={{ width: 56, height: 56, borderRadius: '50%', padding: 0, border: 'none', cursor: 'pointer', background: '#FEE500', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <svg width="28" height="26" viewBox="0 0 28 26" fill="none">
-              <path d="M14 1C6.82 1 1 5.63 1 11.3c0 3.67 2.45 6.9 6.15 8.76L5.5 25l6.3-4.08c.72.1 1.46.15 2.2.15 7.18 0 13-4.63 13-10.3C27 5.63 21.18 1 14 1z" fill="#3C1E1E"/>
+          <button onClick={onLogin} style={{ width: 62, height: 62, borderRadius: '50%', padding: 0, border: 'none', cursor: 'pointer', background: '#FEE500', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2 }}>
+            <svg width="26" height="24" viewBox="0 0 26 24" fill="none">
+              <path d="M13 1C6.37 1 1 5.25 1 10.5c0 3.44 2.28 6.46 5.73 8.2L5.2 23l5.88-3.82c.62.09 1.26.13 1.92.13 6.63 0 12-4.25 12-9.5C25 5.25 19.63 1 13 1z" fill="#3C1E1E"/>
             </svg>
+            <span style={{ fontSize: 9, fontWeight: 800, color: '#3C1E1E', lineHeight: 1 }}>TALK</span>
           </button>
           {/* 구글 */}
-          <button onClick={onLogin} style={{ width: 56, height: 56, borderRadius: '50%', padding: 0, border: '1.5px solid #E0DDD8', cursor: 'pointer', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <svg width="24" height="24" viewBox="0 0 24 24">
+          <button onClick={onLogin} style={{ width: 62, height: 62, borderRadius: '50%', padding: 0, border: '1.5px solid #E0DDD8', cursor: 'pointer', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <svg width="26" height="26" viewBox="0 0 24 24">
               <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
               <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
               <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
@@ -74,16 +75,16 @@ function LoginScreen({ onSignup, onLogin }) {
             </svg>
           </button>
           {/* 네이버 */}
-          <button onClick={onLogin} style={{ width: 56, height: 56, borderRadius: '50%', padding: 0, border: 'none', cursor: 'pointer', background: '#03C75A', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-              <path d="M12.6 11.4L9.1 6H6v10h3.4v-5.4L13 16H16V6h-3.4v5.4z" fill="#fff"/>
+          <button onClick={onLogin} style={{ width: 62, height: 62, borderRadius: '50%', padding: 0, border: 'none', cursor: 'pointer', background: '#03C75A', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M13.8 12.6L9.8 6H6v12h4.2v-6.6L14.2 18H18V6h-4.2v6.6z" fill="#fff"/>
             </svg>
           </button>
           {/* 이메일 */}
-          <button onClick={onLogin} style={{ width: 56, height: 56, borderRadius: '50%', background: '#fff', border: '1.5px solid #F5C4BC', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <svg width="26" height="20" viewBox="0 0 26 20" fill="none">
-              <rect x="1" y="1" width="24" height="18" rx="4" stroke="#F07966" strokeWidth="1.8"/>
-              <path d="M1 5L13 12L25 5" stroke="#F07966" strokeWidth="1.8" strokeLinecap="round"/>
+          <button onClick={onLogin} style={{ width: 62, height: 62, borderRadius: '50%', background: '#fff', border: '1.5px solid #F5C4BC', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <svg width="28" height="22" viewBox="0 0 28 22" fill="none">
+              <rect x="1" y="1" width="26" height="20" rx="4" stroke="#F07966" strokeWidth="1.8"/>
+              <path d="M1 5.5L14 13L27 5.5" stroke="#F07966" strokeWidth="1.8" strokeLinecap="round"/>
             </svg>
           </button>
         </div>
