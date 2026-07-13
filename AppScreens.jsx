@@ -43,7 +43,7 @@ function LoginScreen({ onSignup, onLogin }) {
       <div style={{ padding: '0 24px 44px', zIndex: 1, flexShrink: 0 }}>
         <button
           onClick={onSignup}
-          style={{ width: '100%', height: 58, borderRadius: 999, background: '#F07966', color: '#fff', fontFamily: 'var(--font-family-base)', fontSize: 17, fontWeight: 700, border: 'none', cursor: 'pointer', letterSpacing: '-0.01em' }}
+          style={{ width: '100%', height: 58, borderRadius: 999, background: '#fff', color: '#3DBEBB', fontFamily: 'var(--font-family-base)', fontSize: 17, fontWeight: 700, border: 'none', cursor: 'pointer', letterSpacing: '-0.01em' }}
         >
           회원가입 후 시작하기
         </button>
