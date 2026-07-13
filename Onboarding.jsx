@@ -289,22 +289,22 @@ function StepVerify({ onNext, onBack, step, total }) {
   ];
   return (
     <ObShell step={step} total={total} onBack={onBack} title={<span>인증 뱃지로<br />신뢰를 더해보세요</span>}
-      sub="선택 사항이에요. 인증 뱃지가 있으면 매칭 상대에게 더 높은 신뢰를 줄 수 있어요."
+      sub={<span style={{ color: '#807A71' }}>선택 사항이에요. 인증 뱃지가 있으면 매칭 상대에게 더 높은 신뢰를 줄 수 있어요.</span>}
       footer={<div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         <Button variant="primary" size="lg" fullWidth onClick={onNext}>다음</Button>
-        <Button variant="ghost" size="md" fullWidth onClick={onNext}>나중에 할게요</Button>
+        <button onClick={onNext} style={{ background: 'none', border: 'none', padding: '10px 0', fontSize: 14, fontWeight: 500, color: '#807A71', cursor: 'pointer', fontFamily: 'var(--font-family-base)' }}>나중에 할게요</button>
       </div>}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
         {badges.map((b) => {
           const on = got[b.key];
           return (
-            <div key={b.key} style={{ display: 'flex', alignItems: 'center', gap: 14, padding: 16, borderRadius: 'var(--radius-lg)', background: 'var(--color-surface-card)', border: `1px solid ${on ? 'var(--color-primary-300)' : 'var(--color-border-default)'}` }}>
-              <span style={{ width: 48, height: 48, flexShrink: 0, borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', justifyContent: 'center', background: b.tone === 'accent' ? 'var(--color-accent-50)' : 'var(--color-primary-50)' }}>
-                <Icon name={b.icon} size={24} color={b.tone === 'accent' ? 'var(--color-accent-500)' : 'var(--color-primary-600)'} />
+            <div key={b.key} style={{ display: 'flex', alignItems: 'center', gap: 14, padding: 16, borderRadius: 'var(--radius-lg)', background: 'var(--color-surface-card)', border: '1px solid var(--color-border-default)' }}>
+              <span style={{ width: 48, height: 48, flexShrink: 0, borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--color-primary-50)' }}>
+                <Icon name={b.icon} size={24} color="var(--color-primary-600)" />
               </span>
               <div style={{ flex: 1 }}>
                 <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--color-text-primary)' }}>{b.title}</div>
-                <div style={{ fontSize: 13, color: 'var(--color-text-meta)', marginTop: 2 }}>{b.desc}</div>
+                <div style={{ fontSize: 13, color: '#807A71', marginTop: 2 }}>{b.desc}</div>
               </div>
               <Button variant={on ? 'secondary' : 'primary'} size="sm" disabled={on} onClick={() => setGot((g) => ({ ...g, [b.key]: true }))}>{on ? '완료' : '인증'}</Button>
             </div>
