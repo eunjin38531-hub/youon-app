@@ -22,7 +22,7 @@ function ObShell({ step, total, title, sub, onBack, footer, children, scroll = t
       <div style={{ flex: 1, overflowY: scroll ? 'auto' : 'hidden', padding: '20px 24px 24px' }}>
         <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--color-primary-600)', marginBottom: 8 }}>STEP {step + 1} / {total}</div>
         <h1 style={{ margin: 0, fontSize: 24, fontWeight: 700, letterSpacing: '-0.025em', lineHeight: 1.35, color: 'var(--color-text-primary)' }}>{title}</h1>
-        {sub && <p style={{ margin: '8px 0 0', fontSize: 14, lineHeight: 1.55, color: 'var(--color-text-meta)' }}>{sub}</p>}
+        {sub && <p style={{ margin: '8px 0 0', fontSize: 14, lineHeight: 1.55, color: '#807A71' }}>{sub}</p>}
         <div style={{ marginTop: 26 }}>{children}</div>
       </div>
       {/* footer */}
