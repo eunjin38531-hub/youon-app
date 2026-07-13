@@ -299,8 +299,8 @@ function StepVerify({ onNext, onBack, step, total }) {
           const on = got[b.key];
           return (
             <div key={b.key} style={{ display: 'flex', alignItems: 'center', gap: 14, padding: 16, borderRadius: 'var(--radius-lg)', background: 'var(--color-surface-card)', border: '1px solid var(--color-border-default)' }}>
-              <span style={{ width: 48, height: 48, flexShrink: 0, borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--color-primary-50)' }}>
-                <Icon name={b.icon} size={24} color="var(--color-primary-600)" />
+              <span style={{ width: 48, height: 48, flexShrink: 0, borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#E8F9F8' }}>
+                <Icon name={b.icon} size={24} color="#45C5C1" />
               </span>
               <div style={{ flex: 1 }}>
                 <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--color-text-primary)' }}>{b.title}</div>
