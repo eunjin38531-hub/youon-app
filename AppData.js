@@ -11,9 +11,10 @@ window.YuonData = (function () {
     jihoon:  'images/w06.jpg',
     minjun:  'images/w07.jpg',
     doyun:   'images/w08.jpg',
-    h1:      'images/w09.jpg',
-    h2:      'images/w10.jpg',
-    h3:      'images/w12.jpg',
+    h1:      'images/Frame 427319208.png',
+    h2:      'images/Frame 427319209.png',
+    h3:      'images/Frame 427319210.png',
+    h4:      'images/Frame 427319211.png',
   };
 
   const profiles = [
@@ -30,7 +31,7 @@ window.YuonData = (function () {
       sajuKeywords: ['화목 상생', '에너지 폭발', '솔직한 매력'],
       synergy: '당신의 목(木)과 밥약속있음님의 화(火)가 만나 서로를 키워주는 상생 관계예요. 함께 있을수록 서로에게 힘이 되는 궁합입니다.',
       impressions: ['체력 좋아요', '리액션 좋아요', '잘 먹어요', '계획적이에요'],
-      hobbies: [IMG.h1, IMG.h2, IMG.h3, IMG.doyun],
+      hobbies: [IMG.h1, IMG.h2, IMG.h3, IMG.h4],
       verified: true,
     },
     {
@@ -46,7 +47,7 @@ window.YuonData = (function () {
       sajuKeywords: ['토금 안정', '든든한 기둥', '깊은 신뢰'],
       synergy: '토(土)와 금(金)이 만나 단단하고 안정적인 관계를 만들어요. 오래 함께할수록 더 깊어지는 인연이에요.',
       impressions: ['듬직해요', '배려심 깊어요', '안정적이에요'],
-      hobbies: [IMG.h2, IMG.h1, IMG.doyun, IMG.h3],
+      hobbies: [IMG.h2, IMG.h1, IMG.h4, IMG.h3],
       verified: true,
     },
     {
@@ -62,7 +63,7 @@ window.YuonData = (function () {
       sajuKeywords: ['목수 상생', '진취적 기운', '성장하는 인연'],
       synergy: '목(木)과 수(水)가 만나 서로를 자라게 하는 궁합이에요. 함께 꿈을 키워나가는 특별한 인연이 될 거예요.',
       impressions: ['계획적이에요', '진취적이에요', '꿈이 많아요'],
-      hobbies: [IMG.h3, IMG.doyun, IMG.h1, IMG.h2],
+      hobbies: [IMG.h3, IMG.h4, IMG.h1, IMG.h2],
       verified: true,
     },
   ];
@@ -81,7 +82,7 @@ window.YuonData = (function () {
       sajuKeywords: ['목화 상생', '따뜻한 감성', '섬세한 배려'],
       synergy: '목(木)과 화(火)가 만나 서로를 빛나게 하는 궁합이에요. 함께 있을수록 더 아름다워지는 인연이에요.',
       impressions: ['감성적이에요', '배려심 있어요', '취향이 좋아요'],
-      hobbies: [IMG.h1, IMG.h2, IMG.h3, IMG.h1],
+      hobbies: [IMG.h1, IMG.h2, IMG.h3, IMG.h4],
       verified: true, ilju: '갑목 일주', religion: '무교', el: 'wood',
     },
     {
@@ -97,7 +98,7 @@ window.YuonData = (function () {
       sajuKeywords: ['금토 안정', '믿음직한 기운', '따뜻한 일상'],
       synergy: '금(金)과 토(土)가 만나 단단하고 편안한 관계를 만들어요. 함께할수록 안정감이 깊어지는 인연이에요.',
       impressions: ['다정해요', '안정적이에요', '배려해요'],
-      hobbies: [IMG.h2, IMG.h3, IMG.h1, IMG.h2],
+      hobbies: [IMG.h2, IMG.h3, IMG.h4, IMG.h1],
       verified: true, ilju: '경금 일주', religion: '무교', el: 'earth',
     },
   ];
