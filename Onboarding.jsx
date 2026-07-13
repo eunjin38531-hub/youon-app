@@ -37,12 +37,30 @@ function FieldLabel({ children }) {
 
 function RawInput({ value, onChange, placeholder, inputMode }) {
   const [focused, setFocused] = React.useState(false);
+  const border = focused ? '1.5px solid var(--color-primary-500)' : '1.5px solid var(--color-border-strong)';
   return (
-    <div style={{ display: 'block', width: '100%', boxSizing: 'border-box', height: 52, padding: '0 16px', background: '#fff', border: `1.5px solid ${focused ? 'var(--color-primary-500)' : 'var(--color-border-strong)'}`, borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center' }}>
-      <input value={value} onChange={onChange} placeholder={placeholder} inputMode={inputMode}
-        onFocus={() => setFocused(true)} onBlur={() => setFocused(false)}
-        style={{ width: '100%', border: 'none', outline: 'none', background: 'transparent', fontFamily: 'var(--font-family-base)', fontSize: 16, color: 'var(--color-text-primary)', minWidth: 0 }} />
-    </div>
+    <input
+      value={value}
+      onChange={onChange}
+      placeholder={placeholder}
+      inputMode={inputMode}
+      onFocus={() => setFocused(true)}
+      onBlur={() => setFocused(false)}
+      style={{
+        display: 'block',
+        width: '100%',
+        boxSizing: 'border-box',
+        height: 52,
+        padding: '0 16px',
+        background: '#fff',
+        border,
+        borderRadius: 'var(--radius-md)',
+        fontFamily: 'var(--font-family-base)',
+        fontSize: 16,
+        color: 'var(--color-text-primary)',
+        outline: 'none',
+      }}
+    />
   );
 }
 
