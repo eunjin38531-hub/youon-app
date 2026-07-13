@@ -19,7 +19,7 @@ window.YuonData = (function () {
 
   const profiles = [
     {
-      id: 'jihoon', name: '밥약속있음', age: 27, score: 70, compatScore: 92, activity: '오늘',
+      id: 'jihoon', name: '헬스가는중', age: 27, score: 70, compatScore: 92, activity: '오늘',
       photo: IMG.jihoon,
       sajuLine: '화목 조합, 에너지가 넘치는 인연',
       intro: '만나서 먹으면서 얘기하는 거 좋아해요. 몸 쓰는 일을 해서 그런지 밥 잘 먹는 사람한테 더 끌립니다.',
@@ -70,7 +70,7 @@ window.YuonData = (function () {
 
   const extraProfiles = [
     {
-      id: 'seoyeon', name: '서연', age: 29, score: 92, compatScore: 88, activity: '오늘',
+      id: 'seoyeon', name: '여행가고파', age: 29, score: 92, compatScore: 88, activity: '오늘',
       photo: IMG.seoyeon,
       sajuLine: '목화 조합, 서로를 밝히는 인연',
       intro: '조용한 카페와 한강 산책을 좋아해요. 비슷한 결의 사람과 천천히 알아가고 싶어요.',
@@ -86,7 +86,7 @@ window.YuonData = (function () {
       verified: true, ilju: '갑목 일주', religion: '무교', el: 'wood',
     },
     {
-      id: 'hana', name: '하나', age: 27, score: 85, compatScore: 85, activity: '어제',
+      id: 'hana', name: '강아지짱', age: 27, score: 85, compatScore: 85, activity: '어제',
       photo: IMG.hana,
       sajuLine: '금토 조합, 안정감 있는 인연',
       intro: '강아지와 산책하는 시간이 제일 좋아요. 천천히 알아가요.',
@@ -119,7 +119,7 @@ window.YuonData = (function () {
 
   const chats = [
     {
-      id: 'hana', profileId: 'hana', last: '매칭됐어요! 사주 기반 대화 주제로 시작해보세요', time: '방금', unread: 0, isNew: true,
+      id: 'hana', profileId: 'hana', last: '두 분의 사주 궁합 기반 대화 주제를 확인해보세요', time: '방금', unread: 1, isNew: true,
       messages: [],
     },
     {
@@ -171,9 +171,9 @@ window.YuonData = (function () {
   ];
 
   const newMatches = [
-    { id: 'sua', name: '수아', photo: IMG.sua },
-    { id: 'yerin', name: '예린', photo: IMG.yerin },
-    { id: 'hana', name: '하나', photo: IMG.hana },
+    { id: 'sua', name: '넷플보는중', photo: IMG.sua },
+    { id: 'yerin', name: '주말등산러', photo: IMG.yerin },
+    { id: 'hana', name: '라떼한잔', photo: IMG.hana },
   ];
 
   const me = {
