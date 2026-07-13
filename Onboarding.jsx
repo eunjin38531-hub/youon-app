@@ -163,12 +163,12 @@ function StepProfile({ onNext, onBack, step, total }) {
       footer={<Button variant="primary" size="lg" fullWidth onClick={onNext}>다음</Button>}>
       <FieldLabel>닉네임</FieldLabel>
       <Input value={nick} onChange={(e) => setNick(e.target.value)} placeholder="2~10자" style={{ marginBottom: 18 }} />
-      <div style={{ display: 'flex', gap: 12, marginBottom: 18 }}>
-        <div style={{ width: 90, flexShrink: 0 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '90px 1fr', gap: 12, marginBottom: 18 }}>
+        <div>
           <FieldLabel>키</FieldLabel>
-          <Input value={height} onChange={(e) => setHeight(e.target.value)} placeholder="cm" inputMode="numeric" />
+          <RawInput value={height} onChange={(e) => setHeight(e.target.value)} placeholder="cm" inputMode="numeric" />
         </div>
-        <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{ minWidth: 0, overflow: 'hidden' }}>
           <FieldLabel>직업</FieldLabel>
           <RawInput value={job} onChange={(e) => setJob(e.target.value)} placeholder="예: 디자이너" />
         </div>
