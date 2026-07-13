@@ -142,7 +142,7 @@ function StepProfile({ onNext, onBack, step, total }) {
   const [job, setJob] = React.useState('');
   const [area, setArea] = React.useState('');
   const [bio, setBio] = React.useState('');
-  const hobbyOpts = ['카페', '여행', '운동', '영화', '음악', '독서', '요리', '전시', '등산', '반려동물', '게임', '와인'];
+  const hobbyOpts = ['카페', '여행', '운동', '영화', '음악', '독서', '요리', '전시'];
   const [hobbies, setHobbies] = React.useState([]);
   const toggleHobby = (h) => setHobbies((s) => s.includes(h) ? s.filter((x) => x !== h) : (s.length < 5 ? [...s, h] : s));
   const ok = nick.trim() && area.trim() && hobbies.length > 0;
@@ -164,8 +164,6 @@ function StepProfile({ onNext, onBack, step, total }) {
       </div>
       <FieldLabel>거주지</FieldLabel>
       <Input value={area} onChange={(e) => setArea(e.target.value)} placeholder="예: 서울 마포구" style={{ marginBottom: 18 }} />
-      <FieldLabel>자기소개</FieldLabel>
-      <Input value={bio} onChange={(e) => setBio(e.target.value)} placeholder="나를 한두 문장으로 소개해주세요" style={{ marginBottom: 18 }} />
       <FieldLabel>취미 · 관심사 <span style={{ color: 'var(--color-text-tertiary)', fontWeight: 500 }}>({hobbies.length}/5)</span></FieldLabel>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
         {hobbyOpts.map((h) => {

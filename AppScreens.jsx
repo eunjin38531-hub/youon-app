@@ -192,7 +192,7 @@ function HomeScreen({ onOpenProfile }) {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16, padding: '0 16px' }}>
           {data.profiles.map((p) => {
             const elIcon = data.elementIcons[p.el];
-            const elBg = { fire: 'rgba(255,100,50,0.88)', water: 'rgba(60,170,200,0.88)', earth: 'rgba(80,190,160,0.88)', wood: 'rgba(90,180,80,0.88)', metal: 'rgba(140,100,200,0.88)' }[p.el] || 'rgba(255,100,50,0.88)';
+            const elBg = { fire: 'rgba(60,175,172,0.90)', water: 'rgba(60,150,200,0.90)', earth: 'rgba(70,175,155,0.90)', wood: 'rgba(60,175,172,0.90)', metal: 'rgba(80,160,180,0.90)' }[p.el] || 'rgba(60,175,172,0.90)';
             return (
               <div key={p.id} onClick={() => onOpenProfile(p.id)} style={{ borderRadius: 20, overflow: 'hidden', background: '#fff', boxShadow: '0 2px 20px rgba(30,28,24,0.10)', cursor: 'pointer', WebkitTapHighlightColor: 'transparent' }}>
                 {/* 사진 */}
@@ -335,7 +335,10 @@ function ProfileDetailScreen({ profileId, onBack, onQuiet, onInterest, savedQuie
             </div>
             {/* 점수 바 */}
             <div style={{ position: 'relative', height: 8, borderRadius: 999, background: '#F0EDEA', marginBottom: 14 }}>
-              <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: `${p.score}%`, borderRadius: 999, background: 'linear-gradient(90deg, #FFA397, #FF8C7D)' }} />
+              <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: `${p.compatScore || p.score}%`, borderRadius: 999, background: 'linear-gradient(90deg, #FFA397, #FF8C7D)' }} />
+              <div style={{ position: 'absolute', top: '50%', left: `${p.compatScore || p.score}%`, transform: 'translate(-50%, -50%)', width: 22, height: 22, borderRadius: '50%', background: '#FF8C7D', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 8px rgba(255,140,125,0.5)' }}>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="#fff"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+              </div>
             </div>
             <p style={{ margin: 0, fontSize: 13, lineHeight: 1.65, color: '#5A564E' }}>{p.synergy}</p>
           </div>
