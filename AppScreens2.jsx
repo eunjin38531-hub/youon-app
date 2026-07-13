@@ -55,7 +55,7 @@ function LikeCard({ p, onClick, locked }) {
   );
 }
 
-function SavedCarousel({ list, onOpenProfile, charTop, charBottom, emptyMsg }) {
+function SavedCarousel({ list, onOpenProfile, emptyMsg }) {
   const [cur, setCur] = React.useState(0);
   const startX = React.useRef(null);
   const dragging = React.useRef(false);
@@ -75,12 +75,6 @@ function SavedCarousel({ list, onOpenProfile, charTop, charBottom, emptyMsg }) {
   return (
     <div style={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 14, overflow: 'hidden', padding: '16px 0 12px' }}>
       <div style={{ position: 'relative', width: '100%' }}>
-        {/* 위쪽 캐릭터 (마음에 담은 — 오렌지 뒤통수) */}
-        {charTop && (
-          <div style={{ position: 'absolute', top: -50, left: '50%', transform: 'translateX(-50%)', zIndex: 20, pointerEvents: 'none' }}>
-            <img src={charTop} alt="" style={{ width: 100, height: 100, objectFit: 'contain' }} />
-          </div>
-        )}
         <div style={{ position: 'relative', width: '100%', height: 360, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
           onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
           {list.map((p, i) => {
@@ -111,15 +105,9 @@ function SavedCarousel({ list, onOpenProfile, charTop, charBottom, emptyMsg }) {
             );
           })}
         </div>
-        {/* 아래쪽 캐릭터 (나를 괜찮게 본 — 보라 뒤통수) */}
-        {charBottom && (
-          <div style={{ position: 'absolute', bottom: -54, left: '50%', transform: 'translateX(-50%)', zIndex: 20, pointerEvents: 'none' }}>
-            <img src={charBottom} alt="" style={{ width: 100, height: 100, objectFit: 'contain' }} />
-          </div>
-        )}
       </div>
       {/* dots */}
-      <div style={{ display: 'flex', gap: 6, marginTop: charBottom ? 54 : 0 }}>
+      <div style={{ display: 'flex', gap: 6 }}>
         {list.map((_, i) => <div key={i} onClick={() => setCur(i)} style={{ width: i === cur ? 20 : 6, height: 6, borderRadius: 3, background: i === cur ? '#FF8C7D' : '#DAD7D1', transition: 'all 0.25s ease', cursor: 'pointer' }} />)}
       </div>
       <div style={{ fontSize: 12, color: '#888' }}>
@@ -148,22 +136,11 @@ function HeartScreen({ onOpenProfile }) {
           ? '내가 하트를 누른 목록이에요. 상대에게 알림은 가지 않아요.'
           : '나에게 관심을 표현한 사람들이에요.\n관심을 표현하면 바로 대화를 시작할 수 있어요.'}
       </p>
-      <div style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
-        {/* 배경: 마음에 담은 = teal 그라디언트, 나를 괜찮게 본 = 만다라 텍스처 */}
+      <div style={{ flex: 1, overflow: 'hidden' }}>
         {isSaved
-          ? <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, #D6F2F1 0%, #fff 55%)', zIndex: 0 }} />
-          : <img src="characters/여운 누끼 보라 카페트 1.png" alt="" style={{ position: 'absolute', top: -20, left: '50%', transform: 'translateX(-50%)', width: '110%', opacity: 0.25, pointerEvents: 'none', zIndex: 0 }} />
+          ? <SavedCarousel list={list} onOpenProfile={onOpenProfile} emptyMsg="아직 마음에 담은 사람이 없어요" />
+          : <SavedCarousel list={list} onOpenProfile={onOpenProfile} emptyMsg="아직 나를 괜찮게 본 사람이 없어요" />
         }
-        <div style={{ position: 'relative', zIndex: 1, height: '100%' }}>
-          {isSaved
-            ? <SavedCarousel list={list} onOpenProfile={onOpenProfile}
-                charTop="characters/여운 뒤통수 12 누끼 3.png"
-                emptyMsg="아직 마음에 담은 사람이 없어요" />
-            : <SavedCarousel list={list} onOpenProfile={onOpenProfile}
-                charBottom="characters/여운 뒤통수 12 누끼 2.png"
-                emptyMsg="아직 나를 괜찮게 본 사람이 없어요" />
-          }
-        </div>
       </div>
     </div>
   );
