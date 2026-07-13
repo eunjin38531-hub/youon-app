@@ -67,7 +67,44 @@ window.YuonData = (function () {
     },
   ];
 
-  const byId = (id) => profiles.find((p) => p.id === id);
+  const extraProfiles = [
+    {
+      id: 'seoyeon', name: '서연', age: 29, score: 92, compatScore: 88, activity: '오늘',
+      photo: IMG.seoyeon,
+      sajuLine: '목화 조합, 서로를 밝히는 인연',
+      intro: '조용한 카페와 한강 산책을 좋아해요. 비슷한 결의 사람과 천천히 알아가고 싶어요.',
+      bio: '조용한 카페와 한강 산책을 좋아해요. 비슷한 결의 사람과 천천히 알아가고 싶어요.',
+      sajuTag: '감성적이고 따뜻해요',
+      district: '마포구', height: 163, smoke: '비흡연', drink: '가끔',
+      job: '그래픽 디자이너', school: '홍익대',
+      element: '목(木)이 강한 봄의 기운',
+      sajuKeywords: ['목화 상생', '따뜻한 감성', '섬세한 배려'],
+      synergy: '목(木)과 화(火)가 만나 서로를 빛나게 하는 궁합이에요. 함께 있을수록 더 아름다워지는 인연이에요.',
+      impressions: ['감성적이에요', '배려심 있어요', '취향이 좋아요'],
+      hobbies: [IMG.h1, IMG.h2, IMG.h3, IMG.h1],
+      verified: true, ilju: '갑목 일주', religion: '무교', el: 'wood',
+    },
+    {
+      id: 'hana', name: '하나', age: 27, score: 85, compatScore: 85, activity: '어제',
+      photo: IMG.hana,
+      sajuLine: '금토 조합, 안정감 있는 인연',
+      intro: '강아지와 산책하는 시간이 제일 좋아요. 천천히 알아가요.',
+      bio: '강아지와 산책하는 시간이 제일 좋아요. 소소한 일상을 나눌 수 있는 사람이면 좋겠어요.',
+      sajuTag: '안정적이고 다정해요',
+      district: '서대문구', height: 161, smoke: '비흡연', drink: '안 함',
+      job: '초등학교 교사', school: '이화여대',
+      element: '토(土)가 두터운 늦여름의 기운',
+      sajuKeywords: ['금토 안정', '믿음직한 기운', '따뜻한 일상'],
+      synergy: '금(金)과 토(土)가 만나 단단하고 편안한 관계를 만들어요. 함께할수록 안정감이 깊어지는 인연이에요.',
+      impressions: ['다정해요', '안정적이에요', '배려해요'],
+      hobbies: [IMG.h2, IMG.h3, IMG.h1, IMG.h2],
+      verified: true, ilju: '경금 일주', religion: '무교', el: 'earth',
+    },
+  ];
+  profiles.push(...extraProfiles);
+
+  const allProfiles = profiles;
+  const byId = (id) => allProfiles.find((p) => p.id === id);
 
   const iljus = ['을목 일주', '임수 일주', '경금 일주', '병화 일주'];
   const religions = ['종교가 없어요', '무교', '종교가 없어요', '무교'];
