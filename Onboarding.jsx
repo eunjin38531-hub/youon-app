@@ -50,7 +50,7 @@ function StepTerms({ onNext, onBack, step, total }) {
   const allOn = items.every((i) => checks[i.key]);
   const toggleAll = () => { const v = !allOn; const next = {}; items.forEach((i) => (next[i.key] = v)); setChecks(next); };
   return (
-    <ObShell step={step} total={total} onBack={onBack} title={<span>여운 이용을 위해<br />약관에 동의해주세요</span>}
+    <ObShell step={step} total={total} onBack={onBack} title={<span>유온 이용을 위해<br />약관에 동의해주세요</span>}
       footer={<Button variant="primary" size="lg" fullWidth disabled={!allReq} onClick={onNext}>동의하고 계속하기</Button>}>
       <button onClick={toggleAll} style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 12, padding: '16px 16px', borderRadius: 'var(--radius-lg)', border: 'none', background: allOn ? 'var(--color-primary-50)' : 'var(--color-surface-sunken)', cursor: 'pointer', marginBottom: 8 }}>
         <span style={{ width: 24, height: 24, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: allOn ? 'var(--color-primary-500)' : 'var(--color-natural-300)' }}>
@@ -296,7 +296,7 @@ function StepPreview({ onNext, onBack, step, total, photos }) {
   return (
     <ObShell step={step} total={total} onBack={onBack} title="이렇게 보여질 거예요" scroll
       sub="매칭 상대에게 보여지는 내 프로필 미리보기예요. 언제든 마이페이지에서 수정할 수 있어요."
-      footer={<Button variant="accent" size="lg" fullWidth onClick={onNext} leadingIcon={<Icon name="heart" size={19} filled color="#fff" />}>여운 시작하기</Button>}>
+      footer={<Button variant="accent" size="lg" fullWidth onClick={onNext} leadingIcon={<Icon name="heart" size={19} filled color="#fff" />}>유온 시작하기</Button>}>
       <div style={{ borderRadius: 'var(--radius-xl)', overflow: 'hidden', background: 'var(--color-surface-card)', boxShadow: 'var(--shadow-card)', border: '1px solid var(--color-border-default)' }}>
         <div style={{ position: 'relative', aspectRatio: '4 / 5', background: 'var(--color-natural-200)' }}>
           <img src={hero} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
